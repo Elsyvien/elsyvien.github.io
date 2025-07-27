@@ -39,7 +39,9 @@
             font-family: 'Inter', sans-serif;
             line-height: 1.6;
             color: var(--text-dark);
+            background: var(--bg-light);
             overflow-x: hidden;
+            transition: background var(--transition), color var(--transition);
         }
 
         /* Scrollbar Styling */
@@ -188,6 +190,11 @@
             margin-bottom: 1rem;
             opacity: 0;
             animation: slideInUp 1s ease-out 0.5s forwards;
+            transition: text-shadow var(--transition);
+        }
+
+        .hero-title:hover {
+            text-shadow: 0 0 10px var(--accent-color), 0 0 20px var(--accent-color);
         }
 
         .hero-subtitle {
@@ -733,6 +740,7 @@
             box-shadow: var(--shadow);
             transition: var(--transition);
             position: relative;
+            transform-style: preserve-3d;
         }
 
         .project-item:hover {
@@ -1273,14 +1281,19 @@
 
         skillTags.forEach(tag => skillsObserver.observe(tag));
 
-        // Portfolio items hover effect
-        document.querySelectorAll('.portfolio-item').forEach(item => {
-            item.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-15px) scale(1.02)';
+        // Tilt effect for project items
+        document.querySelectorAll('.project-item').forEach(item => {
+            item.addEventListener('mousemove', e => {
+                const rect = item.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                const rotateX = (y / rect.height) * 10;
+                const rotateY = (x / rect.width) * -10;
+                item.style.transform = `perspective(600px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
             });
-            
-            item.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(-10px) scale(1)';
+
+            item.addEventListener('mouseleave', () => {
+                item.style.transform = 'perspective(600px) rotateX(0deg) rotateY(0deg)';
             });
         });
 
@@ -1332,14 +1345,27 @@
 
         // Dark mode toggle
         const themeToggle = document.querySelector('.theme-toggle');
-        themeToggle.addEventListener('click', () => {
-            if (document.body.getAttribute('data-theme') === 'dark') {
-                document.body.removeAttribute('data-theme');
-                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-            } else {
+
+        function setTheme(dark) {
+            if (dark) {
                 document.body.setAttribute('data-theme', 'dark');
                 themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                document.body.removeAttribute('data-theme');
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                localStorage.removeItem('theme');
             }
+        }
+
+        // Load saved theme
+        if (localStorage.getItem('theme') === 'dark') {
+            setTheme(true);
+        }
+
+        themeToggle.addEventListener('click', () => {
+            const isDark = document.body.getAttribute('data-theme') === 'dark';
+            setTheme(!isDark);
         });
     </script>
 </body>
