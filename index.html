@@ -25,6 +25,16 @@
             --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
+        [data-theme="dark"] {
+            --primary-color: #ff6ec7;
+            --secondary-color: #7873f5;
+            --accent-color: #ff7e6b;
+            --text-dark: #edf2f7;
+            --text-light: #a0aec0;
+            --bg-light: #1a202c;
+            --white: #2d3748;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
             line-height: 1.6;
@@ -121,6 +131,19 @@
             background: var(--text-dark);
             margin: 3px 0;
             transition: var(--transition);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text-dark);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .theme-toggle:hover {
+            color: var(--primary-color);
         }
 
         /* Hero Section */
@@ -807,6 +830,9 @@
                 <span></span>
                 <span></span>
             </div>
+            <button class="theme-toggle" aria-label="Toggle dark mode">
+                <i class="fas fa-moon"></i>
+            </button>
         </div>
     </nav>
 
@@ -1303,6 +1329,18 @@
 
         // Create particles periodically
         setInterval(createParticle, 2000);
+
+        // Dark mode toggle
+        const themeToggle = document.querySelector('.theme-toggle');
+        themeToggle.addEventListener('click', () => {
+            if (document.body.getAttribute('data-theme') === 'dark') {
+                document.body.removeAttribute('data-theme');
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            } else {
+                document.body.setAttribute('data-theme', 'dark');
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+        });
     </script>
 </body>
 </html>
