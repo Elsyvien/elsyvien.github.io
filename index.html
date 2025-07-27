@@ -20,7 +20,8 @@
             --text-dark: #2d3748;
             --text-light: #4a5568;
             --bg-light: #f7fafc;
-            --white: #ffffff;
+            --surface-color: #ffffff;
+            --navbar-bg: rgba(255, 255, 255, 0.95);
             --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
@@ -32,14 +33,32 @@
             --text-dark: #edf2f7;
             --text-light: #a0aec0;
             --bg-light: #1a202c;
-            --white: #2d3748;
+            --surface-color: #2d3748;
+            --navbar-bg: rgba(45, 55, 72, 0.95);
         }
 
         body {
             font-family: 'Inter', sans-serif;
             line-height: 1.6;
             color: var(--text-dark);
+            background: var(--bg-light);
             overflow-x: hidden;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background: radial-gradient(circle at top left, var(--primary-color), transparent 60%),
+                        radial-gradient(circle at bottom right, var(--secondary-color), transparent 60%);
+            opacity: 0.2;
+            z-index: -1;
+        }
+
+        [data-theme="dark"] body::before {
+            opacity: 0.4;
         }
 
         /* Scrollbar Styling */
@@ -61,7 +80,7 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.95);
+            background: var(--navbar-bg);
             backdrop-filter: blur(10px);
             z-index: 1000;
             padding: 1rem 0;
@@ -188,6 +207,7 @@
             margin-bottom: 1rem;
             opacity: 0;
             animation: slideInUp 1s ease-out 0.5s forwards;
+            text-shadow: 0 0 20px var(--primary-color);
         }
 
         .hero-subtitle {
@@ -229,8 +249,8 @@
         }
 
         .btn-primary {
-            background: white;
-            color: var(--primary-color);
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: #fff;
         }
 
         .btn-primary:hover {
@@ -245,7 +265,7 @@
         }
 
         .btn-secondary:hover {
-            background: white;
+            background: var(--surface-color);
             color: var(--primary-color);
             transform: translateY(-3px);
         }
@@ -264,7 +284,7 @@
         /* About Section */
         .about {
             padding: 6rem 0;
-            background: var(--white);
+            background: var(--surface-color);
         }
 
         .container {
@@ -361,7 +381,7 @@
         }
 
         .service-card {
-            background: white;
+            background: var(--surface-color);
             padding: 3rem 2rem;
             border-radius: 20px;
             text-align: center;
@@ -390,6 +410,7 @@
         .service-card:hover {
             transform: translateY(-10px);
             color: white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
         }
 
         .service-card > * {
@@ -416,7 +437,7 @@
         /* Portfolio Section */
         .portfolio {
             padding: 6rem 0;
-            background: white;
+            background: var(--surface-color);
         }
 
         .portfolio-grid {
@@ -427,7 +448,7 @@
         }
 
         .portfolio-item {
-            background: white;
+            background: var(--surface-color);
             border-radius: 20px;
             overflow: hidden;
             box-shadow: var(--shadow);
@@ -437,6 +458,7 @@
 
         .portfolio-item:hover {
             transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
         }
 
         .portfolio-img {
@@ -637,7 +659,7 @@
         }
 
         .resume-section {
-            background: white;
+            background: var(--surface-color);
             padding: 2rem;
             border-radius: 20px;
             box-shadow: var(--shadow);
@@ -716,7 +738,7 @@
         /* Projects Section */
         .projects {
             padding: 6rem 0;
-            background: white;
+            background: var(--surface-color);
         }
 
         .projects-grid {
@@ -727,7 +749,7 @@
         }
 
         .project-item {
-            background: white;
+            background: var(--surface-color);
             border-radius: 20px;
             overflow: hidden;
             box-shadow: var(--shadow);
@@ -737,6 +759,7 @@
 
         .project-item:hover {
             transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
         }
 
         .project-header {
