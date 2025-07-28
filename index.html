@@ -206,6 +206,14 @@
             color: #1a202c !important;
         }
 
+        .light .text-white\/60 {
+            color: rgba(55, 65, 81, 0.6) !important;
+        }
+
+        .light .text-white\/80 {
+            color: rgba(31, 41, 55, 0.8) !important;
+        }
+
         .light .text-gray-300 {
             color: #4a5568 !important;
         }
@@ -229,6 +237,10 @@
 
         .light .border-white\/20 {
             border-color: rgba(0, 0, 0, 0.15) !important;
+        }
+
+        .light .border-dashed.border-white\/30 {
+            border-color: rgba(55, 65, 81, 0.3) !important;
         }
 
         /* Light mode navbar */
@@ -343,6 +355,57 @@
         .clip-path-triangle {
             clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
         }
+
+        /* Additional light mode compatibility */
+        .light .text-white\/60 {
+            color: rgba(55, 65, 81, 0.6) !important;
+        }
+
+        .light .text-white\/80 {
+            color: rgba(31, 41, 55, 0.8) !important;
+        }
+
+        .light .border-dashed.border-white\/30 {
+            border-color: rgba(55, 65, 81, 0.3) !important;
+        }
+
+        .light .bg-black\/80 {
+            background: rgba(255, 255, 255, 0.9) !important;
+        }
+
+        .light .from-black\/80 {
+            --tw-gradient-from: rgba(255, 255, 255, 0.9) !important;
+        }
+
+        /* Light mode neon text adjustments */
+        .light .text-neon-cyan {
+            color: #0ea5e9 !important;
+        }
+
+        .light .text-neon-pink {
+            color: #ec4899 !important;
+        }
+
+        .light .text-neon-purple {
+            color: #8b5cf6 !important;
+        }
+
+        .light .text-neon-green {
+            color: #22c55e !important;
+        }
+
+        .light .text-neon-orange {
+            color: #f97316 !important;
+        }
+
+        /* Light mode icons and special elements */
+        .light .fa-camera, .light .fa-image, .light .fa-mountain,
+        .light .fa-palette, .light .fa-city, .light .fa-camera-retro,
+        .light .fa-magic, .light .fa-eye, .light .fa-leaf {
+            opacity: 0.8;
+        }
+
+        /* ...existing code... */
     </style>
 </head>
 <body class="font-inter bg-gray-950 text-white overflow-x-hidden relative dark">
