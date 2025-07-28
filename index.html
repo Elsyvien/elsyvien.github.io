@@ -502,18 +502,6 @@
                 </span>
             </h1>
             
-            <!-- Subtitle -->
-            <div class="text-xl sm:text-2xl lg:text-3xl font-light text-gray-300 mb-8 opacity-0 animate-slide-in-up" style="animation-delay: 1s; animation-fill-mode: forwards;">
-                <span class="bg-gradient-to-r from-neon-cyan to-neon-purple bg-clip-text text-transparent">
-                    Informatik Student & Developer
-                </span>
-            </div>
-            
-            <!-- Description -->
-            <p class="text-lg sm:text-xl text-gray-400 mb-12 max-w-2xl mx-auto opacity-0 animate-slide-in-up" style="animation-delay: 1.5s; animation-fill-mode: forwards;">
-                Leidenschaftlicher Entwickler mit Fokus auf innovative Lösungen und moderne Technologien
-            </p>
-            
             <!-- CTA Buttons -->
             <div class="flex flex-col sm:flex-row gap-4 justify-center items-center opacity-0 animate-slide-in-up" style="animation-delay: 2s; animation-fill-mode: forwards;">
                 <a href="#projects" class="group relative inline-flex items-center px-8 py-4 bg-gradient-to-r from-neon-pink to-neon-purple rounded-full font-semibold text-white transition-all duration-300 hover:scale-105 hover-glow">
@@ -530,8 +518,16 @@
             
             <!-- Scroll Indicator -->
             <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 opacity-0 animate-fade-in" style="animation-delay: 3s; animation-fill-mode: forwards;">
-                <div class="animate-bounce">
-                    <i class="fas fa-chevron-down text-2xl text-white/60"></i>
+                <div class="flex flex-col items-center space-y-3 cursor-pointer group" onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'})">
+                    <span class="text-white/70 text-sm font-medium group-hover:text-neon-cyan transition-all duration-300 transform group-hover:scale-110">Nach unten scrollen</span>
+                    <div class="w-8 h-12 border-2 border-white/40 rounded-full flex justify-center group-hover:border-neon-cyan/60 transition-all duration-300 bg-white/5 backdrop-blur-sm">
+                        <div class="w-1.5 h-4 bg-white/70 rounded-full mt-2 animate-bounce group-hover:bg-neon-cyan transition-all duration-300"></div>
+                    </div>
+                    <div class="flex flex-col space-y-1">
+                        <i class="fas fa-chevron-down text-white/70 text-xl animate-bounce group-hover:text-neon-cyan transition-all duration-300" style="animation-delay: 0.2s;"></i>
+                        <i class="fas fa-chevron-down text-white/50 text-lg animate-bounce group-hover:text-neon-cyan/80 transition-all duration-300" style="animation-delay: 0.4s;"></i>
+                        <i class="fas fa-chevron-down text-white/30 text-base animate-bounce group-hover:text-neon-cyan/60 transition-all duration-300" style="animation-delay: 0.6s;"></i>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1039,17 +1035,10 @@
         
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Section Header -->
-            <div class="text-center mb-20">
-                <div class="inline-flex items-center gap-3 mb-6 px-6 py-3 bg-gradient-to-r from-neon-pink/20 to-neon-cyan/20 rounded-full backdrop-blur-sm border border-white/10">
-                    <i class="fas fa-camera text-neon-cyan"></i>
-                    <span class="text-white font-medium">Visual Portfolio</span>
-                </div>
-                <h2 class="text-5xl sm:text-6xl lg:text-7xl font-black mb-6 bg-gradient-to-r from-neon-pink via-neon-purple to-neon-cyan bg-clip-text text-transparent drop-shadow-2xl">
+            <div class="text-center mb-20 px-8">
+                <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black mb-6 leading-relaxed" style="background: linear-gradient(to right, #ff6ec7, #7873f5, #00f5ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-shadow: 0 0 30px rgba(255, 255, 255, 0.1); padding: 0.2em 0.3em; margin: 0 auto; display: inline-block; min-width: 100%;">
                     Bildergalerie
                 </h2>
-                <p class="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-                    Eine visuelle Reise durch meine kreative Welt - Fotografie, digitale Kunst und visuelle Experimente
-                </p>
             </div>
             
             <!-- Gallery Grid - Masonry Style -->
@@ -1224,24 +1213,6 @@
                     </div>
                 </div>
             </div>
-            
-            <!-- Gallery Footer -->
-            <div class="text-center mt-20">
-                <div class="inline-flex items-center gap-4 mb-8 px-8 py-4 glass rounded-full border border-white/20">
-                    <i class="fas fa-camera text-neon-cyan text-xl"></i>
-                    <span class="text-white font-medium">Mehr Bilder in meinen sozialen Netzwerken</span>
-                </div>
-                <div class="flex justify-center gap-6">
-                    <a href="https://www.instagram.com/elsyvien/" class="group inline-flex items-center px-8 py-4 bg-gradient-to-r from-neon-pink to-neon-orange rounded-full font-semibold text-white transition-all duration-300 hover:scale-110 hover:shadow-2xl hover:shadow-neon-pink/50">
-                        <i class="fab fa-instagram mr-3 text-xl group-hover:rotate-12 transition-transform duration-300"></i>
-                        Instagram Portfolio
-                    </a>
-                    <a href="https://github.com/elsyvien" class="group inline-flex items-center px-8 py-4 glass border border-white/20 rounded-full font-semibold text-white transition-all duration-300 hover:scale-110 hover:bg-white/10 hover:shadow-2xl hover:shadow-white/20">
-                        <i class="fab fa-github mr-3 text-xl group-hover:rotate-12 transition-transform duration-300"></i>
-                        GitHub Gallery
-                    </a>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -1254,9 +1225,6 @@
                 <h2 class="text-4xl sm:text-5xl font-black mb-4 text-white neon-text">
                     Kontakt
                 </h2>
-                <p class="text-xl text-gray-200 max-w-2xl mx-auto">
-                    Bereit für neue Herausforderungen und spannende Projekte
-                </p>
             </div>
             
             <!-- Contact Content -->
