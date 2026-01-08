@@ -80,6 +80,33 @@
         #image-track:active {
             cursor: grabbing;
         }
+
+        /* Code Snippet Styles */
+        .code-window {
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.75rem; /* text-xs */
+            line-height: 1.5;
+            color: #d1d5db; /* gray-300 */
+            background: rgba(20, 20, 20, 0.9); /* Dark bg */
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            width: 85%;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.4);
+            transform: rotate(-1deg);
+            transition: all 0.4s ease;
+        }
+        .group:hover .code-window {
+            transform: rotate(0deg) scale(1.02) translateY(-2px);
+            box-shadow: 0 25px 30px -5px rgba(0, 0, 0, 0.6);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+        .c-kwd { color: #c678dd; } /* Keyword: purple */
+        .c-func { color: #61afef; } /* Function: blue */
+        .c-str { color: #98c379; } /* String: green */
+        .c-type { color: #e5c07b; } /* Type: yellow */
+        .c-num { color: #d19a66; } /* Number: orange */
+        .c-com { color: #7f848e; font-style: italic; } /* Comment: gray */
     </style>
 </head>
 <body class="bg-white text-black dark:bg-black dark:text-white transition-colors duration-300 selection:bg-black selection:text-white dark:selection:bg-white dark:selection:text-black">
@@ -134,55 +161,271 @@
     <section id="work" class="py-20 px-6 max-w-6xl mx-auto border-t border-black/10 dark:border-white/10">
         <h2 class="text-4xl font-black uppercase tracking-tighter mb-16 animate-slide-in" style="animation-play-state: paused;" data-animate>Selected Work</h2>
         
-        <div class="grid md:grid-cols-2 gap-x-12 gap-y-20">
-            <!-- Project 1 -->
-            <div class="group cursor-pointer hover:-translate-y-1 transition-transform duration-300">
-                <div class="aspect-video bg-neutral-100 dark:bg-neutral-900 mb-6 border border-black/5 dark:border-white/5 overflow-hidden relative">
-                    <!-- Icon placeholder or image -->
-                    <div class="absolute inset-0 flex items-center justify-center">
-                        <i class="fas fa-code text-4xl text-neutral-300 dark:text-neutral-700"></i>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-20">
+            <!-- Project 1: Hero (Full Width) -->
+            <a href="https://github.com/Elsyvien/BasicMBComp" target="_blank" class="md:col-span-2 group cursor-pointer block">
+                <div class="aspect-[21/9] bg-gradient-to-br from-neutral-900 to-neutral-800 dark:from-neutral-800 dark:to-neutral-900 mb-8 border border-black/5 dark:border-white/5 overflow-hidden relative rounded-lg flex items-center justify-center">
+                    <!-- Tech Pattern Overlay -->
+                    <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(#4b5563 1px, transparent 1px); background-size: 20px 20px;"></div>
+                    
+                    <!-- Code Snippet -->
+                    <div class="code-window">
+                        <div class="flex gap-1.5 mb-3">
+                            <div class="w-2.5 h-2.5 rounded-full bg-red-500/80"></div>
+                            <div class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></div>
+                            <div class="w-2.5 h-2.5 rounded-full bg-green-500/80"></div>
+                        </div>
+                        <div>
+                            <span class="c-kwd">void</span> <span class="c-func">process</span>(<span class="c-type">AudioBuffer</span>& buffer) {<br>
+                            &nbsp;&nbsp;<span class="c-kwd">for</span> (<span class="c-kwd">int</span> ch = <span class="c-num">0</span>; ch < numChannels; ++ch) {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="c-kwd">auto</span>* channel = buffer.<span class="c-func">getWritePointer</span>(ch);<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="c-com">// Apply multiband compression</span><br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;compressor.<span class="c-func">processSamples</span>(channel, numSamples);<br>
+                            &nbsp;&nbsp;}<br>
+                            }
+                        </div>
                     </div>
-                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/5 dark:group-hover:bg-white/5 transition-colors"></div>
+
+                    <div class="absolute bottom-4 right-4 text-xs font-mono text-white/40">src/main.cpp</div>
                 </div>
-                <div class="flex justify-between items-start">
-                    <div>
-                        <h3 class="text-2xl font-bold mb-2 group-hover:underline decoration-2 underline-offset-4">C++ System</h3>
-                        <p class="text-neutral-500 dark:text-neutral-400 text-sm">Development / Qt</p>
+                <div class="flex flex-col md:flex-row justify-between items-start gap-6">
+                    <div class="max-w-2xl">
+                        <div class="flex items-center gap-4 mb-3">
+                            <h3 class="text-3xl font-black group-hover:underline decoration-4 underline-offset-4">BasicMBComp</h3>
+                            <span class="text-xs font-mono border border-black dark:border-white px-2 py-1">2024</span>
+                        </div>
+                        <p class="text-neutral-600 dark:text-neutral-400 leading-relaxed mb-4">
+                            A multiband dynamic range compressor utilizing Linkwitz-Riley crossover filters to split audio into three distinct frequency bands. Implements independent threshold, ratio, and attack/release logic for each band using the JUCE DSP module.
+                        </p>
+                        <ul class="flex flex-wrap gap-2 text-xs font-mono font-bold uppercase tracking-wider text-neutral-500">
+                            <li class="bg-neutral-100 dark:bg-neutral-900 px-2 py-1 rounded">C++</li>
+                            <li class="bg-neutral-100 dark:bg-neutral-900 px-2 py-1 rounded">JUCE</li>
+                            <li class="bg-neutral-100 dark:bg-neutral-900 px-2 py-1 rounded">DSP</li>
+                        </ul>
                     </div>
-                    <span class="text-xs font-mono border border-black dark:border-white px-2 py-1">2024</span>
                 </div>
-            </div>
+            </a>
 
             <!-- Project 2 -->
-            <div class="group cursor-pointer hover:-translate-y-1 transition-transform duration-300">
-                <div class="aspect-video bg-neutral-100 dark:bg-neutral-900 mb-6 border border-black/5 dark:border-white/5 overflow-hidden relative">
-                    <div class="absolute inset-0 flex items-center justify-center">
-                        <i class="fas fa-layer-group text-4xl text-neutral-300 dark:text-neutral-700"></i>
+            <a href="https://github.com/Elsyvien/javaChatApp" target="_blank" class="group cursor-pointer block">
+                <div class="aspect-video bg-gradient-to-tr from-blue-900 to-slate-900 mb-6 border border-black/5 dark:border-white/5 overflow-hidden relative rounded-lg flex items-center justify-center">
+                    <div class="absolute inset-0 opacity-30" style="background-image: linear-gradient(0deg, transparent 24%, #ffffff 25%, #ffffff 26%, transparent 27%, transparent 74%, #ffffff 75%, #ffffff 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, #ffffff 25%, #ffffff 26%, transparent 27%, transparent 74%, #ffffff 75%, #ffffff 76%, transparent 77%, transparent); background-size: 30px 30px;"></div>
+                    
+                    <div class="code-window">
+                        <div class="flex gap-1.5 mb-3">
+                            <div class="w-2.5 h-2.5 rounded-full bg-red-500/80"></div>
+                            <div class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></div>
+                            <div class="w-2.5 h-2.5 rounded-full bg-green-500/80"></div>
+                        </div>
+                        <div>
+                            <span class="c-type">ServerSocket</span> server = <span class="c-kwd">new</span> <span class="c-type">ServerSocket</span>(PORT);<br>
+                            <span class="c-kwd">while</span> (running) {<br>
+                            &nbsp;&nbsp;<span class="c-type">Socket</span> client = server.<span class="c-func">accept</span>();<br>
+                            &nbsp;&nbsp;<span class="c-type">Thread</span> t = <span class="c-kwd">new</span> <span class="c-type">Handler</span>(client);<br>
+                            &nbsp;&nbsp;pool.<span class="c-func">execute</span>(t);<br>
+                            }
+                        </div>
                     </div>
                 </div>
-                <div class="flex justify-between items-start">
-                    <div>
-                        <h3 class="text-2xl font-bold mb-2 group-hover:underline decoration-2 underline-offset-4">Java Backend</h3>
-                        <p class="text-neutral-500 dark:text-neutral-400 text-sm">Maven / Architecture</p>
+                <div>
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="text-2xl font-bold group-hover:underline decoration-2 underline-offset-4">Java Chat System</h3>
+                        <span class="text-xs font-mono border border-black dark:border-white px-2 py-1">2025</span>
                     </div>
-                    <span class="text-xs font-mono border border-black dark:border-white px-2 py-1">2023</span>
+                    <p class="text-neutral-600 dark:text-neutral-400 text-sm mb-4 line-clamp-3">
+                        Multi-threaded TCP server architecture handling concurrent client connections via cached thread pools. Features a custom binary protocol for message framing and synchronized shared state for broadcasting.
+                    </p>
+                    <ul class="flex flex-wrap gap-2 text-xs font-mono font-bold uppercase tracking-wider text-neutral-500">
+                        <li class="bg-neutral-100 dark:bg-neutral-900 px-2 py-1 rounded">Java</li>
+                        <li class="bg-neutral-100 dark:bg-neutral-900 px-2 py-1 rounded">Concurrency</li>
+                        <li class="bg-neutral-100 dark:bg-neutral-900 px-2 py-1 rounded">TCP/IP</li>
+                    </ul>
                 </div>
-            </div>
-            
+            </a>
+
             <!-- Project 3 -->
-             <div class="group cursor-pointer hover:-translate-y-1 transition-transform duration-300">
-                <div class="aspect-video bg-neutral-100 dark:bg-neutral-900 mb-6 border border-black/5 dark:border-white/5 overflow-hidden relative">
-                    <div class="absolute inset-0 flex items-center justify-center">
-                        <i class="fas fa-terminal text-4xl text-neutral-300 dark:text-neutral-700"></i>
+            <a href="https://github.com/Elsyvien/MacBatteryTool" target="_blank" class="group cursor-pointer block">
+                <div class="aspect-video bg-gradient-to-bl from-emerald-900 to-neutral-900 mb-6 border border-black/5 dark:border-white/5 overflow-hidden relative rounded-lg flex items-center justify-center">
+                     <div class="absolute inset-0 opacity-20" style="background: repeating-linear-gradient(45deg, #606dbc, #606dbc 10px, #465298 10px, #465298 20px);"></div>
+                    
+                    <div class="code-window">
+                        <div class="flex gap-1.5 mb-3">
+                            <div class="w-2.5 h-2.5 rounded-full bg-red-500/80"></div>
+                            <div class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></div>
+                            <div class="w-2.5 h-2.5 rounded-full bg-green-500/80"></div>
+                        </div>
+                        <div>
+                            <span class="c-kwd">let</span> service = <span class="c-func">IOServiceGetMatchingService</span>(<br>
+                            &nbsp;&nbsp;kIOMasterPortDefault,<br>
+                            &nbsp;&nbsp;<span class="c-func">IOServiceMatching</span>(<span class="c-str">"AppleSmartBattery"</span>)<br>
+                            )<br>
+                            <span class="c-kwd">let</span> capacity = <span class="c-func">IORegistryEntryCreateCFProperty</span>(<br>
+                            &nbsp;&nbsp;service, <span class="c-str">"CurrentCapacity"</span>, ...<br>
+                            )
+                        </div>
                     </div>
                 </div>
-                <div class="flex justify-between items-start">
-                    <div>
-                        <h3 class="text-2xl font-bold mb-2 group-hover:underline decoration-2 underline-offset-4">Swing GUI</h3>
-                        <p class="text-neutral-500 dark:text-neutral-400 text-sm">Interface Design</p>
+                <div>
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="text-2xl font-bold group-hover:underline decoration-2 underline-offset-4">MacBatteryTool</h3>
+                        <span class="text-xs font-mono border border-black dark:border-white px-2 py-1">2024</span>
                     </div>
-                    <span class="text-xs font-mono border border-black dark:border-white px-2 py-1">2023</span>
+                    <p class="text-neutral-600 dark:text-neutral-400 text-sm mb-4 line-clamp-3">
+                        Native macOS Menu Bar utility interacting with the IOKit framework to read battery SMC keys. Polls current amperage and voltage to calculate real-time power draw and estimates remaining cycles.
+                    </p>
+                    <ul class="flex flex-wrap gap-2 text-xs font-mono font-bold uppercase tracking-wider text-neutral-500">
+                        <li class="bg-neutral-100 dark:bg-neutral-900 px-2 py-1 rounded">Swift</li>
+                        <li class="bg-neutral-100 dark:bg-neutral-900 px-2 py-1 rounded">IOKit</li>
+                        <li class="bg-neutral-100 dark:bg-neutral-900 px-2 py-1 rounded">AppKit</li>
+                    </ul>
                 </div>
+            </a>
+
+             <!-- Project 4 -->
+             <a href="https://github.com/Elsyvien/LittleTaylorVisualizer" target="_blank" class="group cursor-pointer block">
+                <div class="aspect-video bg-neutral-950 mb-6 border border-black/5 dark:border-white/5 overflow-hidden relative rounded-lg flex items-center justify-center perspective-[800px]">
+                    <!-- Isometric Scene Container -->
+                    <div class="relative w-48 h-48 transform-style-3d transition-transform duration-700 group-hover:rotate-x-[55deg] group-hover:rotate-z-[-40deg]" style="transform: rotateX(60deg) rotateZ(-45deg);">
+                        
+                        <!-- Floor Grid -->
+                        <div class="absolute inset-0 border border-white/10 bg-white/5 shadow-[0_0_40px_rgba(0,0,0,0.8)] backdrop-blur-sm">
+                             <div class="absolute inset-0 opacity-20" style="background-image: linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px); background-size: 16px 16px;"></div>
+                        </div>
+
+                        <!-- 3D Function Layers -->
+                        
+                        <!-- Layer 1: The Approximation (Lower/Pink) -->
+                        <div class="absolute inset-0 flex items-center justify-center" style="transform: translateZ(20px);">
+                             <svg viewBox="0 0 100 100" class="w-[120%] h-[120%] overflow-visible">
+                                 <!-- Diverging curve -->
+                                 <path d="M-10 80 C 20 40, 50 10, 110 90" class="fill-none stroke-pink-500/60 stroke-[2] stroke-dasharray-4 shadow-sm" vector-effect="non-scaling-stroke"/>
+                             </svg>
+                        </div>
+
+                        <!-- Layer 2: The Exact Function (Higher/Cyan) -->
+                        <div class="absolute inset-0 flex items-center justify-center" style="transform: translateZ(50px);">
+                             <svg viewBox="0 0 100 100" class="w-[120%] h-[120%] overflow-visible">
+                                 <!-- Connection Lines (Stems) to show height -->
+                                 <line x1="50" y1="50" x2="50" y2="100" class="stroke-cyan-400/20 stroke-1" />
+                                 <line x1="20" y1="65" x2="20" y2="115" class="stroke-cyan-400/20 stroke-1" />
+                                 <line x1="80" y1="65" x2="80" y2="115" class="stroke-cyan-400/20 stroke-1" />
+                                 
+                                 <!-- Perfect sine-like curve -->
+                                 <path d="M-10 65 Q 50 10, 110 65" class="fill-none stroke-cyan-400 stroke-[3] drop-shadow-[0_0_15px_rgba(34,211,238,0.8)]" vector-effect="non-scaling-stroke"/>
+                             </svg>
+                        </div>
+                        
+                        <!-- Label floating in 3D -->
+                        <div class="absolute -right-8 -top-8 text-[0.5rem] font-mono text-cyan-400 bg-black/80 px-1 border border-cyan-400/50" style="transform: translateZ(60px) rotateZ(45deg) rotateX(-60deg);">
+                            f(x) = sin(x)
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="text-2xl font-bold group-hover:underline decoration-2 underline-offset-4">Taylor Series Viz</h3>
+                        <span class="text-xs font-mono border border-black dark:border-white px-2 py-1">2025</span>
+                    </div>
+                    <p class="text-neutral-600 dark:text-neutral-400 text-sm mb-4 line-clamp-3">
+                        Interactive HTML5 Canvas engine plotting complex mathematical functions and their Taylor polynomial approximations. Updates the rendering loop in real-time as users adjust the degree of the polynomial.
+                    </p>
+                    <ul class="flex flex-wrap gap-2 text-xs font-mono font-bold uppercase tracking-wider text-neutral-500">
+                        <li class="bg-neutral-100 dark:bg-neutral-900 px-2 py-1 rounded">JavaScript</li>
+                        <li class="bg-neutral-100 dark:bg-neutral-900 px-2 py-1 rounded">CanvasAPI</li>
+                        <li class="bg-neutral-100 dark:bg-neutral-900 px-2 py-1 rounded">NumericalMethods</li>
+                    </ul>
+                </div>
+            </a>
+
+            <!-- Project 5 -->
+            <a href="https://github.com/Elsyvien/Aetherion-Engine" target="_blank" class="group cursor-pointer block">
+                <div class="aspect-video bg-neutral-900 mb-6 border border-black/5 dark:border-white/5 overflow-hidden relative rounded-lg flex items-center justify-center">
+                     <!-- Wireframe effect -->
+                    <div class="absolute inset-0 opacity-20" style="background-image: linear-gradient(#333 1px, transparent 1px), linear-gradient(90deg, #333 1px, transparent 1px); background-size: 20px 20px; perspective: 100px;"></div>
+                    
+                    <div class="code-window">
+                        <div class="flex gap-1.5 mb-3">
+                            <div class="w-2.5 h-2.5 rounded-full bg-red-500/80"></div>
+                            <div class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></div>
+                            <div class="w-2.5 h-2.5 rounded-full bg-green-500/80"></div>
+                        </div>
+                        <div>
+                            <span class="c-type">Entity</span> entity = registry.<span class="c-func">create</span>();<br>
+                            registry.<span class="c-func">emplace</span><<span class="c-type">Transform</span>>(entity, pos);<br>
+                            registry.<span class="c-func">emplace</span><<span class="c-type">Mesh</span>>(entity, <span class="c-str">"hero.obj"</span>);<br>
+                            <span class="c-com">// Data-oriented update loop</span><br>
+                            system.<span class="c-func">update</span>(deltaTime);
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="text-2xl font-bold group-hover:underline decoration-2 underline-offset-4">Aetherion Engine</h3>
+                        <span class="text-xs font-mono border border-black dark:border-white px-2 py-1">2024</span>
+                    </div>
+                    <p class="text-neutral-600 dark:text-neutral-400 text-sm mb-4 line-clamp-3">
+                        Low-level game engine featuring a custom Entity Component System (ECS) for data-oriented design. Manages memory manually via linear allocators to minimize cache misses and overhead.
+                    </p>
+                    <ul class="flex flex-wrap gap-2 text-xs font-mono font-bold uppercase tracking-wider text-neutral-500">
+                        <li class="bg-neutral-100 dark:bg-neutral-900 px-2 py-1 rounded">C++</li>
+                        <li class="bg-neutral-100 dark:bg-neutral-900 px-2 py-1 rounded">OpenGL</li>
+                        <li class="bg-neutral-100 dark:bg-neutral-900 px-2 py-1 rounded">MemoryArenas</li>
+                    </ul>
+                </div>
+            </a>
+
+            <!-- Project 6 -->
+            <a href="https://github.com/Elsyvien/MStockApp" target="_blank" class="group cursor-pointer block">
+                <div class="aspect-video bg-gradient-to-br from-indigo-900 to-purple-900 mb-6 border border-black/5 dark:border-white/5 overflow-hidden relative rounded-lg flex items-center justify-center">
+                    <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 15px 15px;"></div>
+                    
+                    <div class="flex items-end gap-3 h-1/2 w-1/2 opacity-90">
+                        <!-- Candle 1 -->
+                        <div class="w-1/5 bg-green-500 h-[40%] rounded-sm relative shadow-[0_0_10px_rgba(34,197,94,0.5)]">
+                            <div class="absolute -top-3 left-1/2 -translate-x-1/2 w-[2px] h-[140%] bg-green-500"></div>
+                        </div>
+                        <!-- Candle 2 -->
+                        <div class="w-1/5 bg-red-500 h-[60%] rounded-sm relative shadow-[0_0_10px_rgba(239,68,68,0.5)]">
+                            <div class="absolute -top-2 left-1/2 -translate-x-1/2 w-[2px] h-[120%] bg-red-500"></div>
+                        </div>
+                        <!-- Candle 3 -->
+                        <div class="w-1/5 bg-green-500 h-[30%] rounded-sm relative shadow-[0_0_10px_rgba(34,197,94,0.5)]">
+                            <div class="absolute -top-4 left-1/2 -translate-x-1/2 w-[2px] h-[180%] bg-green-500"></div>
+                        </div>
+                         <!-- Candle 4 -->
+                        <div class="w-1/5 bg-green-500 h-[70%] rounded-sm relative shadow-[0_0_10px_rgba(34,197,94,0.5)]">
+                            <div class="absolute -top-2 left-1/2 -translate-x-1/2 w-[2px] h-[115%] bg-green-500"></div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="text-2xl font-bold group-hover:underline decoration-2 underline-offset-4">MStockApp</h3>
+                        <span class="text-xs font-mono border border-black dark:border-white px-2 py-1">2025</span>
+                    </div>
+                    <p class="text-neutral-600 dark:text-neutral-400 text-sm mb-4 line-clamp-3">
+                        A lightweight financial tracking application built for real-time stock analysis. Connects to external financial APIs to fetch market data and visualize trends using a clean, native interface.
+                    </p>
+                    <ul class="flex flex-wrap gap-2 text-xs font-mono font-bold uppercase tracking-wider text-neutral-500">
+                        <li class="bg-neutral-100 dark:bg-neutral-900 px-2 py-1 rounded">C++</li>
+                        <li class="bg-neutral-100 dark:bg-neutral-900 px-2 py-1 rounded">REST API</li>
+                        <li class="bg-neutral-100 dark:bg-neutral-900 px-2 py-1 rounded">DataViz</li>
+                    </ul>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Code Activity / GitHub Chart -->
+    <section class="py-12 px-6 max-w-6xl mx-auto border-t border-black/10 dark:border-white/10">
+        <h3 class="text-xl font-bold uppercase tracking-widest mb-8">Code Activity</h3>
+        <div class="w-full overflow-x-auto pb-4">
+            <div class="min-w-[800px] opacity-70 hover:opacity-100 transition-opacity duration-300 filter grayscale contrast-125 dark:invert">
+                <img src="https://ghchart.rshah.org/000000/elsyvien" alt="Max's Github Chart" class="w-full" />
+            </div>
+            <div class="mt-4 flex justify-between items-center text-xs font-mono text-neutral-500">
+                <span>Data: github.com/elsyvien</span>
+                <span>Contributions (Last Year)</span>
             </div>
         </div>
     </section>
@@ -222,7 +465,7 @@
                         <ul class="space-y-4">
                             <li>
                                 <div class="font-bold">Trainer</div>
-                                <div class="text-sm text-neutral-500">TSV Tübingen, 2023-Present</div>
+                                <div class="text-sm text-neutral-500">TSV Tübingen, 2025-Present</div>
                             </li>
                             <li>
                                 <div class="font-bold">Internship</div>
@@ -238,84 +481,85 @@
     <!-- Horizontal Image Slider -->
     <section class="relative h-[80vh] w-full overflow-hidden bg-white dark:bg-black border-t border-black/10 dark:border-white/10" id="slider-section">
         <div id="image-track" data-mouse-down-at="0" data-prev-percentage="0" data-percentage="0">
-            <img class="image-card" src="https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?q=80&w=1752&auto=format&fit=crop" draggable="false" />
-            <img class="image-card" src="https://images.unsplash.com/photo-1523712999610-f77fbcfc3843?q=80&w=1740&auto=format&fit=crop" draggable="false" />
-            <img class="image-card" src="https://images.unsplash.com/photo-1470813740244-df37b8c1edcb?q=80&w=1742&auto=format&fit=crop" draggable="false" />
-            <img class="image-card" src="https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?q=80&w=1740&auto=format&fit=crop" draggable="false" />
-            <img class="image-card" src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?q=80&w=1740&auto=format&fit=crop" draggable="false" />
-            <img class="image-card" src="https://images.unsplash.com/photo-1418065460487-3e41a6c84dc5?q=80&w=1740&auto=format&fit=crop" draggable="false" />
-            <img class="image-card" src="https://images.unsplash.com/photo-1493815793585-d94ccbc86df8?q=80&w=1546&auto=format&fit=crop" draggable="false" />
+            <img class="image-card" src="images/roaster/DSC_2695.jpg" draggable="false" />
+            <img class="image-card" src="images/roaster/DSC_2703.jpg" draggable="false" />
+            <img class="image-card" src="images/roaster/DSC_3757.jpg" draggable="false" />
+            <img class="image-card" src="images/roaster/DSC_3894.jpg" draggable="false" />
+            <img class="image-card" src="images/roaster/DSC_4157.jpg" draggable="false" />
+            <img class="image-card" src="images/roaster/DSC_4426.jpg" draggable="false" />
+            <img class="image-card" src="images/roaster/DSC_5174.jpg" draggable="false" />
+            <img class="image-card" src="images/roaster/DSC_5480.jpg" draggable="false" />
+            <img class="image-card" src="images/roaster/DSC_5620.jpg" draggable="false" />
+            <img class="image-card" src="images/roaster/DSC_5631.jpg" draggable="false" />
         </div>
     </section>
 
     <script>
         const track = document.getElementById("image-track");
+        
+        let mouseDownAt = 0;
+        let prevPercentage = 0;
+        let percentage = 0; // The target percentage based on input
+        let currentPercentage = 0; // The smoothed percentage currently rendered
 
-        const handleOnDown = e => {
-            track.dataset.mouseDownAt = e.clientX;
+        // Linear Interpolation helper
+        const lerp = (start, end, factor) => start + (end - start) * factor;
+
+        window.onmousedown = e => {
+            mouseDownAt = e.clientX;
         }
 
-        const handleOnUp = () => {
-            track.dataset.mouseDownAt = "0";  
-            track.dataset.prevPercentage = track.dataset.percentage;
+        window.onmouseup = () => {
+            mouseDownAt = 0;
+            prevPercentage = percentage;
         }
 
-        const handleOnMove = e => {
-            if(track.dataset.mouseDownAt === "0") return;
-            
-            const mouseDelta = parseFloat(track.dataset.mouseDownAt) - e.clientX,
+        window.onmousemove = e => {
+            if (mouseDownAt === 0) return;
+
+            const mouseDelta = parseFloat(mouseDownAt) - e.clientX,
                   maxDelta = window.innerWidth / 2;
-            
-            const percentage = (mouseDelta / maxDelta) * -100,
-                  nextPercentageUnconstrained = parseFloat(track.dataset.prevPercentage) + percentage,
-                  nextPercentage = Math.max(Math.min(nextPercentageUnconstrained, 0), -100);
-            
-            track.dataset.percentage = nextPercentage;
-            
-            track.animate({
-                transform: `translate(${nextPercentage}%, -50%)`
-            }, { duration: 1200, fill: "forwards" });
-            
-            for(const image of track.getElementsByClassName("image-card")) {
-                image.animate({
-                    objectPosition: `${100 + nextPercentage}% center`
-                }, { duration: 1200, fill: "forwards" });
-            }
+
+            const nextPercentage = (mouseDelta / maxDelta) * -100,
+                  nextPercentageUnconstrained = prevPercentage + nextPercentage;
+
+            // Update target percentage immediately based on input
+            percentage = Math.max(Math.min(nextPercentageUnconstrained, 0), -100);
         }
 
-        /* -- Touch support -- */
-        window.onmousedown = e => handleOnDown(e);
-        window.ontouchstart = e => handleOnDown(e.touches[0]);
-        
-        window.onmouseup = e => handleOnUp(e);
-        window.ontouchend = e => handleOnUp(e.touches[0]);
-        
-        window.onmousemove = e => handleOnMove(e);
-        window.ontouchmove = e => handleOnMove(e.touches[0]);
+        // Touch support
+        window.ontouchstart = e => window.onmousedown(e.touches[0]);
+        window.ontouchend = e => window.onmouseup(e.touches[0]);
+        window.ontouchmove = e => window.onmousemove(e.touches[0]);
+
+        // Animation Loop
+        const update = () => {
+            // Smoothly interpolate current -> target (0.1 = speed factor)
+            currentPercentage = lerp(currentPercentage, percentage, 0.1);
+
+            // Apply transform to track
+            track.style.transform = `translate(${currentPercentage}%, -50%)`;
+
+            // Apply parallax effect to images
+            for(const image of track.getElementsByClassName("image-card")) {
+                image.style.objectPosition = `${100 + currentPercentage}% center`;
+            }
+
+            requestAnimationFrame(update);
+        }
+
+        // Start the loop
+        update();
 
         /* -- Wheel support -- */
         window.addEventListener('wheel', e => {
             if (e.deltaX === 0) return;
-            
-            // Adjust scroll sensitivity as needed
-            const sensitivity = 0.1;
+            const sensitivity = 0.15;
             const delta = e.deltaX * sensitivity;
+            const nextPercentageUnconstrained = percentage - delta;
             
-            const nextPercentageUnconstrained = parseFloat(track.dataset.prevPercentage || track.dataset.percentage) - delta;
-            const nextPercentage = Math.max(Math.min(nextPercentageUnconstrained, 0), -100);
-            
-            track.dataset.percentage = nextPercentage;
-            track.dataset.prevPercentage = nextPercentage; // Update prevPercentage for continuity
-
-            track.animate({
-                transform: `translate(${nextPercentage}%, -50%)`
-            }, { duration: 1200, fill: "forwards" });
-            
-            for(const image of track.getElementsByClassName("image-card")) {
-                image.animate({
-                    objectPosition: `${100 + nextPercentage}% center`
-                }, { duration: 1200, fill: "forwards" });
-            }
+            percentage = Math.max(Math.min(nextPercentageUnconstrained, 0), -100);
+            prevPercentage = percentage; 
         }, { passive: false });
     </script>
 
@@ -330,7 +574,7 @@
     </section>
 
     <footer class="py-8 text-center text-sm font-mono text-neutral-500">
-        &copy; 2025 MAX STANEKER
+        &copy; 2026 MAX STANEKER
     </footer>
 
     <script>
