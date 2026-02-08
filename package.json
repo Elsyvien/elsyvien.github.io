@@ -1,0 +1,11 @@
+{
+  "name": "elsyvien.github.io",
+  "private": true,
+  "scripts": {
+    "build:css": "tailwindcss -i ./assets/css/src.css -o ./assets/css/site.css --minify",
+    "watch:css": "tailwindcss -i ./assets/css/src.css -o ./assets/css/site.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
+  }
+}
