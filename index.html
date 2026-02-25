@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="de" class="scroll-smooth">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Max Staneker</title>
+    <title>Max Staneker | CS Student & Developer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;900&display=swap" rel="stylesheet">
@@ -19,8 +19,8 @@
                 <a href="#" class="text-2xl font-black tracking-tighter uppercase">Max.</a>
                 
                 <div class="hidden md:flex space-x-12 text-sm font-medium uppercase tracking-widest">
-                    <a href="#work" class="hover:underline decoration-2 underline-offset-4">Work</a>
-                    <a href="#about" class="hover:underline decoration-2 underline-offset-4">About</a>
+                    <a href="#work" class="hover:underline decoration-2 underline-offset-4">Projects</a>
+                    <a href="#about" class="hover:underline decoration-2 underline-offset-4">Resume</a>
                     <a href="#contact" class="hover:underline decoration-2 underline-offset-4">Contact</a>
                 </div>
 
@@ -41,15 +41,25 @@
                     HELLO.<br>I AM MAX.
                 </h1>
                 <p class="text-xl md:text-2xl font-light text-neutral-600 dark:text-neutral-400 mb-12 max-w-lg animate-fade-up delay-100">
-                    Computer Science Student & Software Developer based in Tübingen.
+                    B.Sc. Computer Science student at the University of Tübingen building software projects in C++, Java, and audio/graphics tooling.
                 </p>
                 <div class="flex gap-6 animate-fade-up delay-200">
                     <a href="#work" class="bg-black text-white dark:bg-white dark:text-black px-8 py-4 font-bold uppercase tracking-wider hover:opacity-80 transition-opacity">
-                        View Work
+                        View Projects
                     </a>
                     <a href="#contact" class="border-2 border-black dark:border-white px-8 py-4 font-bold uppercase tracking-wider hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors">
                         Contact
                     </a>
+                </div>
+                <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm animate-fade-up delay-200">
+                    <div class="border border-black/10 dark:border-white/10 rounded px-4 py-3">
+                        <div class="uppercase tracking-widest text-[10px] text-neutral-500">Based in</div>
+                        <div class="font-semibold">Tübingen, Germany</div>
+                    </div>
+                    <div class="border border-black/10 dark:border-white/10 rounded px-4 py-3">
+                        <div class="uppercase tracking-widest text-[10px] text-neutral-500">Current focus</div>
+                        <div class="font-semibold">Realtime apps, C++, Java</div>
+                    </div>
                 </div>
             </div>
             <div class="order-1 md:order-2 flex justify-center md:justify-end items-center animate-fade-in delay-300">
@@ -62,7 +72,7 @@
 
     <!-- Work / Projects (Grid) -->
     <section id="work" class="py-20 px-6 max-w-6xl mx-auto border-t border-black/10 dark:border-white/10">
-        <h2 class="text-4xl font-black uppercase tracking-tighter mb-16 animate-slide-in" style="animation-play-state: paused;" data-animate>Selected Work</h2>
+        <h2 class="text-4xl font-black uppercase tracking-tighter mb-16 animate-slide-in" style="animation-play-state: paused;" data-animate>Selected Projects</h2>
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-20">
             <!-- Project 1: Hero (Full Width) -->
@@ -98,7 +108,7 @@
                             <span class="text-xs font-mono border border-black dark:border-white px-2 py-1">2024</span>
                         </div>
                         <p class="text-neutral-600 dark:text-neutral-400 leading-relaxed mb-4">
-                            A multiband dynamic range compressor utilizing Linkwitz-Riley crossover filters to split audio into three distinct frequency bands. Implements independent threshold, ratio, and attack/release logic for each band using the JUCE DSP module.
+                            Audio plugin project for realtime signal processing in C++ with JUCE. Focused on multiband compression, DSP experimentation, and building practical tools for audio production workflows.
                         </p>
                         <ul class="flex flex-wrap gap-2 text-xs font-mono font-bold uppercase tracking-wider text-neutral-500">
                             <li class="bg-neutral-100 dark:bg-neutral-900 px-2 py-1 rounded">C++</li>
@@ -136,12 +146,12 @@
                         <span class="text-xs font-mono border border-black dark:border-white px-2 py-1">2025</span>
                     </div>
                     <p class="text-neutral-600 dark:text-neutral-400 text-sm mb-4 line-clamp-3">
-                        Multi-threaded TCP server architecture handling concurrent client connections via cached thread pools. Features a custom binary protocol for message framing and synchronized shared state for broadcasting.
+                        University realtime chat application with login and channel-based communication. Implemented core backend logic, data modeling, and persistent storage for messages/users using Java, WebSocket communication, and SQL.
                     </p>
                     <ul class="flex flex-wrap gap-2 text-xs font-mono font-bold uppercase tracking-wider text-neutral-500">
                         <li class="bg-neutral-100 dark:bg-neutral-900 px-2 py-1 rounded">Java</li>
-                        <li class="bg-neutral-100 dark:bg-neutral-900 px-2 py-1 rounded">Concurrency</li>
-                        <li class="bg-neutral-100 dark:bg-neutral-900 px-2 py-1 rounded">TCP/IP</li>
+                        <li class="bg-neutral-100 dark:bg-neutral-900 px-2 py-1 rounded">WebSocket</li>
+                        <li class="bg-neutral-100 dark:bg-neutral-900 px-2 py-1 rounded">SQL</li>
                     </ul>
                 </div>
             </a>
@@ -263,16 +273,17 @@
                 </div>
                 <div>
                     <div class="flex justify-between items-center mb-2">
-                        <h3 class="text-2xl font-bold group-hover:underline decoration-2 underline-offset-4">Aetherion Engine</h3>
+                        <h3 class="text-2xl font-bold group-hover:underline decoration-2 underline-offset-4">Aetherion 3D Engine</h3>
                         <span class="text-xs font-mono border border-black dark:border-white px-2 py-1">2024</span>
                     </div>
                     <p class="text-neutral-600 dark:text-neutral-400 text-sm mb-4 line-clamp-3">
-                        Low-level game engine featuring a custom Entity Component System (ECS) for data-oriented design. Manages memory manually via linear allocators to minimize cache misses and overhead.
+                        Modular engine/editor project in modern C++ with a focus on rendering and engine architecture. Built as a long-running private project to explore graphics programming, tooling, and engine components.
                     </p>
                     <ul class="flex flex-wrap gap-2 text-xs font-mono font-bold uppercase tracking-wider text-neutral-500">
-                        <li class="bg-neutral-100 dark:bg-neutral-900 px-2 py-1 rounded">C++</li>
-                        <li class="bg-neutral-100 dark:bg-neutral-900 px-2 py-1 rounded">OpenGL</li>
-                        <li class="bg-neutral-100 dark:bg-neutral-900 px-2 py-1 rounded">MemoryArenas</li>
+                        <li class="bg-neutral-100 dark:bg-neutral-900 px-2 py-1 rounded">C++20</li>
+                        <li class="bg-neutral-100 dark:bg-neutral-900 px-2 py-1 rounded">Qt 6</li>
+                        <li class="bg-neutral-100 dark:bg-neutral-900 px-2 py-1 rounded">Vulkan</li>
+                        <li class="bg-neutral-100 dark:bg-neutral-900 px-2 py-1 rounded">CMake</li>
                     </ul>
                 </div>
             </a>
@@ -337,22 +348,28 @@
     <section id="about" class="py-20 px-6 max-w-6xl mx-auto border-t border-black/10 dark:border-white/10">
         <div class="grid md:grid-cols-12 gap-12">
             <div class="md:col-span-4">
-                <h2 class="text-4xl font-black uppercase tracking-tighter sticky top-32">About</h2>
+                <h2 class="text-4xl font-black uppercase tracking-tighter sticky top-32">Resume</h2>
             </div>
             <div class="md:col-span-8 space-y-12">
-                
+                <p class="text-lg leading-relaxed text-neutral-700 dark:text-neutral-300">
+                    I am an Informatikstudent (B.Sc.) currently studying at the Eberhard Karls University of Tübingen.
+                    My current work focuses on learning strong fundamentals through projects in backend development,
+                    realtime communication, audio programming, and graphics/engine development.
+                </p>
 
-                <div class="grid sm:grid-cols-2 gap-8 pt-8">
+                <div class="grid sm:grid-cols-2 gap-8 pt-2">
                     <div>
                         <h3 class="font-bold uppercase tracking-widest mb-4 border-b border-black dark:border-white pb-2">Education</h3>
                         <ul class="space-y-4">
                             <li>
                                 <div class="font-bold">B.Sc. Informatik</div>
-                                <div class="text-sm text-neutral-500">Uni Tübingen, 2024-Present</div>
+                                <div class="text-sm text-neutral-500">Eberhard Karls University of Tübingen, 10/2024-Present</div>
+                                <div class="text-sm text-neutral-500">Expected graduation: 2027</div>
                             </li>
                             <li>
                                 <div class="font-bold">Abitur</div>
-                                <div class="text-sm text-neutral-500">Johannes Kepler-Gymnasium, 2024</div>
+                                <div class="text-sm text-neutral-500">Kepler-Gymnasium Tübingen, 2016-2024</div>
+                                <div class="text-sm text-neutral-500">Advanced courses: German, Computer Science, Physics</div>
                             </li>
                         </ul>
                     </div>
@@ -360,14 +377,80 @@
                         <h3 class="font-bold uppercase tracking-widest mb-4 border-b border-black dark:border-white pb-2">Experience</h3>
                         <ul class="space-y-4">
                             <li>
-                                <div class="font-bold">Trainer</div>
-                                <div class="text-sm text-neutral-500">TSV Tübingen, 2023-Present</div>
+                                <div class="font-bold">Volunteer Swim Coach (Beginner & Youth Group)</div>
+                                <div class="text-sm text-neutral-500">Tübinger Schwimmverein, 2023-Present</div>
                             </li>
                             <li>
-                                <div class="font-bold">Internship</div>
-                                <div class="text-sm text-neutral-500">Paravan GmbH, 2022</div>
+                                <div class="font-bold">Student Internship</div>
+                                <div class="text-sm text-neutral-500">PARAVAN GmbH, 2022</div>
+                                <div class="text-sm text-neutral-500">Insights into technical workflows and vehicle sensor technology</div>
                             </li>
                         </ul>
+                    </div>
+                </div>
+
+                <div class="grid sm:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="font-bold uppercase tracking-widest mb-4 border-b border-black dark:border-white pb-2">Skills</h3>
+                        <ul class="space-y-4 text-sm">
+                            <li>
+                                <div class="font-bold text-base">Programming Languages</div>
+                                <div class="text-neutral-500">Python, C/C++, Java</div>
+                            </li>
+                            <li>
+                                <div class="font-bold text-base">Tools & Technologies</div>
+                                <div class="text-neutral-500">Linux, Windows, macOS, SQL, Git</div>
+                            </li>
+                            <li>
+                                <div class="font-bold text-base">Concepts</div>
+                                <div class="text-neutral-500">OOP, data structures, algorithms, debugging</div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-bold uppercase tracking-widest mb-4 border-b border-black dark:border-white pb-2">Languages</h3>
+                        <ul class="space-y-3 text-sm">
+                            <li class="flex items-center justify-between gap-4">
+                                <span>German</span>
+                                <span class="text-neutral-500">C2</span>
+                            </li>
+                            <li class="flex items-center justify-between gap-4">
+                                <span>English</span>
+                                <span class="text-neutral-500">C1</span>
+                            </li>
+                            <li class="flex items-center justify-between gap-4">
+                                <span>French</span>
+                                <span class="text-neutral-500">B1</span>
+                            </li>
+                            <li class="flex items-center justify-between gap-4">
+                                <span>Spanish</span>
+                                <span class="text-neutral-500">B1</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="font-bold uppercase tracking-widest mb-4 border-b border-black dark:border-white pb-2">Highlights & Interests</h3>
+                    <div class="grid sm:grid-cols-2 gap-6 text-sm">
+                        <div>
+                            <div class="font-bold mb-2">Projects (from resume)</div>
+                            <ul class="space-y-2 text-neutral-500">
+                                <li>Realtime chat application (Java, WebSocket, SQL)</li>
+                                <li>Audio plugins for realtime processing (C++, JUCE)</li>
+                                <li>Modular 3D engine/editor project (C++20, Qt 6, Vulkan, CMake)</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <div class="font-bold mb-2">Personal Interests</div>
+                            <ul class="space-y-2 text-neutral-500">
+                                <li>Swimming</li>
+                                <li>Piano</li>
+                                <li>Music production</li>
+                                <li>Photography</li>
+                                <li>Programming</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -392,11 +475,14 @@
 
     <!-- Contact -->
     <section id="contact" class="py-32 px-6 max-w-6xl mx-auto border-t border-black/10 dark:border-white/10 text-center">
-        <h2 class="text-6xl md:text-8xl font-black tracking-tighter mb-12 hover:tracking-normal transition-all duration-500 cursor-default">LET'S TALK.</h2>
+        <h2 class="text-6xl md:text-8xl font-black tracking-tighter mb-6 hover:tracking-normal transition-all duration-500 cursor-default">LET'S TALK.</h2>
+        <p class="max-w-2xl mx-auto mb-12 text-neutral-600 dark:text-neutral-400">
+            Based in Tübingen and currently studying computer science. Reach out for student projects, collaborations, or technical exchange.
+        </p>
         <div class="flex flex-col md:flex-row justify-center gap-8 md:gap-16 text-xl">
             <a href="mailto:max@staneker.com" class="hover:underline decoration-2 underline-offset-8">max@staneker.com</a>
             <a href="https://github.com/elsyvien" class="hover:underline decoration-2 underline-offset-8">GitHub</a>
-            <a href="https://instagram.com/elsyvien" class="hover:underline decoration-2 underline-offset-8">Instagram</a>
+            <a href="https://uni-tuebingen.de/" target="_blank" rel="noopener noreferrer" class="hover:underline decoration-2 underline-offset-8">Uni Tübingen</a>
         </div>
     </section>
 
