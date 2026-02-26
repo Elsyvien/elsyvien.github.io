@@ -6,65 +6,100 @@
     <title>Max Staneker | CS Student & Developer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="assets/css/site.css">
     <script src="assets/js/site.js" defer></script>
 </head>
-<body class="bg-white text-black dark:bg-black dark:text-white transition-colors duration-300 selection:bg-black selection:text-white dark:selection:bg-white dark:selection:text-black">
+<body class="bg-neutral-50 text-neutral-950 dark:bg-neutral-950 dark:text-neutral-50 transition-colors duration-300 selection:bg-black selection:text-white dark:selection:bg-white dark:selection:text-black">
 
-    <!-- Minimal Nav -->
-    <nav class="fixed w-full z-50 bg-white/90 dark:bg-black/90 backdrop-blur-sm border-b border-black/10 dark:border-white/10">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="flex justify-between items-center h-20">
-                <a href="#" class="text-2xl font-black tracking-tighter uppercase">Max.</a>
-                
-                <div class="hidden md:flex space-x-12 text-sm font-medium uppercase tracking-widest">
-                    <a href="#work" class="hover:underline decoration-2 underline-offset-4">Projects</a>
-                    <a href="#about" class="hover:underline decoration-2 underline-offset-4">Resume</a>
-                    <a href="#contact" class="hover:underline decoration-2 underline-offset-4">Contact</a>
+    <!-- Nav -->
+    <nav class="fixed inset-x-0 top-0 z-50 px-4 sm:px-6 pt-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="rounded-2xl border border-black/10 dark:border-white/10 bg-white/75 dark:bg-black/60 backdrop-blur-xl shadow-[0_12px_30px_rgba(0,0,0,0.08)] dark:shadow-[0_16px_40px_rgba(0,0,0,0.45)]">
+                <div class="flex justify-between items-center h-16 px-4 sm:px-6">
+                    <a href="#" class="flex items-center gap-3 min-w-0">
+                        <span class="w-9 h-9 rounded-full bg-black text-white dark:bg-white dark:text-black flex items-center justify-center text-sm font-black">M</span>
+                        <span class="hidden sm:block">
+                            <span class="block text-sm font-extrabold tracking-tight uppercase">Max Staneker</span>
+                            <span class="block text-[11px] text-neutral-500 dark:text-neutral-400 leading-none">CS Student · Developer</span>
+                        </span>
+                    </a>
+
+                    <div class="hidden md:flex items-center gap-8 text-xs font-bold uppercase tracking-[0.2em] text-neutral-500 dark:text-neutral-400">
+                        <a href="#work" class="hover:text-black dark:hover:text-white transition-colors">Projects</a>
+                        <a href="#about" class="hover:text-black dark:hover:text-white transition-colors">Resume</a>
+                        <a href="#contact" class="hover:text-black dark:hover:text-white transition-colors">Contact</a>
+                    </div>
+
+                    <button id="theme-toggle" type="button" aria-label="Toggle color theme" class="w-10 h-10 rounded-full border border-black/10 dark:border-white/10 bg-white/80 dark:bg-black/70 text-xl flex items-center justify-center hover:scale-105 transition-transform">
+                        <svg viewBox="0 0 24 24" aria-hidden="true" class="w-5 h-5 fill-current">
+                            <path d="M12 2a10 10 0 1 0 0 20V2z"></path>
+                        </svg>
+                    </button>
                 </div>
-
-                <button id="theme-toggle" type="button" aria-label="Toggle color theme" class="text-xl">
-                    <svg viewBox="0 0 24 24" aria-hidden="true" class="w-5 h-5 fill-current">
-                        <path d="M12 2a10 10 0 1 0 0 20V2z"></path>
-                    </svg>
-                </button>
             </div>
         </div>
     </nav>
 
     <!-- Hero -->
-    <section class="pt-40 pb-20 px-6 max-w-6xl mx-auto min-h-screen flex flex-col justify-center">
-        <div class="grid md:grid-cols-2 gap-12 items-center">
+    <section class="relative pt-28 md:pt-36 pb-20 px-6 max-w-6xl mx-auto min-h-screen flex items-center">
+        <div class="absolute top-24 left-8 w-40 h-40 rounded-full bg-amber-300/25 blur-3xl pointer-events-none"></div>
+        <div class="absolute top-32 right-6 md:right-20 w-56 h-56 rounded-full bg-cyan-300/20 blur-3xl pointer-events-none"></div>
+        <div class="grid md:grid-cols-2 gap-10 md:gap-14 items-center w-full relative">
             <div class="order-2 md:order-1">
-                <h1 class="text-6xl md:text-8xl font-black tracking-tighter leading-none mb-8 animate-fade-up">
-                    HELLO.<br>I AM MAX.
+                <div class="inline-flex items-center gap-2 rounded-full border border-black/10 dark:border-white/10 bg-white/80 dark:bg-white/[0.03] px-3 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-neutral-600 dark:text-neutral-300 animate-fade-up">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                    Tübingen · Germany
+                </div>
+                <h1 class="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-black tracking-tight leading-[0.95] mt-5 mb-6 animate-fade-up delay-100">
+                    MAX<br>
+                    STANEKER
                 </h1>
-                <p class="text-xl md:text-2xl font-light text-neutral-600 dark:text-neutral-400 mb-12 max-w-lg animate-fade-up delay-100">
-                    B.Sc. Computer Science student at the University of Tübingen building software projects in C++, Java, and audio/graphics tooling.
+                <p class="text-lg sm:text-xl md:text-2xl text-neutral-600 dark:text-neutral-400 mb-10 max-w-xl leading-relaxed animate-fade-up delay-200">
+                    B.Sc. Computer Science student at the University of Tübingen. I build software projects in C++, Java, realtime systems, and audio/graphics tooling.
                 </p>
-                <div class="flex flex-col md:flex-row gap-4 md:gap-6 animate-fade-up delay-200 max-w-lg">
-                    <a href="#work" class="w-full md:w-auto text-center bg-black text-white dark:bg-white dark:text-black px-8 py-4 font-bold uppercase tracking-wider hover:opacity-80 transition-opacity">
+                <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 animate-fade-up delay-300 max-w-xl">
+                    <a href="#work" class="w-full sm:w-auto text-center rounded-xl bg-black text-white dark:bg-white dark:text-black px-7 py-4 font-extrabold uppercase tracking-[0.12em] hover:opacity-85 transition-opacity">
                         View Projects
                     </a>
-                    <a href="#contact" class="w-full md:w-auto text-center border-2 border-black dark:border-white px-8 py-4 font-bold uppercase tracking-wider hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors">
+                    <a href="#contact" class="w-full sm:w-auto text-center rounded-xl border border-black/20 dark:border-white/20 bg-white/70 dark:bg-white/[0.02] px-7 py-4 font-extrabold uppercase tracking-[0.12em] hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors">
                         Contact
                     </a>
                 </div>
-                <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-3 text-sm animate-fade-up delay-200 max-w-xl">
-                    <div class="border border-black/10 dark:border-white/10 rounded-lg px-4 py-3 bg-neutral-50/70 dark:bg-white/[0.03]">
-                        <div class="uppercase tracking-[0.18em] text-[11px] text-neutral-500 mb-1">Based In</div>
-                        <div class="font-semibold leading-tight">Tübingen, Germany</div>
+                <div class="mt-6 flex flex-wrap gap-3 text-sm animate-fade-up delay-400 max-w-xl">
+                    <div class="rounded-full border border-black/10 dark:border-white/10 bg-white/80 dark:bg-white/[0.03] px-4 py-2">
+                        <span class="text-neutral-500 mr-2">Focus</span>
+                        <span class="font-semibold">Realtime Apps</span>
                     </div>
-                    <div class="border border-black/10 dark:border-white/10 rounded-lg px-4 py-3 bg-neutral-50/70 dark:bg-white/[0.03]">
-                        <div class="uppercase tracking-[0.18em] text-[11px] text-neutral-500 mb-1">Current Focus</div>
-                        <div class="font-semibold leading-tight">Realtime apps, C++, Java</div>
+                    <div class="rounded-full border border-black/10 dark:border-white/10 bg-white/80 dark:bg-white/[0.03] px-4 py-2">
+                        <span class="text-neutral-500 mr-2">Stack</span>
+                        <span class="font-semibold">C++ · Java · SQL</span>
+                    </div>
+                    <div class="rounded-full border border-black/10 dark:border-white/10 bg-white/80 dark:bg-white/[0.03] px-4 py-2">
+                        <span class="text-neutral-500 mr-2">Studies</span>
+                        <span class="font-semibold">Uni Tübingen</span>
                     </div>
                 </div>
             </div>
-            <div class="order-1 md:order-2 flex justify-center md:justify-end items-center animate-fade-in delay-300">
-                <div class="relative w-56 md:w-72 h-80 md:h-[28rem] overflow-hidden rounded-lg bg-neutral-100/80 dark:bg-neutral-900/60 shadow-2xl transition-all duration-500">
-                    <img src="images/WhatsApp Image 2025-07-29 at 15.17.46.jpeg" alt="Portrait of Max Staneker" width="342" height="1271" loading="eager" decoding="async" fetchpriority="high" class="absolute inset-0 w-full h-full object-cover object-[50%_15%]">
+            <div class="order-1 md:order-2 flex justify-center md:justify-end items-center animate-fade-in delay-500">
+                <div class="relative w-[17rem] sm:w-[20rem] md:w-[22rem]">
+                    <div class="absolute -inset-3 rounded-[1.75rem] bg-gradient-to-br from-amber-200/50 via-transparent to-cyan-300/40 dark:from-amber-300/10 dark:to-cyan-300/10 blur-xl"></div>
+                    <div class="relative rounded-[1.5rem] border border-black/10 dark:border-white/10 bg-white/70 dark:bg-white/[0.03] p-3 shadow-[0_20px_50px_rgba(0,0,0,0.12)] dark:shadow-[0_20px_60px_rgba(0,0,0,0.45)]">
+                        <div class="relative h-[23rem] sm:h-[26rem] md:h-[30rem] overflow-hidden rounded-[1rem] bg-neutral-100 dark:bg-neutral-900">
+                            <img src="images/WhatsApp Image 2025-07-29 at 15.17.46.jpeg" alt="Portrait of Max Staneker" width="342" height="1271" loading="eager" decoding="async" fetchpriority="high" class="absolute inset-0 w-full h-full object-cover object-[50%_15%]">
+                        </div>
+                        <div class="mt-3 grid grid-cols-2 gap-2 text-xs">
+                            <div class="rounded-lg bg-neutral-100 dark:bg-neutral-900 px-3 py-2">
+                                <div class="text-neutral-500 uppercase tracking-[0.14em] text-[10px] mb-1">Since</div>
+                                <div class="font-semibold">10/2024 B.Sc.</div>
+                            </div>
+                            <div class="rounded-lg bg-neutral-100 dark:bg-neutral-900 px-3 py-2">
+                                <div class="text-neutral-500 uppercase tracking-[0.14em] text-[10px] mb-1">Interests</div>
+                                <div class="font-semibold">Audio · Graphics</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -72,7 +107,17 @@
 
     <!-- Work / Projects (Grid) -->
     <section id="work" class="py-20 px-6 max-w-6xl mx-auto border-t border-black/10 dark:border-white/10">
-        <h2 class="text-4xl font-black uppercase tracking-tighter mb-16 animate-slide-in" style="animation-play-state: paused;" data-animate>Selected Projects</h2>
+        <div class="mb-14">
+            <div class="text-xs font-bold uppercase tracking-[0.22em] text-neutral-500 dark:text-neutral-400 mb-4">Selected Projects</div>
+            <div class="grid lg:grid-cols-2 gap-6 items-end">
+                <h2 class="text-4xl md:text-5xl font-black tracking-tight animate-slide-in" style="animation-play-state: paused;" data-animate>
+                    Things I Built To Learn By Doing
+                </h2>
+                <p class="text-neutral-600 dark:text-neutral-400 max-w-xl">
+                    A mix of university and personal projects across backend systems, DSP, visual tools, and engine programming.
+                </p>
+            </div>
+        </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-20">
             <!-- Project 1: Hero (Full Width) -->
@@ -331,67 +376,77 @@
     </section>
 
     <!-- Code Activity / GitHub Chart -->
-    <section class="py-12 px-6 max-w-6xl mx-auto border-t border-black/10 dark:border-white/10">
-        <h3 class="text-xl font-bold uppercase tracking-widest mb-8">Code Activity</h3>
-        <div class="w-full overflow-x-auto pb-4">
-            <div class="min-w-[800px] opacity-70 hover:opacity-100 transition-opacity duration-300 filter grayscale contrast-125 dark:invert">
-                <img src="https://ghchart.rshah.org/000000/elsyvien" alt="Max's GitHub contributions chart" loading="lazy" decoding="async" class="w-full" />
-            </div>
-            <div class="mt-4 flex justify-between items-center text-xs font-mono text-neutral-500">
-                <span>Data: github.com/elsyvien</span>
-                <span>Contributions (Last Year)</span>
+    <section class="py-14 px-6 max-w-6xl mx-auto border-t border-black/10 dark:border-white/10">
+        <div class="text-xs font-bold uppercase tracking-[0.22em] text-neutral-500 dark:text-neutral-400 mb-4">Code Activity</div>
+        <div class="rounded-2xl border border-black/10 dark:border-white/10 bg-white/70 dark:bg-white/[0.02] p-4 sm:p-6">
+            <div class="w-full overflow-x-auto pb-2">
+                <div class="min-w-[800px] opacity-80 hover:opacity-100 transition-opacity duration-300 filter grayscale contrast-125 dark:invert">
+                    <img src="https://ghchart.rshah.org/000000/elsyvien" alt="Max's GitHub contributions chart" loading="lazy" decoding="async" class="w-full" />
+                </div>
+                <div class="mt-4 flex justify-between items-center text-xs font-mono text-neutral-500">
+                    <span>Data: github.com/elsyvien</span>
+                    <span>Contributions (Last Year)</span>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- About / Resume (Text heavy, clean) -->
-    <section id="about" class="py-20 px-6 max-w-6xl mx-auto border-t border-black/10 dark:border-white/10">
-        <div class="grid md:grid-cols-12 gap-12">
+    <!-- About / Resume -->
+    <section id="about" class="py-24 px-6 max-w-6xl mx-auto border-t border-black/10 dark:border-white/10">
+        <div class="grid md:grid-cols-12 gap-10 md:gap-12">
             <div class="md:col-span-4">
-                <h2 class="text-4xl font-black uppercase tracking-tighter sticky top-32">Resume</h2>
+                <div class="md:sticky md:top-28">
+                    <div class="text-xs font-bold uppercase tracking-[0.22em] text-neutral-500 dark:text-neutral-400 mb-4">Resume</div>
+                    <h2 class="text-4xl md:text-5xl font-black tracking-tight leading-tight mb-4">Education, experience and current focus.</h2>
+                    <p class="text-neutral-600 dark:text-neutral-400">
+                        Built from the latest CV and structured for fast scanning on desktop and mobile.
+                    </p>
+                </div>
             </div>
-            <div class="md:col-span-8 space-y-12">
-                <p class="text-lg leading-relaxed text-neutral-700 dark:text-neutral-300">
-                    I am an Informatikstudent (B.Sc.) currently studying at the Eberhard Karls University of Tübingen.
-                    My current work focuses on learning strong fundamentals through projects in backend development,
-                    realtime communication, audio programming, and graphics/engine development.
-                </p>
+            <div class="md:col-span-8 space-y-6">
+                <div class="rounded-2xl border border-black/10 dark:border-white/10 bg-white/75 dark:bg-white/[0.02] p-5 sm:p-6">
+                    <p class="text-lg leading-relaxed text-neutral-700 dark:text-neutral-300">
+                        I am an Informatikstudent (B.Sc.) currently studying at the Eberhard Karls University of Tübingen.
+                        My current work focuses on learning strong fundamentals through projects in backend development,
+                        realtime communication, audio programming, and graphics/engine development.
+                    </p>
+                </div>
 
-                <div class="grid sm:grid-cols-2 gap-8 pt-2">
-                    <div>
-                        <h3 class="font-bold uppercase tracking-widest mb-4 border-b border-black dark:border-white pb-2">Education</h3>
-                        <ul class="space-y-4">
+                <div class="grid sm:grid-cols-2 gap-4 sm:gap-5">
+                    <div class="rounded-2xl border border-black/10 dark:border-white/10 bg-white/75 dark:bg-white/[0.02] p-5 sm:p-6">
+                        <h3 class="text-sm font-extrabold uppercase tracking-[0.18em] mb-4 text-neutral-600 dark:text-neutral-300">Education</h3>
+                        <ul class="space-y-5 text-sm">
                             <li>
-                                <div class="font-bold">B.Sc. Informatik</div>
-                                <div class="text-sm text-neutral-500">Eberhard Karls University of Tübingen, 10/2024-Present</div>
-                                <div class="text-sm text-neutral-500">Expected graduation: 2027</div>
+                                <div class="font-bold text-base">B.Sc. Informatik</div>
+                                <div class="text-neutral-500">Eberhard Karls University of Tübingen, 10/2024-Present</div>
+                                <div class="text-neutral-500">Expected graduation: 2027</div>
                             </li>
                             <li>
-                                <div class="font-bold">Abitur</div>
-                                <div class="text-sm text-neutral-500">Kepler-Gymnasium Tübingen, 2016-2024</div>
-                                <div class="text-sm text-neutral-500">Advanced courses: German, Computer Science, Physics</div>
+                                <div class="font-bold text-base">Abitur</div>
+                                <div class="text-neutral-500">Kepler-Gymnasium Tübingen, 2016-2024</div>
+                                <div class="text-neutral-500">Advanced courses: German, Computer Science, Physics</div>
                             </li>
                         </ul>
                     </div>
-                    <div>
-                        <h3 class="font-bold uppercase tracking-widest mb-4 border-b border-black dark:border-white pb-2">Experience</h3>
-                        <ul class="space-y-4">
+                    <div class="rounded-2xl border border-black/10 dark:border-white/10 bg-white/75 dark:bg-white/[0.02] p-5 sm:p-6">
+                        <h3 class="text-sm font-extrabold uppercase tracking-[0.18em] mb-4 text-neutral-600 dark:text-neutral-300">Experience & Volunteering</h3>
+                        <ul class="space-y-5 text-sm">
                             <li>
-                                <div class="font-bold">Volunteer Swim Coach (Beginner & Youth Group)</div>
-                                <div class="text-sm text-neutral-500">Tübinger Schwimmverein, 2023-Present</div>
+                                <div class="font-bold text-base">Volunteer Swim Coach (Beginner & Youth Group)</div>
+                                <div class="text-neutral-500">Tübinger Schwimmverein, 2023-Present</div>
                             </li>
                             <li>
-                                <div class="font-bold">Student Internship</div>
-                                <div class="text-sm text-neutral-500">PARAVAN GmbH, 2022</div>
-                                <div class="text-sm text-neutral-500">Insights into technical workflows and vehicle sensor technology</div>
+                                <div class="font-bold text-base">Student Internship</div>
+                                <div class="text-neutral-500">PARAVAN GmbH, 2022</div>
+                                <div class="text-neutral-500">Insights into technical workflows and vehicle sensor technology</div>
                             </li>
                         </ul>
                     </div>
                 </div>
 
-                <div class="grid sm:grid-cols-2 gap-8">
-                    <div>
-                        <h3 class="font-bold uppercase tracking-widest mb-4 border-b border-black dark:border-white pb-2">Skills</h3>
+                <div class="grid sm:grid-cols-2 gap-4 sm:gap-5">
+                    <div class="rounded-2xl border border-black/10 dark:border-white/10 bg-white/75 dark:bg-white/[0.02] p-5 sm:p-6">
+                        <h3 class="text-sm font-extrabold uppercase tracking-[0.18em] mb-4 text-neutral-600 dark:text-neutral-300">Skills</h3>
                         <ul class="space-y-4 text-sm">
                             <li>
                                 <div class="font-bold text-base">Programming Languages</div>
@@ -407,31 +462,19 @@
                             </li>
                         </ul>
                     </div>
-                    <div>
-                        <h3 class="font-bold uppercase tracking-widest mb-4 border-b border-black dark:border-white pb-2">Languages</h3>
+                    <div class="rounded-2xl border border-black/10 dark:border-white/10 bg-white/75 dark:bg-white/[0.02] p-5 sm:p-6">
+                        <h3 class="text-sm font-extrabold uppercase tracking-[0.18em] mb-4 text-neutral-600 dark:text-neutral-300">Languages</h3>
                         <ul class="space-y-3 text-sm">
-                            <li class="flex items-center justify-between gap-4">
-                                <span>German</span>
-                                <span class="text-neutral-500">C2</span>
-                            </li>
-                            <li class="flex items-center justify-between gap-4">
-                                <span>English</span>
-                                <span class="text-neutral-500">C1</span>
-                            </li>
-                            <li class="flex items-center justify-between gap-4">
-                                <span>French</span>
-                                <span class="text-neutral-500">B1</span>
-                            </li>
-                            <li class="flex items-center justify-between gap-4">
-                                <span>Spanish</span>
-                                <span class="text-neutral-500">B1</span>
-                            </li>
+                            <li class="flex items-center justify-between gap-4"><span>German</span><span class="text-neutral-500">C2</span></li>
+                            <li class="flex items-center justify-between gap-4"><span>English</span><span class="text-neutral-500">C1</span></li>
+                            <li class="flex items-center justify-between gap-4"><span>French</span><span class="text-neutral-500">B1</span></li>
+                            <li class="flex items-center justify-between gap-4"><span>Spanish</span><span class="text-neutral-500">B1</span></li>
                         </ul>
                     </div>
                 </div>
 
-                <div>
-                    <h3 class="font-bold uppercase tracking-widest mb-4 border-b border-black dark:border-white pb-2">Highlights & Interests</h3>
+                <div class="rounded-2xl border border-black/10 dark:border-white/10 bg-white/75 dark:bg-white/[0.02] p-5 sm:p-6">
+                    <h3 class="text-sm font-extrabold uppercase tracking-[0.18em] mb-4 text-neutral-600 dark:text-neutral-300">Highlights & Interests</h3>
                     <div class="grid sm:grid-cols-2 gap-6 text-sm">
                         <div>
                             <div class="font-bold mb-2">Projects (from resume)</div>
@@ -443,13 +486,13 @@
                         </div>
                         <div>
                             <div class="font-bold mb-2">Personal Interests</div>
-                            <ul class="space-y-2 text-neutral-500">
-                                <li>Swimming</li>
-                                <li>Piano</li>
-                                <li>Music production</li>
-                                <li>Photography</li>
-                                <li>Programming</li>
-                            </ul>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="rounded-full border border-black/10 dark:border-white/10 px-3 py-1.5 text-neutral-600 dark:text-neutral-300">Swimming</span>
+                                <span class="rounded-full border border-black/10 dark:border-white/10 px-3 py-1.5 text-neutral-600 dark:text-neutral-300">Piano</span>
+                                <span class="rounded-full border border-black/10 dark:border-white/10 px-3 py-1.5 text-neutral-600 dark:text-neutral-300">Music Production</span>
+                                <span class="rounded-full border border-black/10 dark:border-white/10 px-3 py-1.5 text-neutral-600 dark:text-neutral-300">Photography</span>
+                                <span class="rounded-full border border-black/10 dark:border-white/10 px-3 py-1.5 text-neutral-600 dark:text-neutral-300">Programming</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -474,19 +517,35 @@
     </section>
 
     <!-- Contact -->
-    <section id="contact" class="py-32 px-6 max-w-6xl mx-auto border-t border-black/10 dark:border-white/10 text-center">
-        <h2 class="text-6xl md:text-8xl font-black tracking-tighter mb-6 hover:tracking-normal transition-all duration-500 cursor-default">LET'S TALK.</h2>
-        <p class="max-w-2xl mx-auto mb-12 text-neutral-600 dark:text-neutral-400">
-            Based in Tübingen and currently studying computer science. Reach out for student projects, collaborations, or technical exchange.
-        </p>
-        <div class="flex flex-col md:flex-row justify-center gap-8 md:gap-16 text-xl">
-            <a href="mailto:max@staneker.com" class="hover:underline decoration-2 underline-offset-8">max@staneker.com</a>
-            <a href="https://github.com/elsyvien" class="hover:underline decoration-2 underline-offset-8">GitHub</a>
-            <a href="https://uni-tuebingen.de/" target="_blank" rel="noopener noreferrer" class="hover:underline decoration-2 underline-offset-8">Uni Tübingen</a>
+    <section id="contact" class="py-24 px-6 max-w-6xl mx-auto border-t border-black/10 dark:border-white/10">
+        <div class="relative overflow-hidden rounded-3xl border border-black/10 dark:border-white/10 bg-white/80 dark:bg-white/[0.02] p-6 sm:p-8 md:p-10">
+            <div class="absolute -top-10 -right-10 w-40 h-40 rounded-full bg-cyan-200/30 dark:bg-cyan-300/10 blur-3xl pointer-events-none"></div>
+            <div class="absolute -bottom-10 -left-10 w-40 h-40 rounded-full bg-amber-200/40 dark:bg-amber-300/10 blur-3xl pointer-events-none"></div>
+            <div class="relative">
+                <div class="text-xs font-bold uppercase tracking-[0.22em] text-neutral-500 dark:text-neutral-400 mb-4">Contact</div>
+                <h2 class="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight mb-4">Let&apos;s build something useful.</h2>
+                <p class="max-w-2xl mb-8 text-neutral-600 dark:text-neutral-400">
+                    Based in Tübingen and currently studying computer science. Reach out for student projects, collaborations, or technical exchange.
+                </p>
+                <div class="grid md:grid-cols-3 gap-3">
+                    <a href="mailto:max@staneker.com" class="group rounded-2xl border border-black/10 dark:border-white/10 bg-white/70 dark:bg-white/[0.02] p-4 hover:-translate-y-0.5 hover:border-black/20 dark:hover:border-white/20 transition-all">
+                        <div class="text-xs font-bold uppercase tracking-[0.18em] text-neutral-500 mb-2">Email</div>
+                        <div class="text-lg font-bold break-all group-hover:underline underline-offset-4">max@staneker.com</div>
+                    </a>
+                    <a href="https://github.com/elsyvien" target="_blank" rel="noopener noreferrer" class="group rounded-2xl border border-black/10 dark:border-white/10 bg-white/70 dark:bg-white/[0.02] p-4 hover:-translate-y-0.5 hover:border-black/20 dark:hover:border-white/20 transition-all">
+                        <div class="text-xs font-bold uppercase tracking-[0.18em] text-neutral-500 mb-2">GitHub</div>
+                        <div class="text-lg font-bold group-hover:underline underline-offset-4">@elsyvien</div>
+                    </a>
+                    <a href="https://uni-tuebingen.de/" target="_blank" rel="noopener noreferrer" class="group rounded-2xl border border-black/10 dark:border-white/10 bg-white/70 dark:bg-white/[0.02] p-4 hover:-translate-y-0.5 hover:border-black/20 dark:hover:border-white/20 transition-all">
+                        <div class="text-xs font-bold uppercase tracking-[0.18em] text-neutral-500 mb-2">University</div>
+                        <div class="text-lg font-bold group-hover:underline underline-offset-4">Uni Tübingen</div>
+                    </a>
+                </div>
+            </div>
         </div>
     </section>
 
-    <footer class="py-8 text-center text-sm font-mono text-neutral-500">
+    <footer class="py-10 text-center text-sm font-mono text-neutral-500 border-t border-black/10 dark:border-white/10 mx-6">
         &copy; 2026 MAX STANEKER
     </footer>
 
