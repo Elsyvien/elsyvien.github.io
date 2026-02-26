@@ -104,8 +104,9 @@
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-20">
             <!-- Project 1: Hero (Full Width) -->
-            <a href="https://github.com/Elsyvien/BasicMBComp" target="_blank" rel="noopener noreferrer" class="md:col-span-2 group cursor-pointer block">
-                <div class="aspect-[21/9] bg-gradient-to-br from-neutral-900 to-neutral-800 dark:from-neutral-800 dark:to-neutral-900 mb-8 border border-black/5 dark:border-white/5 overflow-hidden relative rounded-lg flex items-center justify-center">
+            <a href="https://github.com/Elsyvien/BasicMBComp" target="_blank" rel="noopener noreferrer" class="md:col-span-2 group cursor-pointer block relative p-6 md:p-8 rounded-3xl bg-white/50 dark:bg-[#0a0a0f]/50 backdrop-blur-lg border border-neutral-200/50 dark:border-white/5 hover:bg-white/80 dark:hover:bg-white/5 transition-all duration-500 animate-fade-up shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-none hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)]" style="animation-play-state: paused;" data-animate>
+                <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div class="relative z-10 aspect-[21/9] bg-gradient-to-br from-neutral-900 to-neutral-800 dark:from-neutral-800 dark:to-neutral-900 mb-8 border border-black/5 dark:border-white/5 overflow-hidden rounded-xl flex items-center justify-center shadow-lg">
                     <!-- Tech Pattern Overlay -->
                     <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(#4b5563 1px, transparent 1px); background-size: 20px 20px;"></div>
                     
@@ -129,27 +130,28 @@
 
                     <div class="absolute bottom-4 right-4 text-xs font-mono text-white/40">src/main.cpp</div>
                 </div>
-                <div class="flex flex-col md:flex-row justify-between items-start gap-6">
+                <div class="relative z-10 flex flex-col md:flex-row justify-between items-start gap-6">
                     <div class="max-w-2xl">
                         <div class="flex items-center gap-4 mb-3">
-                            <h3 class="text-3xl font-black group-hover:underline decoration-4 underline-offset-4">BasicMBComp</h3>
-                            <span class="text-xs font-mono border border-black dark:border-white px-2 py-1">2024</span>
+                            <h3 class="text-3xl font-black group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">BasicMBComp</h3>
+                            <span class="text-xs font-mono border border-neutral-300 dark:border-white/20 px-2 py-1 rounded-md bg-white/50 dark:bg-white/5">2024</span>
                         </div>
                         <p class="text-neutral-600 dark:text-neutral-400 leading-relaxed mb-4">
                             Audio plugin project for realtime signal processing in C++ with JUCE. Focused on multiband compression, DSP experimentation, and building practical tools for audio production workflows.
                         </p>
-                        <ul class="flex flex-wrap gap-2 text-xs font-mono font-bold uppercase tracking-wider text-neutral-500">
-                            <li class="bg-neutral-100 dark:bg-neutral-900 px-2 py-1 rounded">C++</li>
-                            <li class="bg-neutral-100 dark:bg-neutral-900 px-2 py-1 rounded">JUCE</li>
-                            <li class="bg-neutral-100 dark:bg-neutral-900 px-2 py-1 rounded">DSP</li>
+                        <ul class="flex flex-wrap gap-2 text-xs font-mono font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">
+                            <li class="bg-white dark:bg-white/10 px-3 py-1.5 rounded-full border border-neutral-200 dark:border-white/10 shadow-sm">C++</li>
+                            <li class="bg-white dark:bg-white/10 px-3 py-1.5 rounded-full border border-neutral-200 dark:border-white/10 shadow-sm">JUCE</li>
+                            <li class="bg-white dark:bg-white/10 px-3 py-1.5 rounded-full border border-neutral-200 dark:border-white/10 shadow-sm">DSP</li>
                         </ul>
                     </div>
                 </div>
             </a>
 
             <!-- Project 2 -->
-            <a href="https://github.com/Elsyvien/javaChatApp" target="_blank" rel="noopener noreferrer" class="group cursor-pointer block">
-                <div class="aspect-video bg-gradient-to-tr from-blue-900 to-slate-900 mb-6 border border-black/5 dark:border-white/5 overflow-hidden relative rounded-lg flex items-center justify-center">
+            <a href="https://github.com/Elsyvien/javaChatApp" target="_blank" rel="noopener noreferrer" class="group cursor-pointer block relative p-6 rounded-3xl bg-white/50 dark:bg-[#0a0a0f]/50 backdrop-blur-lg border border-neutral-200/50 dark:border-white/5 hover:bg-white/80 dark:hover:bg-white/5 transition-all duration-500 animate-fade-up delay-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-none hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)]" style="animation-play-state: paused;" data-animate>
+                <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div class="relative z-10 aspect-video bg-gradient-to-tr from-blue-900 to-slate-900 mb-6 border border-black/5 dark:border-white/5 overflow-hidden rounded-xl flex items-center justify-center shadow-lg">
                     <div class="absolute inset-0 opacity-30" style="background-image: linear-gradient(0deg, transparent 24%, #ffffff 25%, #ffffff 26%, transparent 27%, transparent 74%, #ffffff 75%, #ffffff 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, #ffffff 25%, #ffffff 26%, transparent 27%, transparent 74%, #ffffff 75%, #ffffff 76%, transparent 77%, transparent); background-size: 30px 30px;"></div>
                     
                     <div class="code-window">
@@ -168,25 +170,26 @@
                         </div>
                     </div>
                 </div>
-                <div>
-                    <div class="flex justify-between items-center mb-2">
-                        <h3 class="text-2xl font-bold group-hover:underline decoration-2 underline-offset-4">Java Chat System</h3>
-                        <span class="text-xs font-mono border border-black dark:border-white px-2 py-1">2025</span>
+                <div class="relative z-10">
+                    <div class="flex justify-between items-center mb-3">
+                        <h3 class="text-2xl font-bold group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Java Chat System</h3>
+                        <span class="text-xs font-mono border border-neutral-300 dark:border-white/20 px-2 py-1 rounded-md bg-white/50 dark:bg-white/5">2025</span>
                     </div>
                     <p class="text-neutral-600 dark:text-neutral-400 text-sm mb-4 line-clamp-3">
                         University realtime chat application with login and channel-based communication. Implemented core backend logic, data modeling, and persistent storage for messages/users using Java, WebSocket communication, and SQL.
                     </p>
-                    <ul class="flex flex-wrap gap-2 text-xs font-mono font-bold uppercase tracking-wider text-neutral-500">
-                        <li class="bg-neutral-100 dark:bg-neutral-900 px-2 py-1 rounded">Java</li>
-                        <li class="bg-neutral-100 dark:bg-neutral-900 px-2 py-1 rounded">WebSocket</li>
-                        <li class="bg-neutral-100 dark:bg-neutral-900 px-2 py-1 rounded">SQL</li>
+                    <ul class="flex flex-wrap gap-2 text-xs font-mono font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">
+                        <li class="bg-white dark:bg-white/10 px-3 py-1.5 rounded-full border border-neutral-200 dark:border-white/10 shadow-sm">Java</li>
+                        <li class="bg-white dark:bg-white/10 px-3 py-1.5 rounded-full border border-neutral-200 dark:border-white/10 shadow-sm">WebSocket</li>
+                        <li class="bg-white dark:bg-white/10 px-3 py-1.5 rounded-full border border-neutral-200 dark:border-white/10 shadow-sm">SQL</li>
                     </ul>
                 </div>
             </a>
 
             <!-- Project 3 -->
-            <a href="https://github.com/Elsyvien/MacBatteryTool" target="_blank" rel="noopener noreferrer" class="group cursor-pointer block">
-                <div class="aspect-video bg-gradient-to-bl from-emerald-900 to-neutral-900 mb-6 border border-black/5 dark:border-white/5 overflow-hidden relative rounded-lg flex items-center justify-center">
+            <a href="https://github.com/Elsyvien/MacBatteryTool" target="_blank" rel="noopener noreferrer" class="group cursor-pointer block relative p-6 rounded-3xl bg-white/50 dark:bg-[#0a0a0f]/50 backdrop-blur-lg border border-neutral-200/50 dark:border-white/5 hover:bg-white/80 dark:hover:bg-white/5 transition-all duration-500 animate-fade-up delay-200 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-none hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)]" style="animation-play-state: paused;" data-animate>
+                <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div class="relative z-10 aspect-video bg-gradient-to-bl from-emerald-900 to-neutral-900 mb-6 border border-black/5 dark:border-white/5 overflow-hidden rounded-xl flex items-center justify-center shadow-lg">
                      <div class="absolute inset-0 opacity-20" style="background: repeating-linear-gradient(45deg, #606dbc, #606dbc 10px, #465298 10px, #465298 20px);"></div>
                     
                     <div class="code-window">
@@ -206,25 +209,26 @@
                         </div>
                     </div>
                 </div>
-                <div>
-                    <div class="flex justify-between items-center mb-2">
-                        <h3 class="text-2xl font-bold group-hover:underline decoration-2 underline-offset-4">MacBatteryTool</h3>
-                        <span class="text-xs font-mono border border-black dark:border-white px-2 py-1">2024</span>
+                <div class="relative z-10">
+                    <div class="flex justify-between items-center mb-3">
+                        <h3 class="text-2xl font-bold group-hover:text-emerald-500 dark:group-hover:text-emerald-400 transition-colors">MacBatteryTool</h3>
+                        <span class="text-xs font-mono border border-neutral-300 dark:border-white/20 px-2 py-1 rounded-md bg-white/50 dark:bg-white/5">2024</span>
                     </div>
                     <p class="text-neutral-600 dark:text-neutral-400 text-sm mb-4 line-clamp-3">
                         Native macOS Menu Bar utility interacting with the IOKit framework to read battery SMC keys. Polls current amperage and voltage to calculate real-time power draw and estimates remaining cycles.
                     </p>
-                    <ul class="flex flex-wrap gap-2 text-xs font-mono font-bold uppercase tracking-wider text-neutral-500">
-                        <li class="bg-neutral-100 dark:bg-neutral-900 px-2 py-1 rounded">Swift</li>
-                        <li class="bg-neutral-100 dark:bg-neutral-900 px-2 py-1 rounded">IOKit</li>
-                        <li class="bg-neutral-100 dark:bg-neutral-900 px-2 py-1 rounded">AppKit</li>
+                    <ul class="flex flex-wrap gap-2 text-xs font-mono font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">
+                        <li class="bg-white dark:bg-white/10 px-3 py-1.5 rounded-full border border-neutral-200 dark:border-white/10 shadow-sm">Swift</li>
+                        <li class="bg-white dark:bg-white/10 px-3 py-1.5 rounded-full border border-neutral-200 dark:border-white/10 shadow-sm">IOKit</li>
+                        <li class="bg-white dark:bg-white/10 px-3 py-1.5 rounded-full border border-neutral-200 dark:border-white/10 shadow-sm">AppKit</li>
                     </ul>
                 </div>
             </a>
 
              <!-- Project 4 -->
-             <a href="https://github.com/Elsyvien/LittleTaylorVisualizer" target="_blank" rel="noopener noreferrer" class="group cursor-pointer block">
-                <div class="aspect-video bg-neutral-950 mb-6 border border-black/5 dark:border-white/5 overflow-hidden relative rounded-lg flex items-center justify-center perspective-[800px]">
+             <a href="https://github.com/Elsyvien/LittleTaylorVisualizer" target="_blank" rel="noopener noreferrer" class="group cursor-pointer block relative p-6 rounded-3xl bg-white/50 dark:bg-[#0a0a0f]/50 backdrop-blur-lg border border-neutral-200/50 dark:border-white/5 hover:bg-white/80 dark:hover:bg-white/5 transition-all duration-500 animate-fade-up shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-none hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)]" style="animation-play-state: paused;" data-animate>
+                <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div class="relative z-10 aspect-video bg-neutral-950 mb-6 border border-black/5 dark:border-white/5 overflow-hidden rounded-xl flex items-center justify-center shadow-lg perspective-[800px]">
                     <!-- Isometric Scene Container -->
                     <div class="relative w-48 h-48 transform-style-3d transition-transform duration-700 group-hover:rotate-x-[55deg] group-hover:rotate-z-[-40deg]" style="transform: rotateX(60deg) rotateZ(-45deg);">
                         
@@ -262,25 +266,26 @@
                         </div>
                     </div>
                 </div>
-                <div>
-                    <div class="flex justify-between items-center mb-2">
-                        <h3 class="text-2xl font-bold group-hover:underline decoration-2 underline-offset-4">Taylor Series Viz</h3>
-                        <span class="text-xs font-mono border border-black dark:border-white px-2 py-1">2025</span>
+                <div class="relative z-10">
+                    <div class="flex justify-between items-center mb-3">
+                        <h3 class="text-2xl font-bold group-hover:text-cyan-500 transition-colors">Taylor Series Viz</h3>
+                        <span class="text-xs font-mono border border-neutral-300 dark:border-white/20 px-2 py-1 rounded-md bg-white/50 dark:bg-white/5">2025</span>
                     </div>
                     <p class="text-neutral-600 dark:text-neutral-400 text-sm mb-4 line-clamp-3">
                         Interactive HTML5 Canvas engine plotting complex mathematical functions and their Taylor polynomial approximations. Updates the rendering loop in real-time as users adjust the degree of the polynomial.
                     </p>
-                    <ul class="flex flex-wrap gap-2 text-xs font-mono font-bold uppercase tracking-wider text-neutral-500">
-                        <li class="bg-neutral-100 dark:bg-neutral-900 px-2 py-1 rounded">JavaScript</li>
-                        <li class="bg-neutral-100 dark:bg-neutral-900 px-2 py-1 rounded">CanvasAPI</li>
-                        <li class="bg-neutral-100 dark:bg-neutral-900 px-2 py-1 rounded">NumericalMethods</li>
+                    <ul class="flex flex-wrap gap-2 text-xs font-mono font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">
+                        <li class="bg-white dark:bg-white/10 px-3 py-1.5 rounded-full border border-neutral-200 dark:border-white/10 shadow-sm">JavaScript</li>
+                        <li class="bg-white dark:bg-white/10 px-3 py-1.5 rounded-full border border-neutral-200 dark:border-white/10 shadow-sm">CanvasAPI</li>
+                        <li class="bg-white dark:bg-white/10 px-3 py-1.5 rounded-full border border-neutral-200 dark:border-white/10 shadow-sm">NumericalMethods</li>
                     </ul>
                 </div>
             </a>
 
             <!-- Project 5 -->
-            <a href="https://github.com/Elsyvien/Aetherion-Engine" target="_blank" rel="noopener noreferrer" class="group cursor-pointer block">
-                <div class="aspect-video bg-neutral-900 mb-6 border border-black/5 dark:border-white/5 overflow-hidden relative rounded-lg flex items-center justify-center">
+            <a href="https://github.com/Elsyvien/Aetherion-Engine" target="_blank" rel="noopener noreferrer" class="group cursor-pointer block relative p-6 rounded-3xl bg-white/50 dark:bg-[#0a0a0f]/50 backdrop-blur-lg border border-neutral-200/50 dark:border-white/5 hover:bg-white/80 dark:hover:bg-white/5 transition-all duration-500 animate-fade-up delay-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-none hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)]" style="animation-play-state: paused;" data-animate>
+                <div class="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div class="relative z-10 aspect-video bg-neutral-900 mb-6 border border-black/5 dark:border-white/5 overflow-hidden rounded-xl flex items-center justify-center shadow-lg">
                      <!-- Wireframe effect -->
                     <div class="absolute inset-0 opacity-20" style="background-image: linear-gradient(#333 1px, transparent 1px), linear-gradient(90deg, #333 1px, transparent 1px); background-size: 20px 20px; perspective: 100px;"></div>
                     
@@ -299,26 +304,27 @@
                         </div>
                     </div>
                 </div>
-                <div>
-                    <div class="flex justify-between items-center mb-2">
-                        <h3 class="text-2xl font-bold group-hover:underline decoration-2 underline-offset-4">Aetherion 3D Engine</h3>
-                        <span class="text-xs font-mono border border-black dark:border-white px-2 py-1">2024</span>
+                <div class="relative z-10">
+                    <div class="flex justify-between items-center mb-3">
+                        <h3 class="text-2xl font-bold group-hover:text-indigo-500 dark:group-hover:text-indigo-400 transition-colors">Aetherion 3D Engine</h3>
+                        <span class="text-xs font-mono border border-neutral-300 dark:border-white/20 px-2 py-1 rounded-md bg-white/50 dark:bg-white/5">2024</span>
                     </div>
                     <p class="text-neutral-600 dark:text-neutral-400 text-sm mb-4 line-clamp-3">
                         Modular engine/editor project in modern C++ with a focus on rendering and engine architecture. Built as a long-running private project to explore graphics programming, tooling, and engine components.
                     </p>
-                    <ul class="flex flex-wrap gap-2 text-xs font-mono font-bold uppercase tracking-wider text-neutral-500">
-                        <li class="bg-neutral-100 dark:bg-neutral-900 px-2 py-1 rounded">C++20</li>
-                        <li class="bg-neutral-100 dark:bg-neutral-900 px-2 py-1 rounded">Qt 6</li>
-                        <li class="bg-neutral-100 dark:bg-neutral-900 px-2 py-1 rounded">Vulkan</li>
-                        <li class="bg-neutral-100 dark:bg-neutral-900 px-2 py-1 rounded">CMake</li>
+                    <ul class="flex flex-wrap gap-2 text-xs font-mono font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">
+                        <li class="bg-white dark:bg-white/10 px-3 py-1.5 rounded-full border border-neutral-200 dark:border-white/10 shadow-sm">C++20</li>
+                        <li class="bg-white dark:bg-white/10 px-3 py-1.5 rounded-full border border-neutral-200 dark:border-white/10 shadow-sm">Qt 6</li>
+                        <li class="bg-white dark:bg-white/10 px-3 py-1.5 rounded-full border border-neutral-200 dark:border-white/10 shadow-sm">Vulkan</li>
+                        <li class="bg-white dark:bg-white/10 px-3 py-1.5 rounded-full border border-neutral-200 dark:border-white/10 shadow-sm">CMake</li>
                     </ul>
                 </div>
             </a>
 
             <!-- Project 6 -->
-            <a href="https://github.com/Elsyvien/MStockApp" target="_blank" rel="noopener noreferrer" class="group cursor-pointer block">
-                <div class="aspect-video bg-gradient-to-br from-indigo-900 to-purple-900 mb-6 border border-black/5 dark:border-white/5 overflow-hidden relative rounded-lg flex items-center justify-center">
+            <a href="https://github.com/Elsyvien/MStockApp" target="_blank" rel="noopener noreferrer" class="group cursor-pointer block relative p-6 rounded-3xl bg-white/50 dark:bg-[#0a0a0f]/50 backdrop-blur-lg border border-neutral-200/50 dark:border-white/5 hover:bg-white/80 dark:hover:bg-white/5 transition-all duration-500 animate-fade-up delay-200 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-none hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)]" style="animation-play-state: paused;" data-animate>
+                <div class="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-purple-500/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div class="relative z-10 aspect-video bg-gradient-to-br from-indigo-900 to-purple-900 mb-6 border border-black/5 dark:border-white/5 overflow-hidden rounded-xl flex items-center justify-center shadow-lg">
                     <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 15px 15px;"></div>
                     
                     <div class="flex items-end gap-3 h-1/2 w-1/2 opacity-90">
@@ -340,18 +346,18 @@
                         </div>
                     </div>
                 </div>
-                <div>
-                    <div class="flex justify-between items-center mb-2">
-                        <h3 class="text-2xl font-bold group-hover:underline decoration-2 underline-offset-4">MStockApp</h3>
-                        <span class="text-xs font-mono border border-black dark:border-white px-2 py-1">2025</span>
+                <div class="relative z-10">
+                    <div class="flex justify-between items-center mb-3">
+                        <h3 class="text-2xl font-bold group-hover:text-purple-500 dark:group-hover:text-purple-400 transition-colors">MStockApp</h3>
+                        <span class="text-xs font-mono border border-neutral-300 dark:border-white/20 px-2 py-1 rounded-md bg-white/50 dark:bg-white/5">2025</span>
                     </div>
                     <p class="text-neutral-600 dark:text-neutral-400 text-sm mb-4 line-clamp-3">
                         A lightweight financial tracking application built for real-time stock analysis. Connects to external financial APIs to fetch market data and visualize trends using a clean, native interface.
                     </p>
-                    <ul class="flex flex-wrap gap-2 text-xs font-mono font-bold uppercase tracking-wider text-neutral-500">
-                        <li class="bg-neutral-100 dark:bg-neutral-900 px-2 py-1 rounded">C++</li>
-                        <li class="bg-neutral-100 dark:bg-neutral-900 px-2 py-1 rounded">REST API</li>
-                        <li class="bg-neutral-100 dark:bg-neutral-900 px-2 py-1 rounded">DataViz</li>
+                    <ul class="flex flex-wrap gap-2 text-xs font-mono font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">
+                        <li class="bg-white dark:bg-white/10 px-3 py-1.5 rounded-full border border-neutral-200 dark:border-white/10 shadow-sm">C++</li>
+                        <li class="bg-white dark:bg-white/10 px-3 py-1.5 rounded-full border border-neutral-200 dark:border-white/10 shadow-sm">REST API</li>
+                        <li class="bg-white dark:bg-white/10 px-3 py-1.5 rounded-full border border-neutral-200 dark:border-white/10 shadow-sm">DataViz</li>
                     </ul>
                 </div>
             </a>
@@ -359,127 +365,106 @@
     </section>
 
     <!-- Code Activity / GitHub Chart -->
-    <section class="py-12 px-6 max-w-6xl mx-auto border-t border-black/10 dark:border-white/10">
-        <h3 class="text-xl font-bold uppercase tracking-widest mb-8">Code Activity</h3>
-        <div class="w-full overflow-x-auto pb-4">
-            <div class="min-w-[800px] opacity-70 hover:opacity-100 transition-opacity duration-300 filter grayscale contrast-125 dark:invert">
-                <img src="https://ghchart.rshah.org/000000/elsyvien" alt="Max's GitHub contributions chart" loading="lazy" decoding="async" class="w-full" />
+    <section class="py-12 px-6 max-w-6xl mx-auto border-t border-black/5 dark:border-white/5">
+        <h3 class="text-xl font-bold uppercase tracking-widest mb-8 text-center animate-slide-in" style="animation-play-state: paused;" data-animate>Code Activity</h3>
+        <div class="w-full overflow-x-auto pb-8 animate-fade-up" style="animation-play-state: paused;" data-animate>
+            <div class="min-w-[800px] p-6 rounded-3xl bg-white/50 dark:bg-[#0a0a0f]/50 backdrop-blur-lg border border-neutral-200/50 dark:border-white/5 shadow-xl shadow-black/5 dark:shadow-none hover:shadow-2xl transition-all duration-500 group relative">
+                <div class="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-500/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div class="relative z-10 opacity-70 group-hover:opacity-100 transition-opacity duration-300 filter grayscale group-hover:grayscale-0 dark:invert">
+                    <img src="https://ghchart.rshah.org/000000/elsyvien" alt="Max's GitHub contributions chart" loading="lazy" decoding="async" class="w-full drop-shadow-sm" />
+                </div>
             </div>
-            <div class="mt-4 flex justify-between items-center text-xs font-mono text-neutral-500">
-                <span>Data: github.com/elsyvien</span>
-                <span>Contributions (Last Year)</span>
+            <div class="max-w-3xl mx-auto mt-6 flex justify-between items-center text-xs font-mono text-neutral-500 dark:text-neutral-400 px-4">
+                <span class="bg-white/50 dark:bg-white/5 px-3 py-1 rounded-md border border-neutral-200/50 dark:border-white/5">Data: github.com/elsyvien</span>
+                <span class="bg-white/50 dark:bg-white/5 px-3 py-1 rounded-md border border-neutral-200/50 dark:border-white/5">Contributions (Last Year)</span>
             </div>
         </div>
     </section>
 
-    <!-- About / Resume (Text heavy, clean) -->
-    <section id="about" class="py-20 px-6 max-w-6xl mx-auto border-t border-black/10 dark:border-white/10">
-        <div class="grid md:grid-cols-12 gap-12">
-            <div class="md:col-span-4">
-                <h2 class="text-4xl font-black uppercase tracking-tighter sticky top-32">Resume</h2>
-            </div>
-            <div class="md:col-span-8 space-y-12">
-                <p class="text-lg leading-relaxed text-neutral-700 dark:text-neutral-300">
-                    I am an Informatikstudent (B.Sc.) currently studying at the Eberhard Karls University of Tübingen.
-                    My current work focuses on learning strong fundamentals through projects in backend development,
-                    realtime communication, audio programming, and graphics/engine development.
+    <!-- About / Resume (Bento Layout) -->
+    <section id="about" class="py-24 px-6 max-w-6xl mx-auto border-t border-black/5 dark:border-white/5 relative">
+        <h2 class="text-4xl font-black uppercase tracking-tighter mb-12 animate-slide-in" style="animation-play-state: paused;" data-animate>Resume</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Intro / Summary -->
+            <div class="md:col-span-2 p-8 md:p-10 rounded-3xl bg-white/50 dark:bg-[#0a0a0f]/50 backdrop-blur-lg border border-neutral-200/50 dark:border-white/5 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-none animate-fade-up relative overflow-hidden group" style="animation-play-state: paused;" data-animate>
+                <div class="absolute -right-20 -top-20 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl group-hover:bg-blue-500/20 transition-colors duration-700"></div>
+                <p class="text-xl md:text-2xl leading-relaxed text-neutral-700 dark:text-neutral-300 font-medium relative z-10">
+                    I am an Informatikstudent (B.Sc.) studying at the Eberhard Karls University of Tübingen.
+                    My work currently focuses on learning strong fundamentals through projects in backend development,
+                    realtime communication, audio programming, and graphics tooling.
                 </p>
+            </div>
 
-                <div class="grid sm:grid-cols-2 gap-8 pt-2">
+            <!-- Education -->
+            <div class="p-8 md:p-10 rounded-3xl bg-gradient-to-br from-blue-50/50 to-purple-50/50 dark:from-blue-500/5 dark:to-purple-500/5 backdrop-blur-lg border border-blue-100/50 dark:border-white/5 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-none animate-fade-up delay-100" style="animation-play-state: paused;" data-animate>
+                <h3 class="font-black uppercase tracking-widest text-sm mb-6 text-blue-600 dark:text-blue-400">Education</h3>
+                <div class="space-y-6">
                     <div>
-                        <h3 class="font-bold uppercase tracking-widest mb-4 border-b border-black dark:border-white pb-2">Education</h3>
-                        <ul class="space-y-4">
-                            <li>
-                                <div class="font-bold">B.Sc. Informatik</div>
-                                <div class="text-sm text-neutral-500">Eberhard Karls University of Tübingen, 10/2024-Present</div>
-                                <div class="text-sm text-neutral-500">Expected graduation: 2027</div>
-                            </li>
-                            <li>
-                                <div class="font-bold">Abitur</div>
-                                <div class="text-sm text-neutral-500">Kepler-Gymnasium Tübingen, 2016-2024</div>
-                                <div class="text-sm text-neutral-500">Advanced courses: German, Computer Science, Physics</div>
-                            </li>
-                        </ul>
+                        <div class="font-bold text-neutral-900 dark:text-white text-lg">B.Sc. Informatik</div>
+                        <div class="text-sm font-medium text-neutral-500 mt-1">Uni Tübingen, 10/2024-Present</div>
+                        <div class="text-xs font-bold text-blue-600/70 dark:text-blue-400/70 mt-2 uppercase tracking-wide bg-blue-500/10 inline-block px-2 py-1 rounded">Expected 2027</div>
                     </div>
                     <div>
-                        <h3 class="font-bold uppercase tracking-widest mb-4 border-b border-black dark:border-white pb-2">Experience</h3>
-                        <ul class="space-y-4">
-                            <li>
-                                <div class="font-bold">Volunteer Swim Coach (Beginner & Youth Group)</div>
-                                <div class="text-sm text-neutral-500">Tübinger Schwimmverein, 2023-Present</div>
-                            </li>
-                            <li>
-                                <div class="font-bold">Student Internship</div>
-                                <div class="text-sm text-neutral-500">PARAVAN GmbH, 2022</div>
-                                <div class="text-sm text-neutral-500">Insights into technical workflows and vehicle sensor technology</div>
-                            </li>
-                        </ul>
+                        <div class="font-bold text-neutral-900 dark:text-white text-lg">Abitur</div>
+                        <div class="text-sm font-medium text-neutral-500 mt-1">Kepler-Gymnasium, 2016-2024</div>
                     </div>
                 </div>
+            </div>
 
-                <div class="grid sm:grid-cols-2 gap-8">
+            <!-- Experience -->
+            <div class="p-8 rounded-3xl bg-white/50 dark:bg-[#0a0a0f]/50 backdrop-blur-lg border border-neutral-200/50 dark:border-white/5 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-none animate-fade-up delay-100" style="animation-play-state: paused;" data-animate>
+                <h3 class="font-black uppercase tracking-widest text-sm mb-6 text-purple-600 dark:text-purple-400">Experience</h3>
+                <div class="space-y-6">
                     <div>
-                        <h3 class="font-bold uppercase tracking-widest mb-4 border-b border-black dark:border-white pb-2">Skills</h3>
-                        <ul class="space-y-4 text-sm">
-                            <li>
-                                <div class="font-bold text-base">Programming Languages</div>
-                                <div class="text-neutral-500">Python, C/C++, Java</div>
-                            </li>
-                            <li>
-                                <div class="font-bold text-base">Tools & Technologies</div>
-                                <div class="text-neutral-500">Linux, Windows, macOS, SQL, Git</div>
-                            </li>
-                            <li>
-                                <div class="font-bold text-base">Concepts</div>
-                                <div class="text-neutral-500">OOP, data structures, algorithms, debugging</div>
-                            </li>
-                        </ul>
+                        <div class="font-bold text-neutral-900 dark:text-white leading-tight">Volunteer Swim Coach</div>
+                        <div class="text-sm font-medium text-neutral-500 mt-1">Tübinger Schwimmverein, 2023-Present</div>
                     </div>
+                    <div class="h-px w-full bg-neutral-200 dark:bg-white/10"></div>
                     <div>
-                        <h3 class="font-bold uppercase tracking-widest mb-4 border-b border-black dark:border-white pb-2">Languages</h3>
-                        <ul class="space-y-3 text-sm">
-                            <li class="flex items-center justify-between gap-4">
-                                <span>German</span>
-                                <span class="text-neutral-500">C2</span>
-                            </li>
-                            <li class="flex items-center justify-between gap-4">
-                                <span>English</span>
-                                <span class="text-neutral-500">C1</span>
-                            </li>
-                            <li class="flex items-center justify-between gap-4">
-                                <span>French</span>
-                                <span class="text-neutral-500">B1</span>
-                            </li>
-                            <li class="flex items-center justify-between gap-4">
-                                <span>Spanish</span>
-                                <span class="text-neutral-500">B1</span>
-                            </li>
-                        </ul>
+                        <div class="font-bold text-neutral-900 dark:text-white">Student Internship</div>
+                        <div class="text-sm font-medium text-neutral-500 mt-1">PARAVAN GmbH, 2022</div>
                     </div>
                 </div>
+            </div>
 
-                <div>
-                    <h3 class="font-bold uppercase tracking-widest mb-4 border-b border-black dark:border-white pb-2">Highlights & Interests</h3>
-                    <div class="grid sm:grid-cols-2 gap-6 text-sm">
-                        <div>
-                            <div class="font-bold mb-2">Projects (from resume)</div>
-                            <ul class="space-y-2 text-neutral-500">
-                                <li>Realtime chat application (Java, WebSocket, SQL)</li>
-                                <li>Audio plugins for realtime processing (C++, JUCE)</li>
-                                <li>Modular 3D engine/editor project (C++20, Qt 6, Vulkan, CMake)</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <div class="font-bold mb-2">Personal Interests</div>
-                            <ul class="space-y-2 text-neutral-500">
-                                <li>Swimming</li>
-                                <li>Piano</li>
-                                <li>Music production</li>
-                                <li>Photography</li>
-                                <li>Programming</li>
-                            </ul>
-                        </div>
+            <!-- Skills -->
+            <div class="p-8 rounded-3xl bg-white/50 dark:bg-[#0a0a0f]/50 backdrop-blur-lg border border-neutral-200/50 dark:border-white/5 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-none animate-fade-up delay-200" style="animation-play-state: paused;" data-animate>
+                <h3 class="font-black uppercase tracking-widest text-sm mb-6 text-emerald-600 dark:text-emerald-400">Skills</h3>
+                <div class="space-y-5 text-sm font-medium">
+                    <div>
+                        <div class="text-neutral-900 dark:text-white font-bold mb-1">Languages</div>
+                        <div class="text-neutral-500">Python, C/C++, Java</div>
                     </div>
+                    <div class="h-px w-full bg-neutral-200 dark:bg-white/10"></div>
+                    <div>
+                        <div class="text-neutral-900 dark:text-white font-bold mb-1">Tech</div>
+                        <div class="text-neutral-500">Linux, Windows, macOS, SQL, Git</div>
+                    </div>
+                    <div class="h-px w-full bg-neutral-200 dark:bg-white/10"></div>
+                    <div>
+                        <div class="text-neutral-900 dark:text-white font-bold mb-1">Concepts</div>
+                        <div class="text-neutral-500">OOP, Data structures, Algorithms, Debugging</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Languages & Interests -->
+            <div class="p-8 rounded-3xl bg-gradient-to-br from-white/50 to-neutral-50/50 dark:from-white/5 dark:to-transparent backdrop-blur-lg border border-neutral-200/50 dark:border-white/5 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-none animate-fade-up delay-300 relative overflow-hidden" style="animation-play-state: paused;" data-animate>
+                 <div class="absolute -left-10 -bottom-10 w-40 h-40 bg-purple-500/10 rounded-full blur-2xl"></div>
+                <h3 class="font-black uppercase tracking-widest text-sm mb-6 text-neutral-900 dark:text-neutral-300 relative z-10">Languages & Passions</h3>
+                 
+                 <div class="grid grid-cols-2 gap-x-4 gap-y-3 text-sm font-bold text-neutral-600 dark:text-neutral-400 mb-8 relative z-10">
+                    <div class="flex justify-between border-b border-neutral-200 dark:border-white/10 pb-1"><span>German</span><span class="text-neutral-900 dark:text-white">C2</span></div>
+                    <div class="flex justify-between border-b border-neutral-200 dark:border-white/10 pb-1"><span>English</span><span class="text-neutral-900 dark:text-white">C1</span></div>
+                    <div class="flex justify-between border-b border-neutral-200 dark:border-white/10 pb-1"><span>French</span><span class="text-neutral-900 dark:text-white">B1</span></div>
+                    <div class="flex justify-between border-b border-neutral-200 dark:border-white/10 pb-1"><span>Spanish</span><span class="text-neutral-900 dark:text-white">B1</span></div>
+                </div>
+                
+                <div class="flex flex-wrap gap-2 text-[10px] md:text-xs font-mono font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400 relative z-10">
+                    <span class="bg-white/80 dark:bg-white/10 px-3 py-1.5 rounded-full border border-neutral-200 dark:border-white/10 shadow-sm">Swimming</span>
+                    <span class="bg-white/80 dark:bg-white/10 px-3 py-1.5 rounded-full border border-neutral-200 dark:border-white/10 shadow-sm">Piano</span>
+                    <span class="bg-white/80 dark:bg-white/10 px-3 py-1.5 rounded-full border border-neutral-200 dark:border-white/10 shadow-sm">Photography</span>
                 </div>
             </div>
         </div>
@@ -524,8 +509,13 @@
         </div>
     </section>
 
-    <footer class="py-8 text-center text-sm font-mono text-neutral-500">
-        &copy; 2026 MAX STANEKER
+    <footer class="py-12 border-t border-black/5 dark:border-white/5 relative overflow-hidden">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-[1px] bg-gradient-to-r from-transparent via-blue-500/50 to-transparent"></div>
+        <div class="text-center text-sm font-mono text-neutral-500 dark:text-neutral-400">
+            <span class="bg-clip-text text-transparent bg-gradient-to-r from-neutral-500 to-neutral-400 dark:from-neutral-400 dark:to-neutral-500">
+                &copy; <script>document.write(new Date().getFullYear())</script> MAX STANEKER. Handcrafted with precision.
+            </span>
+        </div>
     </footer>
 
 </body>

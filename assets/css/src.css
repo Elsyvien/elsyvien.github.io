@@ -6,25 +6,30 @@ body {
   font-family: "Inter", sans-serif;
 }
 
-/* Hide scrollbar for clean look */
+/* Sleek custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #fff;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #000;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
 }
 
-.dark ::-webkit-scrollbar-track {
-  background: #000;
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.4);
 }
 
 .dark ::-webkit-scrollbar-thumb {
-  background: #fff;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.4);
 }
 
 /* Animations */
