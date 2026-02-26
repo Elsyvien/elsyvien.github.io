@@ -4,16 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Max Staneker | CS Student & Developer</title>
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/site.css">
     <script src="assets/js/site.js" defer></script>
 </head>
-<body class="bg-white text-black dark:bg-black dark:text-white transition-colors duration-300 selection:bg-black selection:text-white dark:selection:bg-white dark:selection:text-black">
+<body class="bg-[#f8f9fa] text-neutral-900 dark:bg-[#050508] dark:text-neutral-100 transition-colors duration-500 selection:bg-blue-600 selection:text-white relative font-sans overflow-x-hidden antialiased">
+    <!-- Ambient glowing orbs background -->
+    <div class="fixed inset-0 -z-50 pointer-events-none overflow-hidden">
+        <div class="absolute -top-[40%] -right-[10%] w-[80%] h-[80%] rounded-full bg-blue-500/10 dark:bg-blue-600/10 blur-[120px] mix-blend-multiply dark:mix-blend-screen opacity-50 animate-pulse" style="animation-duration: 10s;"></div>
+        <div class="absolute -bottom-[20%] -left-[10%] w-[60%] h-[60%] rounded-full bg-purple-500/10 dark:bg-purple-600/10 blur-[120px] mix-blend-multiply dark:mix-blend-screen opacity-50 animate-pulse" style="animation-duration: 12s;"></div>
+    </div>
 
     <!-- Minimal Nav -->
-    <nav class="fixed w-full z-50 bg-white/90 dark:bg-black/90 backdrop-blur-sm border-b border-black/10 dark:border-white/10">
+    <nav class="fixed w-full z-50 bg-white/80 dark:bg-[#050508]/80 backdrop-blur-md border-b border-black/5 dark:border-white/5 transition-colors duration-500">
         <div class="max-w-6xl mx-auto px-6">
             <div class="flex justify-between items-center h-20">
                 <a href="#" class="text-2xl font-black tracking-tighter uppercase">Max.</a>
@@ -37,28 +43,50 @@
     <section class="pt-40 pb-20 px-6 max-w-6xl mx-auto min-h-screen flex flex-col justify-center">
         <div class="grid md:grid-cols-2 gap-12 items-center">
             <div class="order-2 md:order-1">
-                <h1 class="text-6xl md:text-8xl font-black tracking-tighter leading-none mb-8 animate-fade-up">
+                <h1 class="text-6xl md:text-8xl font-black tracking-tighter leading-none mb-6 animate-fade-up bg-clip-text text-transparent bg-gradient-to-r from-neutral-900 to-neutral-500 dark:from-white dark:to-neutral-500">
                     HELLO.<br>I AM MAX.
                 </h1>
-                <p class="text-xl md:text-2xl font-light text-neutral-600 dark:text-neutral-400 mb-12 max-w-lg animate-fade-up delay-100">
-                    B.Sc. Computer Science student at the University of Tübingen building software projects in C++, Java, and audio/graphics tooling.
+                <p class="text-lg md:text-xl font-medium text-neutral-500 dark:text-neutral-400 mb-10 max-w-lg animate-fade-up delay-100 leading-relaxed">
+                    B.Sc. Computer Science student at the University of Tübingen building software projects in <span class="font-bold text-neutral-900 dark:text-white">C++</span>, <span class="font-bold text-neutral-900 dark:text-white">Java</span>, and audio/graphics tooling.
                 </p>
-                <div class="flex flex-col md:flex-row gap-4 md:gap-6 animate-fade-up delay-200 max-w-lg">
-                    <a href="#work" class="w-full md:w-auto text-center bg-black text-white dark:bg-white dark:text-black px-8 py-4 font-bold uppercase tracking-wider hover:opacity-80 transition-opacity">
-                        View Projects
+                <div class="flex flex-col sm:flex-row gap-4 md:gap-6 animate-fade-up delay-200 max-w-lg mt-8 mb-4">
+                    <a href="#work" class="group relative w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 font-extrabold uppercase tracking-widest text-sm rounded-full overflow-hidden transition-all shadow-[0_0_40px_rgba(59,130,246,0.2)] hover:shadow-[0_0_60px_rgba(59,130,246,0.4)]">
+                        <div class="absolute inset-0 bg-neutral-900 dark:bg-white transition-transform duration-500 group-hover:scale-105"></div>
+                        <div class="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-r from-blue-600 to-purple-600 transition-opacity duration-500"></div>
+                        <span class="relative text-white dark:text-black group-hover:text-white transition-colors duration-300 flex items-center gap-2">
+                            View Projects
+                            <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                        </span>
                     </a>
-                    <a href="#contact" class="w-full md:w-auto text-center border-2 border-black dark:border-white px-8 py-4 font-bold uppercase tracking-wider hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors">
-                        Contact
+                    <a href="#contact" class="group relative w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 font-extrabold uppercase tracking-widest text-sm rounded-full overflow-hidden transition-all border-2 border-neutral-900/20 dark:border-white/20 hover:border-transparent">
+                        <div class="absolute inset-0 bg-transparent group-hover:bg-neutral-900 dark:group-hover:bg-white transition-colors duration-500"></div>
+                        <span class="relative text-neutral-900 dark:text-white group-hover:text-white dark:group-hover:text-black transition-colors duration-300">Contact</span>
                     </a>
                 </div>
-                <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-3 text-sm animate-fade-up delay-200 max-w-xl">
-                    <div class="border border-black/10 dark:border-white/10 rounded-lg px-4 py-3 bg-neutral-50/70 dark:bg-white/[0.03]">
-                        <div class="uppercase tracking-[0.18em] text-[11px] text-neutral-500 mb-1">Based In</div>
-                        <div class="font-semibold leading-tight">Tübingen, Germany</div>
+                <div class="mt-8 flex flex-col sm:flex-row gap-4 animate-fade-up delay-300 w-full max-w-xl">
+                    <div class="flex-1 group relative rounded-2xl p-[1px] bg-gradient-to-b from-black/10 to-transparent dark:from-white/10 dark:to-transparent overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <div class="relative h-full w-full bg-white/70 dark:bg-[#0a0a0f]/70 backdrop-blur-xl rounded-[15px] p-5 border border-white/50 dark:border-white/5 shadow-xl shadow-black/5 dark:shadow-black/50 flex items-center gap-4 transition-transform duration-500 group-hover:-translate-y-1">
+                            <div class="w-10 h-10 rounded-full bg-blue-500/10 dark:bg-blue-400/10 flex items-center justify-center shrink-0 border border-blue-500/20 group-hover:scale-110 transition-transform duration-500">
+                                <svg class="w-5 h-5 text-blue-600 dark:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                            </div>
+                            <div>
+                                <div class="uppercase tracking-[0.2em] text-[10px] text-neutral-500 dark:text-neutral-400 font-extrabold mb-1">Based In</div>
+                                <div class="font-bold text-neutral-900 dark:text-white/90">Tübingen, Germany</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="border border-black/10 dark:border-white/10 rounded-lg px-4 py-3 bg-neutral-50/70 dark:bg-white/[0.03]">
-                        <div class="uppercase tracking-[0.18em] text-[11px] text-neutral-500 mb-1">Current Focus</div>
-                        <div class="font-semibold leading-tight">Realtime apps, C++, Java</div>
+                    <div class="flex-1 group relative rounded-2xl p-[1px] bg-gradient-to-b from-black/10 to-transparent dark:from-white/10 dark:to-transparent overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-blue-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <div class="relative h-full w-full bg-white/70 dark:bg-[#0a0a0f]/70 backdrop-blur-xl rounded-[15px] p-5 border border-white/50 dark:border-white/5 shadow-xl shadow-black/5 dark:shadow-black/50 flex items-center gap-4 transition-transform duration-500 group-hover:-translate-y-1">
+                            <div class="w-10 h-10 rounded-full bg-purple-500/10 dark:bg-purple-400/10 flex items-center justify-center shrink-0 border border-purple-500/20 group-hover:scale-110 transition-transform duration-500">
+                                <svg class="w-5 h-5 text-purple-600 dark:text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+                            </div>
+                            <div>
+                                <div class="uppercase tracking-[0.2em] text-[10px] text-neutral-500 dark:text-neutral-400 font-extrabold mb-1">Current Focus</div>
+                                <div class="font-bold text-neutral-900 dark:text-white/90">Realtime, C++, Java</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -474,15 +502,25 @@
     </section>
 
     <!-- Contact -->
-    <section id="contact" class="py-32 px-6 max-w-6xl mx-auto border-t border-black/10 dark:border-white/10 text-center">
-        <h2 class="text-6xl md:text-8xl font-black tracking-tighter mb-6 hover:tracking-normal transition-all duration-500 cursor-default">LET'S TALK.</h2>
-        <p class="max-w-2xl mx-auto mb-12 text-neutral-600 dark:text-neutral-400">
+    <section id="contact" class="py-32 px-6 max-w-6xl mx-auto border-t border-black/5 dark:border-white/5 text-center relative">
+        <div class="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-blue-500/5 via-transparent to-transparent"></div>
+        <h2 class="text-6xl md:text-8xl font-black tracking-tighter mb-6 hover:tracking-normal transition-all duration-500 cursor-default bg-clip-text text-transparent bg-gradient-to-b from-neutral-900 to-neutral-500 dark:from-white dark:to-neutral-500">LET'S TALK.</h2>
+        <p class="max-w-2xl mx-auto mb-12 text-neutral-600 dark:text-neutral-400 font-medium">
             Based in Tübingen and currently studying computer science. Reach out for student projects, collaborations, or technical exchange.
         </p>
-        <div class="flex flex-col md:flex-row justify-center gap-8 md:gap-16 text-xl">
-            <a href="mailto:max@staneker.com" class="hover:underline decoration-2 underline-offset-8">max@staneker.com</a>
-            <a href="https://github.com/elsyvien" class="hover:underline decoration-2 underline-offset-8">GitHub</a>
-            <a href="https://uni-tuebingen.de/" target="_blank" rel="noopener noreferrer" class="hover:underline decoration-2 underline-offset-8">Uni Tübingen</a>
+        <div class="flex flex-col md:flex-row justify-center gap-8 md:gap-16 text-lg font-bold uppercase tracking-widest">
+            <a href="mailto:max@staneker.com" class="group relative px-6 py-3 rounded-full border border-neutral-200 dark:border-white/10 hover:border-black dark:hover:border-white transition-colors overflow-hidden">
+                <div class="absolute inset-0 bg-neutral-100 dark:bg-white/5 transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300"></div>
+                <span class="relative">max@staneker.com</span>
+            </a>
+            <a href="https://github.com/elsyvien" class="group relative px-6 py-3 rounded-full border border-neutral-200 dark:border-white/10 hover:border-black dark:hover:border-white transition-colors overflow-hidden">
+                <div class="absolute inset-0 bg-neutral-100 dark:bg-white/5 transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300"></div>
+                <span class="relative">GitHub</span>
+            </a>
+            <a href="https://uni-tuebingen.de/" target="_blank" rel="noopener noreferrer" class="group relative px-6 py-3 rounded-full border border-neutral-200 dark:border-white/10 hover:border-black dark:hover:border-white transition-colors overflow-hidden">
+                <div class="absolute inset-0 bg-neutral-100 dark:bg-white/5 transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300"></div>
+                <span class="relative">Uni Tübingen</span>
+            </a>
         </div>
     </section>
 
