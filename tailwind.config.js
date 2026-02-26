@@ -4,8 +4,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["'Space Grotesk'", "sans-serif"],
-        mono: ["'Space Mono'", "monospace"],
+        sans: ["Inter", "sans-serif"],
       },
     },
   },
