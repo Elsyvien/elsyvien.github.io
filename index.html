@@ -158,10 +158,10 @@
             </a>
 
             <!-- Project 3 -->
-            <a href="https://github.com/Elsyvien/MacBatteryTool" target="_blank" rel="noopener noreferrer" class="group cursor-pointer block">
-                <div class="aspect-video bg-gradient-to-bl from-emerald-900 to-neutral-900 mb-6 border border-black/5 dark:border-white/5 overflow-hidden relative rounded-lg flex items-center justify-center">
-                     <div class="absolute inset-0 opacity-20" style="background: repeating-linear-gradient(45deg, #606dbc, #606dbc 10px, #465298 10px, #465298 20px);"></div>
-                    
+            <a href="https://github.com/Elsyvien/Harmony" target="_blank" rel="noopener noreferrer" class="group cursor-pointer block">
+                <div class="aspect-video bg-gradient-to-bl from-sky-950 via-slate-900 to-neutral-950 mb-6 border border-black/5 dark:border-white/5 overflow-hidden relative rounded-lg flex items-center justify-center">
+                    <div class="absolute inset-0 opacity-20" style="background-image: linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px); background-size: 24px 24px;"></div>
+
                     <div class="code-window">
                         <div class="flex gap-1.5 mb-3">
                             <div class="w-2.5 h-2.5 rounded-full bg-red-500/80"></div>
@@ -169,28 +169,27 @@
                             <div class="w-2.5 h-2.5 rounded-full bg-green-500/80"></div>
                         </div>
                         <div>
-                            <span class="c-kwd">let</span> service = <span class="c-func">IOServiceGetMatchingService</span>(<br>
-                            &nbsp;&nbsp;kIOMasterPortDefault,<br>
-                            &nbsp;&nbsp;<span class="c-func">IOServiceMatching</span>(<span class="c-str">"AppleSmartBattery"</span>)<br>
-                            )<br>
-                            <span class="c-kwd">let</span> capacity = <span class="c-func">IORegistryEntryCreateCFProperty</span>(<br>
-                            &nbsp;&nbsp;service, <span class="c-str">"CurrentCapacity"</span>, ...<br>
-                            )
+                            <span class="c-kwd">socket</span>.<span class="c-func">send</span>({<br>
+                            &nbsp;&nbsp;type: <span class="c-str">"voice:join"</span>,<br>
+                            &nbsp;&nbsp;payload: { channelId, muted: <span class="c-kwd">false</span> }<br>
+                            });<br>
+                            state.<span class="c-func">dispatch</span>({ type: <span class="c-str">"message:optimistic"</span> });
                         </div>
                     </div>
                 </div>
                 <div>
                     <div class="flex justify-between items-center mb-2">
-                        <h3 class="text-2xl font-bold group-hover:underline decoration-2 underline-offset-4">MacBatteryTool</h3>
-                        <span class="text-xs font-mono border border-black dark:border-white px-2 py-1">2024</span>
+                        <h3 class="text-2xl font-bold group-hover:underline decoration-2 underline-offset-4">Harmony</h3>
+                        <span class="text-xs font-mono border border-black dark:border-white px-2 py-1">2026</span>
                     </div>
                     <p class="text-neutral-600 dark:text-neutral-400 text-sm mb-4 line-clamp-3">
-                        Native macOS Menu Bar utility interacting with the IOKit framework to read battery SMC keys. Polls current amperage and voltage to calculate real-time power draw and estimates remaining cycles.
+                        Modern Discord-inspired chat platform with realtime messaging, voice channels, presence, friend systems, and a documented full-stack architecture across frontend and backend workspaces.
                     </p>
                     <ul class="flex flex-wrap gap-2 text-xs font-mono font-bold uppercase tracking-wider text-neutral-500">
-                        <li class="bg-neutral-100 dark:bg-neutral-900 px-2 py-1 rounded">Swift</li>
-                        <li class="bg-neutral-100 dark:bg-neutral-900 px-2 py-1 rounded">IOKit</li>
-                        <li class="bg-neutral-100 dark:bg-neutral-900 px-2 py-1 rounded">AppKit</li>
+                        <li class="bg-neutral-100 dark:bg-neutral-900 px-2 py-1 rounded">TypeScript</li>
+                        <li class="bg-neutral-100 dark:bg-neutral-900 px-2 py-1 rounded">React</li>
+                        <li class="bg-neutral-100 dark:bg-neutral-900 px-2 py-1 rounded">Fastify</li>
+                        <li class="bg-neutral-100 dark:bg-neutral-900 px-2 py-1 rounded">WebSocket</li>
                     </ul>
                 </div>
             </a>
@@ -290,41 +289,37 @@
             </a>
 
             <!-- Project 6 -->
-            <a href="https://github.com/Elsyvien/MStockApp" target="_blank" rel="noopener noreferrer" class="group cursor-pointer block">
-                <div class="aspect-video bg-gradient-to-br from-indigo-900 to-purple-900 mb-6 border border-black/5 dark:border-white/5 overflow-hidden relative rounded-lg flex items-center justify-center">
-                    <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 15px 15px;"></div>
-                    
-                    <div class="flex items-end gap-3 h-1/2 w-1/2 opacity-90">
-                        <!-- Candle 1 -->
-                        <div class="w-1/5 bg-green-500 h-[40%] rounded-sm relative shadow-[0_0_10px_rgba(34,197,94,0.5)]">
-                            <div class="absolute -top-3 left-1/2 -translate-x-1/2 w-[2px] h-[140%] bg-green-500"></div>
+            <a href="https://github.com/Elsyvien/ObsidianOS" target="_blank" rel="noopener noreferrer" class="group cursor-pointer block">
+                <div class="aspect-video bg-gradient-to-br from-stone-900 via-neutral-950 to-zinc-900 mb-6 border border-black/5 dark:border-white/5 overflow-hidden relative rounded-lg flex items-center justify-center">
+                    <div class="absolute inset-0 opacity-15" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 18px 18px;"></div>
+
+                    <div class="code-window">
+                        <div class="flex gap-1.5 mb-3">
+                            <div class="w-2.5 h-2.5 rounded-full bg-red-500/80"></div>
+                            <div class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></div>
+                            <div class="w-2.5 h-2.5 rounded-full bg-green-500/80"></div>
                         </div>
-                        <!-- Candle 2 -->
-                        <div class="w-1/5 bg-red-500 h-[60%] rounded-sm relative shadow-[0_0_10px_rgba(239,68,68,0.5)]">
-                            <div class="absolute -top-2 left-1/2 -translate-x-1/2 w-[2px] h-[120%] bg-red-500"></div>
-                        </div>
-                        <!-- Candle 3 -->
-                        <div class="w-1/5 bg-green-500 h-[30%] rounded-sm relative shadow-[0_0_10px_rgba(34,197,94,0.5)]">
-                            <div class="absolute -top-4 left-1/2 -translate-x-1/2 w-[2px] h-[180%] bg-green-500"></div>
-                        </div>
-                         <!-- Candle 4 -->
-                        <div class="w-1/5 bg-green-500 h-[70%] rounded-sm relative shadow-[0_0_10px_rgba(34,197,94,0.5)]">
-                            <div class="absolute -top-2 left-1/2 -translate-x-1/2 w-[2px] h-[115%] bg-green-500"></div>
+                        <div>
+                            <span class="c-kwd">cargo</span>.<span class="c-func">run</span>(<span class="c-str">"desktop:dev"</span>);<br>
+                            graph.<span class="c-func">indexNotes</span>(vaultPath);<br>
+                            flashcards = ai.<span class="c-func">generate</span>(courseSpace);<br>
+                            vault.<span class="c-func">writeRevisionNote</span>(today);
                         </div>
                     </div>
                 </div>
                 <div>
                     <div class="flex justify-between items-center mb-2">
-                        <h3 class="text-2xl font-bold group-hover:underline decoration-2 underline-offset-4">MStockApp</h3>
-                        <span class="text-xs font-mono border border-black dark:border-white px-2 py-1">2025</span>
+                        <h3 class="text-2xl font-bold group-hover:underline decoration-2 underline-offset-4">ObsidianOS</h3>
+                        <span class="text-xs font-mono border border-black dark:border-white px-2 py-1">2026</span>
                     </div>
                     <p class="text-neutral-600 dark:text-neutral-400 text-sm mb-4 line-clamp-3">
-                        A lightweight financial tracking application built for real-time stock analysis. Connects to external financial APIs to fetch market data and visualize trends using a clean, native interface.
+                        Desktop study workspace for an Obsidian vault that indexes markdown notes into a local graph, surfaces weak links, generates flashcards, and writes revision notes back into the vault.
                     </p>
                     <ul class="flex flex-wrap gap-2 text-xs font-mono font-bold uppercase tracking-wider text-neutral-500">
-                        <li class="bg-neutral-100 dark:bg-neutral-900 px-2 py-1 rounded">C++</li>
-                        <li class="bg-neutral-100 dark:bg-neutral-900 px-2 py-1 rounded">REST API</li>
-                        <li class="bg-neutral-100 dark:bg-neutral-900 px-2 py-1 rounded">DataViz</li>
+                        <li class="bg-neutral-100 dark:bg-neutral-900 px-2 py-1 rounded">Rust</li>
+                        <li class="bg-neutral-100 dark:bg-neutral-900 px-2 py-1 rounded">TypeScript</li>
+                        <li class="bg-neutral-100 dark:bg-neutral-900 px-2 py-1 rounded">Tauri</li>
+                        <li class="bg-neutral-100 dark:bg-neutral-900 px-2 py-1 rounded">Markdown</li>
                     </ul>
                 </div>
             </a>
@@ -451,9 +446,9 @@
                         <div>
                             <div class="font-bold mb-2">Projects (from resume)</div>
                             <ul class="space-y-2 text-neutral-500">
-                                <li>Realtime chat application (Java, WebSocket, SQL)</li>
-                                <li>Audio plugins for realtime processing (C++, JUCE)</li>
-                                <li>Modular 3D engine/editor project (C++20, Qt 6, Vulkan, CMake)</li>
+                                <li>Harmony chat platform (TypeScript, React, Fastify, WebSocket)</li>
+                                <li>Java chat application (Java, WebSocket, SQL)</li>
+                                <li>ObsidianOS study workspace (Rust, TypeScript, Tauri)</li>
                             </ul>
                         </div>
                         <div>
