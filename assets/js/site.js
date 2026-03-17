@@ -17,6 +17,48 @@
     });
   }
 
+  // Mobile menu
+  const menuToggle = document.getElementById("mobile-menu-toggle");
+  const mobileMenu = document.getElementById("mobile-menu");
+
+  if (menuToggle && mobileMenu) {
+    const openMenu = () => {
+      mobileMenu.classList.add("is-open");
+      menuToggle.setAttribute("aria-expanded", "true");
+      menuToggle.setAttribute("aria-label", "Close navigation menu");
+      document.body.style.overflow = "hidden";
+    };
+
+    const closeMenu = () => {
+      mobileMenu.classList.remove("is-open");
+      menuToggle.setAttribute("aria-expanded", "false");
+      menuToggle.setAttribute("aria-label", "Open navigation menu");
+      document.body.style.overflow = "";
+    };
+
+    menuToggle.addEventListener("click", () => {
+      if (mobileMenu.classList.contains("is-open")) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
+
+    // Close when a nav link is clicked
+    mobileMenu.querySelectorAll("[data-mobile-link]").forEach((link) => {
+      link.addEventListener("click", closeMenu);
+    });
+
+    // Close on Escape
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && mobileMenu.classList.contains("is-open")) {
+        closeMenu();
+        menuToggle.focus();
+      }
+    });
+  }
+
+  // Scroll-triggered animations
   const animatedElements = document.querySelectorAll("[data-animate]");
   if ("IntersectionObserver" in window) {
     const observer = new IntersectionObserver(
@@ -40,6 +82,7 @@
     });
   }
 
+  // Photo slider
   const track = document.getElementById("image-track");
   const sliderSection = document.getElementById("slider-section");
 
@@ -51,6 +94,7 @@
   let prevPercentage = 0;
   let percentage = 0;
   let currentPercentage = 0;
+  let rafId = null;
 
   const lerp = (start, end, factor) => start + (end - start) * factor;
   const clamp = (value, min, max) => Math.max(Math.min(value, max), min);
@@ -78,13 +122,22 @@
     sliderSection.classList.remove("is-dragging");
   };
 
+  const scheduleUpdate = () => {
+    if (!rafId) {
+      rafId = requestAnimationFrame(update);
+    }
+  };
+
   sliderSection.addEventListener("mousedown", (event) => {
     pointerDownAt = event.clientX;
     sliderSection.classList.add("is-dragging");
+    scheduleUpdate();
   });
 
   window.addEventListener("mousemove", (event) => {
+    if (pointerDownAt === null) return;
     updateFromPointer(event.clientX);
+    scheduleUpdate();
   });
 
   window.addEventListener("mouseup", handlePointerUp);
@@ -94,6 +147,7 @@
     (event) => {
       pointerDownAt = event.touches[0].clientX;
       sliderSection.classList.add("is-dragging");
+      scheduleUpdate();
     },
     { passive: true },
   );
@@ -102,6 +156,7 @@
     "touchmove",
     (event) => {
       updateFromPointer(event.touches[0].clientX);
+      scheduleUpdate();
     },
     { passive: true },
   );
@@ -123,6 +178,7 @@
       const delta = event.deltaX * sensitivity;
       percentage = clamp(percentage - delta, -100, 0);
       prevPercentage = percentage;
+      scheduleUpdate();
     },
     { passive: false },
   );
@@ -134,17 +190,24 @@
       event.preventDefault();
       percentage = clamp(percentage - step, -100, 0);
       prevPercentage = percentage;
+      scheduleUpdate();
     }
 
     if (event.key === "ArrowLeft") {
       event.preventDefault();
       percentage = clamp(percentage + step, -100, 0);
       prevPercentage = percentage;
+      scheduleUpdate();
     }
   });
 
+  const IDLE_THRESHOLD = 0.01;
+
   const update = () => {
+    rafId = null;
+    const diff = Math.abs(currentPercentage - percentage);
     currentPercentage = lerp(currentPercentage, percentage, 0.1);
+
     track.style.transform = `translate(${currentPercentage}%, -50%)`;
 
     const images = track.getElementsByClassName("image-card");
@@ -152,8 +215,12 @@
       image.style.objectPosition = `${100 + currentPercentage}% center`;
     }
 
-    requestAnimationFrame(update);
+    // Keep animating until we've settled
+    if (diff > IDLE_THRESHOLD || pointerDownAt !== null) {
+      rafId = requestAnimationFrame(update);
+    }
   };
 
-  update();
+  // Run one frame on load to set initial position
+  rafId = requestAnimationFrame(update);
 })();

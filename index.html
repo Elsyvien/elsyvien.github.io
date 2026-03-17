@@ -6,19 +6,126 @@
     <title>Max Staneker | CS Student & Developer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/site.css">
     <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
     <script src="assets/js/site.js" defer></script>
+    <style>
+        /* Font override */
+        html, body { font-family: 'Urbanist', sans-serif; }
+        .font-mono, code, kbd, pre, samp { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
+        .code-window { font-family: Consolas, Monaco, monospace; }
+
+        /* Skip navigation */
+        .skip-link {
+            position: absolute;
+            top: -80px;
+            left: 1.5rem;
+            z-index: 200;
+            padding: 0.5rem 1rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            background: #000;
+            color: #fff;
+            transition: top 0.15s ease;
+            text-decoration: none;
+            font-family: inherit;
+        }
+        .skip-link:focus { top: 1rem; }
+        .dark .skip-link { background: #fff; color: #000; }
+
+        /* Visible focus indicators for keyboard users */
+        :focus-visible {
+            outline: 2px solid currentColor;
+            outline-offset: 3px;
+            border-radius: 2px;
+        }
+
+        /* Hamburger button — mobile only */
+        .mobile-menu-btn {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            padding: 4px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: inherit;
+        }
+        @media (min-width: 768px) {
+            .mobile-menu-btn { display: none; }
+        }
+        .ham-bar {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: currentColor;
+            border-radius: 1px;
+            transition: transform 0.25s ease, opacity 0.2s ease;
+        }
+        #mobile-menu-toggle[aria-expanded="true"] .bar-1 {
+            transform: translateY(7px) rotate(45deg);
+        }
+        #mobile-menu-toggle[aria-expanded="true"] .bar-2 {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+        #mobile-menu-toggle[aria-expanded="true"] .bar-3 {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        /* Mobile navigation overlay */
+        #mobile-menu { display: none; }
+        #mobile-menu.is-open { display: flex; }
+        #mobile-menu a {
+            transition: opacity 0.15s ease;
+            text-decoration: none;
+        }
+        #mobile-menu a:hover { opacity: 0.45; }
+
+        /* Photography slider hint */
+        .slider-hint {
+            position: absolute;
+            top: 1.5rem;
+            left: 1.5rem;
+            z-index: 10;
+            pointer-events: none;
+            font-size: 0.65rem;
+            font-family: ui-monospace, monospace;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            opacity: 0.4;
+        }
+
+        /* Footer back-to-top */
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .back-to-top {
+            font-size: 0.75rem;
+            font-family: ui-monospace, monospace;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            opacity: 0.5;
+            transition: opacity 0.15s;
+        }
+        .back-to-top:hover { opacity: 1; text-decoration: underline; text-underline-offset: 4px; }
+    </style>
 </head>
 <body class="bg-white text-black dark:bg-black dark:text-white transition-colors duration-300 selection:bg-black selection:text-white dark:selection:bg-white dark:selection:text-black">
+
+    <a href="#main-content" class="skip-link">Skip to content</a>
 
     <!-- Minimal Nav -->
     <nav class="fixed w-full z-50 bg-white/90 dark:bg-black/90 backdrop-blur-sm border-b border-black/10 dark:border-white/10">
         <div class="max-w-6xl mx-auto px-6">
             <div class="flex justify-between items-center h-20">
                 <a href="#" class="text-2xl font-black tracking-tighter uppercase">Max.</a>
-                
+
                 <div class="hidden md:flex space-x-6 lg:space-x-12 text-sm font-medium uppercase tracking-widest text-center items-center">
                     <a href="#work" class="hover:underline decoration-2 underline-offset-4">Projects</a>
                     <a href="#about" class="hover:underline decoration-2 underline-offset-4">Resume</a>
@@ -26,17 +133,34 @@
                     <a href="#contact" class="hover:underline decoration-2 underline-offset-4">Contact</a>
                 </div>
 
-                <button id="theme-toggle" type="button" aria-label="Toggle color theme" class="text-xl">
-                    <svg viewBox="0 0 24 24" aria-hidden="true" class="w-5 h-5 fill-current">
-                        <path d="M12 2a10 10 0 1 0 0 20V2z"></path>
-                    </svg>
-                </button>
+                <div class="flex items-center gap-4">
+                    <button id="mobile-menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu" class="mobile-menu-btn">
+                        <span class="ham-bar bar-1"></span>
+                        <span class="ham-bar bar-2"></span>
+                        <span class="ham-bar bar-3"></span>
+                    </button>
+                    <button id="theme-toggle" type="button" aria-label="Toggle color theme" class="text-xl">
+                        <svg viewBox="0 0 24 24" aria-hidden="true" class="w-5 h-5 fill-current">
+                            <path d="M12 2a10 10 0 1 0 0 20V2z"></path>
+                        </svg>
+                    </button>
+                </div>
             </div>
         </div>
     </nav>
 
+    <!-- Mobile Navigation Menu -->
+    <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Site navigation" class="fixed inset-0 z-40 bg-white dark:bg-black flex-col justify-center items-center gap-8 px-6">
+        <nav class="flex flex-col items-center gap-8 text-center">
+            <a href="#work" class="text-4xl font-black uppercase tracking-tighter" data-mobile-link>Projects</a>
+            <a href="#about" class="text-4xl font-black uppercase tracking-tighter" data-mobile-link>Resume</a>
+            <a href="#currently-working-on" class="text-3xl font-black uppercase tracking-tighter" data-mobile-link>Currently Working On</a>
+            <a href="#contact" class="text-4xl font-black uppercase tracking-tighter" data-mobile-link>Contact</a>
+        </nav>
+    </div>
+
     <!-- Hero -->
-    <section class="pt-40 pb-20 px-6 max-w-6xl mx-auto min-h-screen flex flex-col justify-center">
+    <section id="main-content" class="pt-40 pb-20 px-6 max-w-6xl mx-auto min-h-screen flex flex-col justify-center">
         <div class="grid md:grid-cols-2 gap-12 items-center">
             <div class="order-2 md:order-1">
                 <h1 class="text-6xl md:text-8xl font-black tracking-tighter leading-none mb-8 animate-fade-up">
@@ -55,11 +179,11 @@
                 </div>
                 <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm animate-fade-up delay-200">
                     <div class="border border-black/10 dark:border-white/10 rounded px-4 py-3">
-                        <div class="uppercase tracking-widest text-[10px] text-neutral-500">Based in</div>
+                        <div class="uppercase tracking-widest text-xs text-neutral-500">Based in</div>
                         <div class="font-semibold">Tübingen, Germany</div>
                     </div>
                     <div class="border border-black/10 dark:border-white/10 rounded px-4 py-3">
-                        <div class="uppercase tracking-widest text-[10px] text-neutral-500">Current focus</div>
+                        <div class="uppercase tracking-widest text-xs text-neutral-500">Current focus</div>
                         <div class="font-semibold">Realtime apps, C++, Java</div>
                     </div>
                 </div>
@@ -75,14 +199,14 @@
     <!-- Work / Projects (Grid) -->
     <section id="work" class="py-20 px-6 max-w-6xl mx-auto border-t border-black/10 dark:border-white/10">
         <h2 class="text-4xl font-black uppercase tracking-tighter mb-16 animate-slide-in" style="animation-play-state: paused;" data-animate>Selected Projects</h2>
-        
+
         <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-20">
             <!-- Project 1: Hero (Full Width) -->
             <a href="https://github.com/Elsyvien/BasicMBComp" target="_blank" rel="noopener noreferrer" class="md:col-span-2 group cursor-pointer block">
                 <div class="aspect-[21/9] bg-gradient-to-br from-neutral-900 to-neutral-800 dark:from-neutral-800 dark:to-neutral-900 mb-8 border border-black/5 dark:border-white/5 overflow-hidden relative rounded-lg flex items-center justify-center">
                     <!-- Tech Pattern Overlay -->
                     <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(#4b5563 1px, transparent 1px); background-size: 20px 20px;"></div>
-                    
+
                     <!-- Code Snippet -->
                     <div class="code-window">
                         <div class="flex gap-1.5 mb-3">
@@ -125,7 +249,7 @@
             <a href="https://github.com/Elsyvien/javaChatApp" target="_blank" rel="noopener noreferrer" class="group cursor-pointer block">
                 <div class="aspect-video bg-gradient-to-tr from-blue-900 to-slate-900 mb-6 border border-black/5 dark:border-white/5 overflow-hidden relative rounded-lg flex items-center justify-center">
                     <div class="absolute inset-0 opacity-30" style="background-image: linear-gradient(0deg, transparent 24%, #ffffff 25%, #ffffff 26%, transparent 27%, transparent 74%, #ffffff 75%, #ffffff 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, #ffffff 25%, #ffffff 26%, transparent 27%, transparent 74%, #ffffff 75%, #ffffff 76%, transparent 77%, transparent); background-size: 30px 30px;"></div>
-                    
+
                     <div class="code-window">
                         <div class="flex gap-1.5 mb-3">
                             <div class="w-2.5 h-2.5 rounded-full bg-red-500/80"></div>
@@ -200,14 +324,14 @@
                 <div class="aspect-video bg-neutral-950 mb-6 border border-black/5 dark:border-white/5 overflow-hidden relative rounded-lg flex items-center justify-center perspective-[800px]">
                     <!-- Isometric Scene Container -->
                     <div class="relative w-48 h-48 transform-style-3d transition-transform duration-700 group-hover:rotate-x-[55deg] group-hover:rotate-z-[-40deg]" style="transform: rotateX(60deg) rotateZ(-45deg);">
-                        
+
                         <!-- Floor Grid -->
                         <div class="absolute inset-0 border border-white/10 bg-white/5 shadow-[0_0_40px_rgba(0,0,0,0.8)] backdrop-blur-sm">
                              <div class="absolute inset-0 opacity-20" style="background-image: linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px); background-size: 16px 16px;"></div>
                         </div>
 
                         <!-- 3D Function Layers -->
-                        
+
                         <!-- Layer 1: The Approximation (Lower/Pink) -->
                         <div class="absolute inset-0 flex items-center justify-center" style="transform: translateZ(20px);">
                              <svg viewBox="0 0 100 100" class="w-[120%] h-[120%] overflow-visible">
@@ -223,12 +347,12 @@
                                  <line x1="50" y1="50" x2="50" y2="100" class="stroke-cyan-400/20 stroke-1" />
                                  <line x1="20" y1="65" x2="20" y2="115" class="stroke-cyan-400/20 stroke-1" />
                                  <line x1="80" y1="65" x2="80" y2="115" class="stroke-cyan-400/20 stroke-1" />
-                                 
+
                                  <!-- Perfect sine-like curve -->
                                  <path d="M-10 65 Q 50 10, 110 65" class="fill-none stroke-cyan-400 stroke-[3] drop-shadow-[0_0_15px_rgba(34,211,238,0.8)]" vector-effect="non-scaling-stroke"/>
                              </svg>
                         </div>
-                        
+
                         <!-- Label floating in 3D -->
                         <div class="absolute -right-8 -top-8 text-[0.5rem] font-mono text-cyan-400 bg-black/80 px-1 border border-cyan-400/50" style="transform: translateZ(60px) rotateZ(45deg) rotateX(-60deg);">
                             f(x) = sin(x)
@@ -256,7 +380,7 @@
                 <div class="aspect-video bg-neutral-900 mb-6 border border-black/5 dark:border-white/5 overflow-hidden relative rounded-lg flex items-center justify-center">
                      <!-- Wireframe effect -->
                     <div class="absolute inset-0 opacity-20" style="background-image: linear-gradient(#333 1px, transparent 1px), linear-gradient(90deg, #333 1px, transparent 1px); background-size: 20px 20px; perspective: 100px;"></div>
-                    
+
                     <div class="code-window">
                         <div class="flex gap-1.5 mb-3">
                             <div class="w-2.5 h-2.5 rounded-full bg-red-500/80"></div>
@@ -329,7 +453,7 @@
 
     <!-- Code Activity / GitHub Chart -->
     <section class="py-12 px-6 max-w-6xl mx-auto border-t border-black/10 dark:border-white/10">
-        <h3 class="text-xl font-bold uppercase tracking-widest mb-8">Code Activity</h3>
+        <h2 class="text-xl font-bold uppercase tracking-widest mb-8">Code Activity</h2>
         <div class="w-full overflow-x-auto pb-4">
             <div class="min-w-[800px] opacity-70 hover:opacity-100 transition-opacity duration-300 filter grayscale contrast-125 dark:invert">
                 <img src="https://ghchart.rshah.org/000000/elsyvien" alt="Max's GitHub contributions chart" loading="lazy" decoding="async" class="w-full" />
@@ -349,7 +473,7 @@
             </div>
             <div class="md:col-span-8 space-y-12">
                 <p class="text-lg leading-relaxed text-neutral-700 dark:text-neutral-300">
-                    I am an Computer Science (B.Sc.) currently studying at the Eberhard Karls University of Tübingen.
+                    I am a Computer Science (B.Sc.) student currently studying at the Eberhard Karls University of Tübingen.
                     My current work focuses on learning strong fundamentals through projects in backend development,
                     realtime communication, audio programming, and graphics/engine development.
                 </p>
@@ -489,7 +613,7 @@
                             Desktop orchestration for repo-focused autonomous coding swarms. Local-first, deterministic, and review-gated.
                         </p>
                     </a>
-                    
+
                     <a href="https://elsyvien.github.io/Harmony/" target="_blank" rel="noopener noreferrer" class="group block">
                         <div class="flex justify-between items-center mb-2">
                             <h3 class="text-2xl font-bold flex items-center gap-2">
@@ -503,7 +627,7 @@
                             A Free and Open Source Chat platform with robust real-time behavior, Fastify API, React frontend and custom WebSockets.
                         </p>
                     </a>
-                    
+
                     <a href="https://elsyvien.github.io/ObsidianOS/" target="_blank" rel="noopener noreferrer" class="group block">
                         <div class="flex justify-between items-center mb-2">
                             <h3 class="text-2xl font-bold flex items-center gap-2">
@@ -524,6 +648,7 @@
 
     <!-- Horizontal Image Slider -->
     <section class="relative h-[80vh] w-full overflow-hidden bg-white dark:bg-black border-t border-black/10 dark:border-white/10" id="slider-section" tabindex="0" aria-label="Horizontal photo gallery">
+        <div class="slider-hint">Photography &mdash; drag to explore</div>
         <div id="image-track">
             <img class="image-card" src="images/roaster/optimized/DSC_2695.webp" alt="Roaster portrait 1" width="1400" height="2100" loading="lazy" decoding="async" draggable="false" />
             <img class="image-card" src="images/roaster/optimized/DSC_2703.webp" alt="Roaster portrait 2" width="1400" height="2100" loading="lazy" decoding="async" draggable="false" />
@@ -566,8 +691,11 @@
         </div>
     </section>
 
-    <footer class="py-8 text-center text-sm font-mono text-neutral-500">
-        &copy; 2026 MAX STANEKER
+    <footer class="py-8 px-6 text-sm font-mono text-neutral-500 border-t border-black/10 dark:border-white/10">
+        <div class="max-w-6xl mx-auto footer-inner">
+            <span>&copy; 2026 MAX STANEKER</span>
+            <a href="#" class="back-to-top" aria-label="Back to top of page">Back to top &#8593;</a>
+        </div>
     </footer>
 
 </body>
