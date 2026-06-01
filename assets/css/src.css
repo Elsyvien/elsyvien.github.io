@@ -131,6 +131,19 @@ body {
 }
 
 /* Code snippet styles */
+.project-image {
+  aspect-ratio: 16 / 9;
+}
+
+.transform-style-3d,
+.taylor-scene {
+  transform-style: preserve-3d;
+}
+
+.group:hover .taylor-scene {
+  transform: rotateX(55deg) rotateZ(-40deg);
+}
+
 .code-window {
   font-family: "Consolas", "Monaco", monospace;
   font-size: 0.75rem;
