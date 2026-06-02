@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/site.css">
     <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
-    <script src="assets/js/site.js" defer></script>
+    <script src="assets/js/site.js?v=20260602-slider-range" defer></script>
     <style>
         /* Font override */
         html, body { font-family: 'Urbanist', sans-serif; }
@@ -188,16 +188,7 @@
                         Contact
                     </a>
                 </div>
-                <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm animate-fade-up delay-200">
-                    <div class="border border-black/10 dark:border-white/10 rounded px-4 py-3">
-                        <div class="uppercase tracking-widest text-xs text-neutral-500">Based in</div>
-                        <div class="font-semibold">Tübingen, Germany</div>
-                    </div>
-                    <div class="border border-black/10 dark:border-white/10 rounded px-4 py-3">
-                        <div class="uppercase tracking-widest text-xs text-neutral-500">Current focus</div>
-                        <div class="font-semibold">Realtime apps, C++, Java</div>
-                    </div>
-                </div>
+
             </div>
             <div class="order-1 md:order-2 flex justify-center md:justify-end items-center animate-fade-in delay-300">
                 <div class="relative w-56 md:w-72 h-80 md:h-[28rem] overflow-hidden rounded-lg bg-neutral-100/80 dark:bg-neutral-900/60 shadow-2xl transition-all duration-500">
@@ -221,8 +212,17 @@
             </a>
         </div>
 
+        <!-- Project category filtering -->
+        <div class="mb-10 flex flex-wrap gap-3 text-xs uppercase tracking-widest font-mono animate-fade-up delay-300">
+            <button class="project-filter-btn px-4 py-2 border border-black dark:border-white bg-black text-white dark:bg-white dark:text-black" data-filter="all">All</button>
+            <button class="project-filter-btn px-4 py-2 border border-black/10 dark:border-white/10 hover:border-black dark:hover:border-white" data-filter="cpp-systems">C++ & Systems</button>
+            <button class="project-filter-btn px-4 py-2 border border-black/10 dark:border-white/10 hover:border-black dark:hover:border-white" data-filter="java">Java</button>
+            <button class="project-filter-btn px-4 py-2 border border-black/10 dark:border-white/10 hover:border-black dark:hover:border-white" data-filter="ts">TypeScript / Web</button>
+            <button class="project-filter-btn px-4 py-2 border border-black/10 dark:border-white/10 hover:border-black dark:hover:border-white" data-filter="utility">Utilities / Tools</button>
+        </div>
+
         <div class="space-y-14">
-            <a href="https://github.com/Elsyvien/JetForge" target="_blank" rel="noopener noreferrer" class="project-feature group grid gap-8 border-y border-black/10 py-8 dark:border-white/10 lg:grid-cols-[1.2fr_0.8fr] lg:items-center" data-reveal data-motion-depth>
+            <a href="https://github.com/Elsyvien/JetForge" target="_blank" rel="noopener noreferrer" class="project-card project-feature group grid gap-8 border-y border-black/10 py-8 dark:border-white/10 lg:grid-cols-[1.2fr_0.8fr] lg:items-center" data-reveal data-motion-depth data-project-category="ts utility" data-skills="typescript java tools">
                 <div class="project-image overflow-hidden rounded-lg bg-neutral-950">
                     <img src="assets/images/projects/jetforge-thumbnail.webp" alt="Abstract JetForge thumbnail with a forged J and template mapping lines" width="1680" height="864" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.035]">
                 </div>
@@ -243,7 +243,7 @@
                 </div>
             </a>
 
-            <a href="https://github.com/Elsyvien/AetherCore" target="_blank" rel="noopener noreferrer" class="project-feature group grid gap-8 border-b border-black/10 pb-8 dark:border-white/10 lg:grid-cols-[0.8fr_1.2fr] lg:items-center" data-reveal data-motion-depth>
+            <a href="https://github.com/Elsyvien/AetherCore" target="_blank" rel="noopener noreferrer" class="project-card project-feature group grid gap-8 border-b border-black/10 pb-8 dark:border-white/10 lg:grid-cols-[0.8fr_1.2fr] lg:items-center" data-reveal data-motion-depth data-project-category="ts systems" data-skills="typescript tools">
                 <div class="lg:order-2 project-image overflow-hidden rounded-lg bg-neutral-950">
                     <img src="assets/images/projects/aethercore-thumbnail.webp" alt="Abstract AetherCore thumbnail showing an agent swarm around a control core" width="1680" height="864" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.035]">
                 </div>
@@ -266,7 +266,7 @@
         </div>
 
         <div class="mt-14 grid grid-cols-1 gap-x-10 gap-y-14 md:grid-cols-2" data-reveal-group>
-            <a href="https://github.com/Elsyvien/Harmony" target="_blank" rel="noopener noreferrer" class="group block" data-reveal>
+            <a href="https://github.com/Elsyvien/Harmony" target="_blank" rel="noopener noreferrer" class="project-card group block" data-reveal data-project-category="ts" data-skills="typescript react websocket">
                 <div class="aspect-video bg-gradient-to-bl from-slate-950 via-zinc-900 to-neutral-950 mb-6 border border-black/5 dark:border-white/5 overflow-hidden relative rounded-lg flex items-center justify-center">
                     <div class="absolute inset-0 opacity-20" style="background-image: linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px); background-size: 24px 24px;"></div>
                     <div class="code-window">
@@ -296,7 +296,7 @@
                 </ul>
             </a>
 
-            <a href="https://github.com/Elsyvien/BasicMBComp" target="_blank" rel="noopener noreferrer" class="group block" data-reveal>
+            <a href="https://github.com/Elsyvien/BasicMBComp" target="_blank" rel="noopener noreferrer" class="project-card group block" data-reveal data-project-category="cpp systems" data-skills="cpp juce dsp">
                 <div class="aspect-video bg-gradient-to-br from-neutral-950 to-zinc-800 mb-6 border border-black/5 dark:border-white/5 overflow-hidden relative rounded-lg flex items-center justify-center">
                     <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(#d97706 1px, transparent 1px); background-size: 18px 18px;"></div>
                     <div class="code-window">
@@ -326,7 +326,37 @@
                 </ul>
             </a>
 
-            <a href="https://github.com/Elsyvien/LittleTaylorVisualizer" target="_blank" rel="noopener noreferrer" class="group block" data-reveal>
+            <a href="https://github.com/Elsyvien/javaChatApp" target="_blank" rel="noopener noreferrer" class="project-card group block" data-reveal data-project-category="java systems" data-skills="java websocket tools">
+                <div class="aspect-video bg-gradient-to-tr from-cyan-950 via-zinc-900 to-emerald-950 mb-6 border border-black/5 dark:border-white/5 overflow-hidden relative rounded-lg flex items-center justify-center">
+                    <div class="absolute inset-0 opacity-15" style="background-image: linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px); background-size: 20px 20px;"></div>
+                    <div class="code-window">
+                        <div class="flex gap-1.5 mb-3">
+                            <div class="w-2.5 h-2.5 rounded-full bg-red-500/80"></div>
+                            <div class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></div>
+                            <div class="w-2.5 h-2.5 rounded-full bg-green-500/80"></div>
+                        </div>
+                        <div>
+                            <span class="c-type">ServerSocket</span> server = <span class="c-kwd">new</span> <span class="c-type">ServerSocket</span>(<span class="c-num">8080</span>);<br>
+                            <span class="c-type">Socket</span> client = server.<span class="c-func">accept</span>();<br>
+                            client.<span class="c-func">getOutputStream</span>().<span class="c-func">write</span>(<span class="c-str">"Connected\n"</span>);
+                        </div>
+                    </div>
+                </div>
+                <div class="flex justify-between items-center mb-2 gap-4">
+                    <h3 class="text-2xl font-bold group-hover:underline decoration-2 underline-offset-4">javaChatApp</h3>
+                    <span class="shrink-0 text-xs font-mono border border-black px-2 py-1 dark:border-white">2025</span>
+                </div>
+                <p class="text-neutral-600 dark:text-neutral-400 text-sm mb-4">
+                    A Java-based multi-client chat server implementing custom TCP sockets, multi-threaded connection handling, and a database layer for user persistence.
+                </p>
+                <ul class="flex flex-wrap gap-2 text-xs font-mono font-bold uppercase tracking-wider text-neutral-500">
+                    <li class="bg-neutral-100 px-2 py-1 rounded dark:bg-neutral-900">Java</li>
+                    <li class="bg-neutral-100 px-2 py-1 rounded dark:bg-neutral-900">Sockets</li>
+                    <li class="bg-neutral-100 px-2 py-1 rounded dark:bg-neutral-900">SQL</li>
+                </ul>
+            </a>
+
+            <a href="https://github.com/Elsyvien/LittleTaylorVisualizer" target="_blank" rel="noopener noreferrer" class="project-card group block" data-reveal data-project-category="utility" data-skills="javascript canvas math tools">
                 <div class="aspect-video bg-neutral-950 mb-6 border border-black/5 dark:border-white/5 overflow-hidden relative rounded-lg flex items-center justify-center perspective-[800px]">
                     <div class="relative w-48 h-48 transform-style-3d transition-transform duration-700 group-hover:rotate-x-[55deg] group-hover:rotate-z-[-40deg]" style="transform: rotateX(60deg) rotateZ(-45deg);">
                         <div class="absolute inset-0 border border-white/10 bg-white/5 shadow-[0_0_40px_rgba(0,0,0,0.8)]">
@@ -358,7 +388,7 @@
                 </ul>
             </a>
 
-            <a href="https://github.com/Elsyvien/MacBatteryTool" target="_blank" rel="noopener noreferrer" class="group block" data-reveal>
+            <a href="https://github.com/Elsyvien/MacBatteryTool" target="_blank" rel="noopener noreferrer" class="project-card group block" data-reveal data-project-category="utility" data-skills="swift macos tools">
                 <div class="aspect-video bg-[#151515] mb-6 border border-black/5 dark:border-white/5 overflow-hidden relative rounded-lg flex items-center justify-center">
                     <div class="absolute inset-0 opacity-25" style="background-image: linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px); background-size: 28px 100%;"></div>
                     <div class="relative w-56 rounded-2xl border border-white/15 bg-black/60 p-5 shadow-2xl transition-transform duration-500 group-hover:-translate-y-1">
@@ -471,15 +501,26 @@
                         <h3 class="font-bold uppercase tracking-widest mb-4 border-b border-black dark:border-white pb-2">Skills</h3>
                         <ul class="space-y-4 text-sm">
                             <li>
-                                <div class="font-bold text-base">Programming Languages</div>
-                                <div class="text-neutral-500">Python, C/C++, Java</div>
+                                <div class="font-bold text-base mb-2">Programming Languages</div>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="skill-pill px-2.5 py-1 text-xs font-mono rounded bg-neutral-100 dark:bg-neutral-900 border border-black/5 dark:border-white/5 cursor-pointer hover:border-black dark:hover:border-white transition-all duration-200" data-skill="cpp">C/C++</span>
+                                    <span class="skill-pill px-2.5 py-1 text-xs font-mono rounded bg-neutral-100 dark:bg-neutral-900 border border-black/5 dark:border-white/5 cursor-pointer hover:border-black dark:hover:border-white transition-all duration-200" data-skill="java">Java</span>
+                                    <span class="skill-pill px-2.5 py-1 text-xs font-mono rounded bg-neutral-100 dark:bg-neutral-900 border border-black/5 dark:border-white/5 cursor-pointer hover:border-black dark:hover:border-white transition-all duration-200" data-skill="typescript">TypeScript</span>
+                                    <span class="skill-pill px-2.5 py-1 text-xs font-mono rounded bg-neutral-100 dark:bg-neutral-900 border border-black/5 dark:border-white/5 cursor-pointer hover:border-black dark:hover:border-white transition-all duration-200" data-skill="python">Python</span>
+                                    <span class="skill-pill px-2.5 py-1 text-xs font-mono rounded bg-neutral-100 dark:bg-neutral-900 border border-black/5 dark:border-white/5 cursor-pointer hover:border-black dark:hover:border-white transition-all duration-200" data-skill="swift">Swift</span>
+                                </div>
                             </li>
                             <li>
-                                <div class="font-bold text-base">Tools & Technologies</div>
-                                <div class="text-neutral-500">Linux, Windows, macOS, SQL, Git</div>
+                                <div class="font-bold text-base mb-2">Tools & Technologies</div>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="skill-pill px-2.5 py-1 text-xs font-mono rounded bg-neutral-100 dark:bg-neutral-900 border border-black/5 dark:border-white/5 cursor-pointer hover:border-black dark:hover:border-white transition-all duration-200" data-skill="react">React</span>
+                                    <span class="skill-pill px-2.5 py-1 text-xs font-mono rounded bg-neutral-100 dark:bg-neutral-900 border border-black/5 dark:border-white/5 cursor-pointer hover:border-black dark:hover:border-white transition-all duration-200" data-skill="juce">JUCE / DSP</span>
+                                    <span class="skill-pill px-2.5 py-1 text-xs font-mono rounded bg-neutral-100 dark:bg-neutral-900 border border-black/5 dark:border-white/5 cursor-pointer hover:border-black dark:hover:border-white transition-all duration-200" data-skill="websocket">WebSocket</span>
+                                    <span class="skill-pill px-2.5 py-1 text-xs font-mono rounded bg-neutral-100 dark:bg-neutral-900 border border-black/5 dark:border-white/5 cursor-pointer hover:border-black dark:hover:border-white transition-all duration-200" data-skill="tools">Git / SQL / Linux</span>
+                                </div>
                             </li>
                             <li>
-                                <div class="font-bold text-base">Concepts</div>
+                                <div class="font-bold text-base mb-2">Concepts</div>
                                 <div class="text-neutral-500">OOP, data structures, algorithms, debugging</div>
                             </li>
                         </ul>
@@ -542,7 +583,7 @@
             </div>
             <div class="md:col-span-8 space-y-12">
                 <div class="grid sm:grid-cols-1 gap-8">
-                    <a href="https://elsyvien.github.io/JetForge/" target="_blank" rel="noopener noreferrer" class="motion-list-link group block">
+                    <a href="https://elsyvien.github.io/JetForge/" target="_blank" rel="noopener noreferrer" class="project-card motion-list-link group block" data-skills="typescript java tools">
                         <div class="flex justify-between items-center mb-2">
                             <h3 class="text-2xl font-bold flex items-center gap-2">
                                 <span class="group-hover:underline decoration-2 underline-offset-4">JetForge</span>
@@ -556,7 +597,7 @@
                         </p>
                     </a>
 
-                    <a href="https://elsyvien.github.io/AetherCore/" target="_blank" rel="noopener noreferrer" class="motion-list-link group block">
+                    <a href="https://elsyvien.github.io/AetherCore/" target="_blank" rel="noopener noreferrer" class="project-card motion-list-link group block" data-skills="typescript tools">
                         <div class="flex justify-between items-center mb-2">
                             <h3 class="text-2xl font-bold flex items-center gap-2">
                                 <span class="group-hover:underline decoration-2 underline-offset-4">AetherCore</span>
@@ -570,7 +611,7 @@
                         </p>
                     </a>
 
-                    <a href="https://elsyvien.github.io/Harmony/" target="_blank" rel="noopener noreferrer" class="motion-list-link group block">
+                    <a href="https://elsyvien.github.io/Harmony/" target="_blank" rel="noopener noreferrer" class="project-card motion-list-link group block" data-skills="typescript react websocket">
                         <div class="flex justify-between items-center mb-2">
                             <h3 class="text-2xl font-bold flex items-center gap-2">
                                 <span class="group-hover:underline decoration-2 underline-offset-4">Harmony</span>
@@ -584,7 +625,7 @@
                         </p>
                     </a>
 
-                    <a href="https://elsyvien.github.io/AetherAlpha/" target="_blank" rel="noopener noreferrer" class="motion-list-link group block">
+                    <a href="https://elsyvien.github.io/AetherAlpha/" target="_blank" rel="noopener noreferrer" class="project-card motion-list-link group block" data-skills="python tools">
                         <div class="flex justify-between items-center mb-2">
                             <h3 class="text-2xl font-bold flex items-center gap-2">
                                 <span class="group-hover:underline decoration-2 underline-offset-4">AetherAlpha</span>

@@ -14,6 +14,11 @@ body {
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --motion-depth-x: 0px;
   --motion-depth-y: 0px;
+  --aura-color: rgba(0, 0, 0, 0.015);
+}
+
+.dark {
+  --aura-color: rgba(99, 102, 241, 0.045);
 }
 
 /* Hide scrollbar for clean look */
@@ -198,21 +203,32 @@ section[id] {
   transform: translate3d(0, -2px, 0);
 }
 
-.image-card {
+/* Each image is wrapped in a clipping container at runtime */
+.image-card-wrap {
   height: 50vh;
   aspect-ratio: 9 / 16;
-  object-fit: cover;
-  object-position: 50% 50%;
+  overflow: hidden;
+  border-radius: 0.5rem;
   user-select: none;
   -webkit-user-drag: none;
-  border-radius: 0.5rem;
-  transition: opacity var(--motion-state) var(--ease-out-quint),
-    transform var(--motion-state) var(--ease-out-quint);
-  will-change: object-position;
+  transition: transform var(--motion-state) var(--ease-out-quint);
 }
 
-#slider-section.is-dragging .image-card {
+#slider-section.is-dragging .image-card-wrap {
   transform: scale(1.015);
+}
+
+.image-card {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  user-select: none;
+  -webkit-user-drag: none;
+  /* Scale up to create travel room for translateX parallax on ALL images */
+  transform: scale(1.4) translateX(var(--parallax-x, 0%));
+  will-change: transform;
 }
 
 #image-track {
@@ -343,6 +359,71 @@ section[id] {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+/* General UI/UX enhancements */
+.cursor-aura {
+  background: radial-gradient(800px at var(--mouse-x, 0px) var(--mouse-y, 0px), var(--aura-color, rgba(0,0,0,0)), transparent 80%);
+}
+
+.project-card {
+  transition: opacity var(--motion-state) var(--ease-out-quint),
+              transform var(--motion-state) var(--ease-out-quint),
+              border-color var(--motion-state) var(--ease-out-quint),
+              box-shadow var(--motion-state) var(--ease-out-quint);
+}
+
+.dark .project-card.skill-highlight {
+  border-color: rgba(255, 255, 255, 0.45) !important;
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
+}
+
+.project-card.skill-highlight {
+  border-color: rgba(0, 0, 0, 0.45) !important;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.03);
+  transform: scale(1.008) translate3d(0, -2px, 0);
+}
+
+.project-card.skill-dimmed {
+  opacity: 0.25;
+}
+
+.skill-pill {
+  transition: all var(--motion-state) var(--ease-out-quint);
+}
+
+.skill-pill:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px -4px rgba(0, 0, 0, 0.1);
+}
+
+.dark .skill-pill:hover {
+  box-shadow: 0 4px 12px -4px rgba(255, 255, 255, 0.1);
+}
+
+/* Filtering classes */
+.project-card.is-filtered-out {
+  opacity: 0 !important;
+  transform: scale(0.96) translateY(10px) !important;
+  pointer-events: none !important;
+  position: absolute !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+}
+
+.project-filter-btn {
+  transition: all var(--motion-state) var(--ease-out-quint);
+}
+.project-filter-btn:hover {
+  transform: translateY(-1px);
+}
+.project-filter-btn:active {
+  transform: scale(0.96);
+}
+
 
 @media (prefers-reduced-motion: reduce) {
   *,
