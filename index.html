@@ -77,8 +77,19 @@
         }
 
         /* Mobile navigation overlay */
-        #mobile-menu { display: none; }
-        #mobile-menu.is-open { display: flex; }
+        #mobile-menu {
+            display: none;
+            opacity: 0;
+            transform: translateY(-0.5rem);
+        }
+        #mobile-menu.is-open,
+        #mobile-menu.is-closing {
+            display: flex;
+        }
+        #mobile-menu.is-open {
+            opacity: 1;
+            transform: translateY(0);
+        }
         #mobile-menu a {
             transition: opacity 0.15s ease;
             text-decoration: none;
@@ -121,16 +132,16 @@
     <a href="#main-content" class="skip-link">Skip to content</a>
 
     <!-- Minimal Nav -->
-    <nav class="fixed w-full z-50 bg-white/90 dark:bg-black/90 backdrop-blur-sm border-b border-black/10 dark:border-white/10">
+    <nav class="fixed w-full z-50 bg-white/90 dark:bg-black/90 backdrop-blur-sm border-b border-black/10 dark:border-white/10 motion-nav">
         <div class="max-w-6xl mx-auto px-6">
             <div class="flex justify-between items-center h-20">
-                <a href="#" class="text-2xl font-black tracking-tighter uppercase">Max.</a>
+                <a href="#" class="motion-link text-2xl font-black tracking-tighter uppercase">Max.</a>
 
                 <div class="hidden md:flex space-x-6 lg:space-x-12 text-sm font-medium uppercase tracking-widest text-center items-center">
-                    <a href="#work" class="hover:underline decoration-2 underline-offset-4">Projects</a>
-                    <a href="#about" class="hover:underline decoration-2 underline-offset-4">Resume</a>
-                    <a href="#currently-working-on" class="hover:underline decoration-2 underline-offset-4">Currently Working On</a>
-                    <a href="#contact" class="hover:underline decoration-2 underline-offset-4">Contact</a>
+                    <a href="#work" class="motion-link hover:underline decoration-2 underline-offset-4">Projects</a>
+                    <a href="#about" class="motion-link hover:underline decoration-2 underline-offset-4">Resume</a>
+                    <a href="#currently-working-on" class="motion-link hover:underline decoration-2 underline-offset-4">Currently Working On</a>
+                    <a href="#contact" class="motion-link hover:underline decoration-2 underline-offset-4">Contact</a>
                 </div>
 
                 <div class="flex items-center gap-4">
@@ -139,7 +150,7 @@
                         <span class="ham-bar bar-2"></span>
                         <span class="ham-bar bar-3"></span>
                     </button>
-                    <button id="theme-toggle" type="button" aria-label="Toggle color theme" class="text-xl">
+                    <button id="theme-toggle" type="button" aria-label="Toggle color theme" class="motion-icon-button text-xl">
                         <svg viewBox="0 0 24 24" aria-hidden="true" class="w-5 h-5 fill-current">
                             <path d="M12 2a10 10 0 1 0 0 20V2z"></path>
                         </svg>
@@ -152,10 +163,10 @@
     <!-- Mobile Navigation Menu -->
     <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Site navigation" class="fixed inset-0 z-40 bg-white dark:bg-black flex-col justify-center items-center gap-8 px-6">
         <nav class="flex flex-col items-center gap-8 text-center">
-            <a href="#work" class="text-4xl font-black uppercase tracking-tighter" data-mobile-link>Projects</a>
-            <a href="#about" class="text-4xl font-black uppercase tracking-tighter" data-mobile-link>Resume</a>
-            <a href="#currently-working-on" class="text-3xl font-black uppercase tracking-tighter" data-mobile-link>Currently Working On</a>
-            <a href="#contact" class="text-4xl font-black uppercase tracking-tighter" data-mobile-link>Contact</a>
+            <a href="#work" class="motion-link text-4xl font-black uppercase tracking-tighter" data-mobile-link>Projects</a>
+            <a href="#about" class="motion-link text-4xl font-black uppercase tracking-tighter" data-mobile-link>Resume</a>
+            <a href="#currently-working-on" class="motion-link text-3xl font-black uppercase tracking-tighter" data-mobile-link>Currently Working On</a>
+            <a href="#contact" class="motion-link text-4xl font-black uppercase tracking-tighter" data-mobile-link>Contact</a>
         </nav>
     </div>
 
@@ -170,10 +181,10 @@
                     B.Sc. Computer Science student at the University of Tübingen building software projects in C++, Java, and audio/graphics tooling.
                 </p>
                 <div class="grid w-full max-w-md grid-cols-2 gap-6 animate-fade-up delay-200">
-                    <a href="#work" class="flex min-h-14 items-center justify-center bg-black px-8 py-4 text-center font-bold uppercase tracking-wider text-white transition-opacity hover:opacity-80 dark:bg-white dark:text-black">
+                    <a href="#work" class="motion-button flex min-h-14 items-center justify-center bg-black px-8 py-4 text-center font-bold uppercase tracking-wider text-white transition-opacity hover:opacity-80 dark:bg-white dark:text-black">
                         View Projects
                     </a>
-                    <a href="#contact" class="flex min-h-14 items-center justify-center border-2 border-black px-8 py-4 text-center font-bold uppercase tracking-wider transition-colors hover:bg-black hover:text-white dark:border-white dark:hover:bg-white dark:hover:text-black">
+                    <a href="#contact" class="motion-button flex min-h-14 items-center justify-center border-2 border-black px-8 py-4 text-center font-bold uppercase tracking-wider transition-colors hover:bg-black hover:text-white dark:border-white dark:hover:bg-white dark:hover:text-black">
                         Contact
                     </a>
                 </div>
@@ -197,7 +208,7 @@
     </section>
 
     <!-- Work / Projects -->
-    <section id="work" class="py-20 px-6 max-w-6xl mx-auto border-t border-black/10 dark:border-white/10">
+    <section id="work" class="py-20 px-6 max-w-6xl mx-auto border-t border-black/10 dark:border-white/10" data-reveal>
         <div class="mb-14 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
                 <h2 class="text-4xl font-black uppercase tracking-tighter">Selected Projects</h2>
@@ -205,13 +216,13 @@
                     A tighter selection from my GitHub: tools, realtime systems, audio DSP, and visual experiments.
                 </p>
             </div>
-            <a href="https://github.com/Elsyvien?tab=repositories" target="_blank" rel="noopener noreferrer" class="text-sm font-bold uppercase tracking-widest underline decoration-2 underline-offset-4">
+            <a href="https://github.com/Elsyvien?tab=repositories" target="_blank" rel="noopener noreferrer" class="motion-link text-sm font-bold uppercase tracking-widest underline decoration-2 underline-offset-4">
                 Browse GitHub
             </a>
         </div>
 
         <div class="space-y-14">
-            <a href="https://github.com/Elsyvien/JetForge" target="_blank" rel="noopener noreferrer" class="project-feature group grid gap-8 border-y border-black/10 py-8 dark:border-white/10 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+            <a href="https://github.com/Elsyvien/JetForge" target="_blank" rel="noopener noreferrer" class="project-feature group grid gap-8 border-y border-black/10 py-8 dark:border-white/10 lg:grid-cols-[1.2fr_0.8fr] lg:items-center" data-reveal data-motion-depth>
                 <div class="project-image overflow-hidden rounded-lg bg-neutral-950">
                     <img src="assets/images/projects/jetforge-thumbnail.webp" alt="Abstract JetForge thumbnail with a forged J and template mapping lines" width="1680" height="864" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.035]">
                 </div>
@@ -232,7 +243,7 @@
                 </div>
             </a>
 
-            <a href="https://github.com/Elsyvien/AetherCore" target="_blank" rel="noopener noreferrer" class="project-feature group grid gap-8 border-b border-black/10 pb-8 dark:border-white/10 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
+            <a href="https://github.com/Elsyvien/AetherCore" target="_blank" rel="noopener noreferrer" class="project-feature group grid gap-8 border-b border-black/10 pb-8 dark:border-white/10 lg:grid-cols-[0.8fr_1.2fr] lg:items-center" data-reveal data-motion-depth>
                 <div class="lg:order-2 project-image overflow-hidden rounded-lg bg-neutral-950">
                     <img src="assets/images/projects/aethercore-thumbnail.webp" alt="Abstract AetherCore thumbnail showing an agent swarm around a control core" width="1680" height="864" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.035]">
                 </div>
@@ -254,8 +265,8 @@
             </a>
         </div>
 
-        <div class="mt-14 grid grid-cols-1 gap-x-10 gap-y-14 md:grid-cols-2">
-            <a href="https://github.com/Elsyvien/Harmony" target="_blank" rel="noopener noreferrer" class="group block">
+        <div class="mt-14 grid grid-cols-1 gap-x-10 gap-y-14 md:grid-cols-2" data-reveal-group>
+            <a href="https://github.com/Elsyvien/Harmony" target="_blank" rel="noopener noreferrer" class="group block" data-reveal>
                 <div class="aspect-video bg-gradient-to-bl from-slate-950 via-zinc-900 to-neutral-950 mb-6 border border-black/5 dark:border-white/5 overflow-hidden relative rounded-lg flex items-center justify-center">
                     <div class="absolute inset-0 opacity-20" style="background-image: linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px); background-size: 24px 24px;"></div>
                     <div class="code-window">
@@ -285,7 +296,7 @@
                 </ul>
             </a>
 
-            <a href="https://github.com/Elsyvien/BasicMBComp" target="_blank" rel="noopener noreferrer" class="group block">
+            <a href="https://github.com/Elsyvien/BasicMBComp" target="_blank" rel="noopener noreferrer" class="group block" data-reveal>
                 <div class="aspect-video bg-gradient-to-br from-neutral-950 to-zinc-800 mb-6 border border-black/5 dark:border-white/5 overflow-hidden relative rounded-lg flex items-center justify-center">
                     <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(#d97706 1px, transparent 1px); background-size: 18px 18px;"></div>
                     <div class="code-window">
@@ -315,7 +326,7 @@
                 </ul>
             </a>
 
-            <a href="https://github.com/Elsyvien/LittleTaylorVisualizer" target="_blank" rel="noopener noreferrer" class="group block">
+            <a href="https://github.com/Elsyvien/LittleTaylorVisualizer" target="_blank" rel="noopener noreferrer" class="group block" data-reveal>
                 <div class="aspect-video bg-neutral-950 mb-6 border border-black/5 dark:border-white/5 overflow-hidden relative rounded-lg flex items-center justify-center perspective-[800px]">
                     <div class="relative w-48 h-48 transform-style-3d transition-transform duration-700 group-hover:rotate-x-[55deg] group-hover:rotate-z-[-40deg]" style="transform: rotateX(60deg) rotateZ(-45deg);">
                         <div class="absolute inset-0 border border-white/10 bg-white/5 shadow-[0_0_40px_rgba(0,0,0,0.8)]">
@@ -347,7 +358,7 @@
                 </ul>
             </a>
 
-            <a href="https://github.com/Elsyvien/MacBatteryTool" target="_blank" rel="noopener noreferrer" class="group block">
+            <a href="https://github.com/Elsyvien/MacBatteryTool" target="_blank" rel="noopener noreferrer" class="group block" data-reveal>
                 <div class="aspect-video bg-[#151515] mb-6 border border-black/5 dark:border-white/5 overflow-hidden relative rounded-lg flex items-center justify-center">
                     <div class="absolute inset-0 opacity-25" style="background-image: linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px); background-size: 28px 100%;"></div>
                     <div class="relative w-56 rounded-2xl border border-white/15 bg-black/60 p-5 shadow-2xl transition-transform duration-500 group-hover:-translate-y-1">
@@ -383,7 +394,7 @@
     </section>
 
     <!-- Code Activity / GitHub Chart -->
-    <section class="py-12 px-6 max-w-6xl mx-auto border-t border-black/10 dark:border-white/10">
+    <section class="py-12 px-6 max-w-6xl mx-auto border-t border-black/10 dark:border-white/10" data-reveal>
         <h2 class="text-xl font-bold uppercase tracking-widest mb-8">Code Activity</h2>
         <div class="w-full overflow-x-auto pb-4">
             <div class="min-w-[800px] opacity-70 hover:opacity-100 transition-opacity duration-300 filter grayscale contrast-125 dark:invert">
@@ -397,7 +408,7 @@
     </section>
 
     <!-- About / Resume (Text heavy, clean) -->
-    <section id="about" class="py-20 px-6 max-w-6xl mx-auto border-t border-black/10 dark:border-white/10">
+    <section id="about" class="py-20 px-6 max-w-6xl mx-auto border-t border-black/10 dark:border-white/10" data-reveal>
         <div class="grid md:grid-cols-12 gap-12">
             <div class="md:col-span-4">
                 <h2 class="text-4xl font-black uppercase tracking-tighter sticky top-32">Resume</h2>
@@ -524,14 +535,14 @@
     </section>
 
     <!-- Currently Working on -->
-    <section id="currently-working-on" class="py-20 px-6 max-w-6xl mx-auto border-t border-black/10 dark:border-white/10">
+    <section id="currently-working-on" class="py-20 px-6 max-w-6xl mx-auto border-t border-black/10 dark:border-white/10" data-reveal>
         <div class="grid md:grid-cols-12 gap-12">
             <div class="md:col-span-4">
                 <h2 class="text-4xl font-black uppercase tracking-tighter sticky top-32">Currently Working On</h2>
             </div>
             <div class="md:col-span-8 space-y-12">
                 <div class="grid sm:grid-cols-1 gap-8">
-                    <a href="https://elsyvien.github.io/JetForge/" target="_blank" rel="noopener noreferrer" class="group block">
+                    <a href="https://elsyvien.github.io/JetForge/" target="_blank" rel="noopener noreferrer" class="motion-list-link group block">
                         <div class="flex justify-between items-center mb-2">
                             <h3 class="text-2xl font-bold flex items-center gap-2">
                                 <span class="group-hover:underline decoration-2 underline-offset-4">JetForge</span>
@@ -545,7 +556,7 @@
                         </p>
                     </a>
 
-                    <a href="https://elsyvien.github.io/AetherCore/" target="_blank" rel="noopener noreferrer" class="group block">
+                    <a href="https://elsyvien.github.io/AetherCore/" target="_blank" rel="noopener noreferrer" class="motion-list-link group block">
                         <div class="flex justify-between items-center mb-2">
                             <h3 class="text-2xl font-bold flex items-center gap-2">
                                 <span class="group-hover:underline decoration-2 underline-offset-4">AetherCore</span>
@@ -559,7 +570,7 @@
                         </p>
                     </a>
 
-                    <a href="https://elsyvien.github.io/Harmony/" target="_blank" rel="noopener noreferrer" class="group block">
+                    <a href="https://elsyvien.github.io/Harmony/" target="_blank" rel="noopener noreferrer" class="motion-list-link group block">
                         <div class="flex justify-between items-center mb-2">
                             <h3 class="text-2xl font-bold flex items-center gap-2">
                                 <span class="group-hover:underline decoration-2 underline-offset-4">Harmony</span>
@@ -573,7 +584,7 @@
                         </p>
                     </a>
 
-                    <a href="https://elsyvien.github.io/AetherAlpha/" target="_blank" rel="noopener noreferrer" class="group block">
+                    <a href="https://elsyvien.github.io/AetherAlpha/" target="_blank" rel="noopener noreferrer" class="motion-list-link group block">
                         <div class="flex justify-between items-center mb-2">
                             <h3 class="text-2xl font-bold flex items-center gap-2">
                                 <span class="group-hover:underline decoration-2 underline-offset-4">AetherAlpha</span>
@@ -592,7 +603,7 @@
     </section>
 
     <!-- Horizontal Image Slider -->
-    <section class="relative h-[80vh] w-full overflow-hidden bg-white dark:bg-black border-t border-black/10 dark:border-white/10" id="slider-section" tabindex="0" aria-label="Horizontal photo gallery">
+    <section class="relative h-[80vh] w-full overflow-hidden bg-white dark:bg-black border-t border-black/10 dark:border-white/10" id="slider-section" tabindex="0" aria-label="Horizontal photo gallery" data-reveal>
         <div class="slider-hint">Photography &mdash; drag to explore</div>
         <div id="image-track">
             <img class="image-card" src="images/roaster/optimized/DSC_2695.webp" alt="Roaster portrait 1" width="1400" height="2100" loading="lazy" decoding="async" draggable="false" />
@@ -609,7 +620,7 @@
     </section>
 
     <!-- Contact -->
-    <section id="contact" class="py-32 px-6 max-w-6xl mx-auto border-t border-black/10 dark:border-white/10 text-center">
+    <section id="contact" class="py-32 px-6 max-w-6xl mx-auto border-t border-black/10 dark:border-white/10 text-center" data-reveal>
         <h2 class="text-6xl md:text-8xl font-black tracking-tighter mb-6 hover:tracking-normal transition-all duration-500 cursor-default">LET'S TALK.</h2>
         <p class="max-w-2xl mx-auto mb-12 text-neutral-600 dark:text-neutral-400">
             Based in Tübingen and currently studying computer science. Reach out for student projects, collaborations, or technical exchange.

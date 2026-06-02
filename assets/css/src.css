@@ -6,6 +6,16 @@ body {
   font-family: "Inter", sans-serif;
 }
 
+:root {
+  --motion-fast: 140ms;
+  --motion-state: 240ms;
+  --motion-enter: 680ms;
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --motion-depth-x: 0px;
+  --motion-depth-y: 0px;
+}
+
 /* Hide scrollbar for clean look */
 ::-webkit-scrollbar {
   width: 8px;
@@ -31,47 +41,49 @@ body {
 @keyframes fadeUp {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translate3d(0, 26px, 0);
   }
 
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0);
   }
 }
 
 @keyframes fadeIn {
   from {
     opacity: 0;
+    transform: scale(0.985);
   }
 
   to {
     opacity: 1;
+    transform: scale(1);
   }
 }
 
 @keyframes slideIn {
   from {
     opacity: 0;
-    transform: translateX(-20px);
+    transform: translate3d(-18px, 0, 0);
   }
 
   to {
     opacity: 1;
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
 }
 
 .animate-fade-up {
-  animation: fadeUp 0.8s ease-out forwards;
+  animation: fadeUp var(--motion-enter) var(--ease-out-expo) forwards;
 }
 
 .animate-fade-in {
-  animation: fadeIn 0.6s ease-out forwards;
+  animation: fadeIn 620ms var(--ease-out-quint) forwards;
 }
 
 .animate-slide-in {
-  animation: slideIn 0.6s ease-out forwards;
+  animation: slideIn 560ms var(--ease-out-quint) forwards;
 }
 
 .delay-100 {
@@ -99,6 +111,79 @@ body {
   opacity: 0;
 }
 
+.motion-ready [data-reveal] {
+  opacity: 0;
+  transform: translate3d(0, 24px, 0);
+  transition: opacity var(--motion-enter) var(--ease-out-quint),
+    transform var(--motion-enter) var(--ease-out-expo);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.motion-ready [data-reveal].is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.motion-link,
+.motion-button,
+.motion-icon-button,
+.motion-list-link {
+  transition-duration: var(--motion-state);
+  transition-timing-function: var(--ease-out-quint);
+}
+
+.motion-link {
+  transition-property: opacity, transform, text-underline-offset;
+}
+
+.motion-link:hover {
+  text-underline-offset: 0.45em;
+}
+
+.motion-button,
+.motion-icon-button {
+  transform: translateZ(0);
+  transition-property: background-color, border-color, color, opacity, transform;
+}
+
+.motion-button:hover {
+  transform: translate3d(0, -2px, 0);
+}
+
+.motion-button:active,
+.motion-icon-button:active,
+.motion-link:active {
+  transform: scale(0.97);
+  transition-duration: var(--motion-fast);
+}
+
+.motion-icon-button svg {
+  transition: transform var(--motion-state) var(--ease-out-quint),
+    opacity var(--motion-state) var(--ease-out-quint);
+}
+
+.motion-icon-button.is-switching svg {
+  opacity: 0.55;
+  transform: rotate(180deg) scale(0.88);
+}
+
+.motion-list-link {
+  transition-property: opacity, transform;
+}
+
+.motion-list-link:hover {
+  transform: translate3d(4px, 0, 0);
+}
+
+.motion-nav {
+  transition: background-color var(--motion-state) var(--ease-out-quint),
+    border-color var(--motion-state) var(--ease-out-quint);
+}
+
+section[id] {
+  scroll-margin-top: 6rem;
+}
+
 /* Slider styles */
 #slider-section {
   touch-action: pan-y;
@@ -106,6 +191,11 @@ body {
 
 #slider-section.is-dragging {
   cursor: grabbing;
+}
+
+#slider-section.is-dragging .slider-hint {
+  opacity: 0.8;
+  transform: translate3d(0, -2px, 0);
 }
 
 .image-card {
@@ -116,6 +206,13 @@ body {
   user-select: none;
   -webkit-user-drag: none;
   border-radius: 0.5rem;
+  transition: opacity var(--motion-state) var(--ease-out-quint),
+    transform var(--motion-state) var(--ease-out-quint);
+  will-change: object-position;
+}
+
+#slider-section.is-dragging .image-card {
+  transform: scale(1.015);
 }
 
 #image-track {
@@ -133,6 +230,9 @@ body {
 /* Code snippet styles */
 .project-image {
   aspect-ratio: 16 / 9;
+  transform: translateZ(0);
+  transition: transform 520ms var(--ease-out-quint),
+    box-shadow 520ms var(--ease-out-quint);
 }
 
 .transform-style-3d,
@@ -156,13 +256,59 @@ body {
   width: 85%;
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.4);
   transform: rotate(-1deg);
-  transition: all 0.4s ease;
+  transition: transform 380ms var(--ease-out-quint),
+    box-shadow 380ms var(--ease-out-quint),
+    border-color 380ms var(--ease-out-quint);
 }
 
 .group:hover .code-window {
   transform: rotate(0deg) scale(1.02) translateY(-2px);
   box-shadow: 0 25px 30px -5px rgba(0, 0, 0, 0.6);
   border-color: rgba(255, 255, 255, 0.2);
+}
+
+.project-feature {
+  --motion-depth-x: 0px;
+  --motion-depth-y: 0px;
+  transition: transform 520ms var(--ease-out-quint);
+}
+
+.project-feature:hover .project-image {
+  box-shadow: 0 22px 42px -28px rgba(0, 0, 0, 0.55);
+}
+
+.project-feature .project-image img {
+  transform: translate3d(0, 0, 0) scale(1);
+  transition: transform 700ms var(--ease-out-quint);
+}
+
+.project-feature:hover .project-image img {
+  transform: translate3d(var(--motion-depth-x), var(--motion-depth-y), 0) scale(1.035);
+}
+
+#mobile-menu {
+  transition: opacity var(--motion-state) var(--ease-out-quint),
+    transform var(--motion-state) var(--ease-out-quint);
+}
+
+#mobile-menu nav {
+  transform: translate3d(0, 12px, 0);
+  transition: transform 300ms var(--ease-out-expo);
+}
+
+#mobile-menu.is-open nav {
+  transform: translate3d(0, 0, 0);
+}
+
+.slider-hint {
+  transition: opacity var(--motion-state) var(--ease-out-quint),
+    transform var(--motion-state) var(--ease-out-quint);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  [data-motion-depth]:hover {
+    transform: translate3d(0, -3px, 0);
+  }
 }
 
 .c-kwd {
@@ -199,11 +345,22 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+
   .animate-fade-up,
   .animate-fade-in,
-  .animate-slide-in {
+  .animate-slide-in,
+  .motion-ready [data-reveal] {
     animation: none;
     opacity: 1;
+    transform: none;
   }
 
   .delay-100,
@@ -216,5 +373,13 @@ body {
 
   .group:hover .code-window {
     transform: rotate(-1deg);
+  }
+
+  .project-feature:hover .project-image img,
+  #slider-section.is-dragging .image-card,
+  .motion-button:hover,
+  .motion-list-link:hover,
+  [data-motion-depth]:hover {
+    transform: none;
   }
 }

@@ -1,6 +1,9 @@
 (() => {
   const html = document.documentElement;
   const themeToggle = document.getElementById("theme-toggle");
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  html.classList.add("motion-ready");
 
   if (
     localStorage.theme === "dark" ||
@@ -12,8 +15,12 @@
 
   if (themeToggle) {
     themeToggle.addEventListener("click", () => {
+      themeToggle.classList.add("is-switching");
       html.classList.toggle("dark");
       localStorage.theme = html.classList.contains("dark") ? "dark" : "light";
+      window.setTimeout(() => {
+        themeToggle.classList.remove("is-switching");
+      }, 180);
     });
   }
 
@@ -22,7 +29,11 @@
   const mobileMenu = document.getElementById("mobile-menu");
 
   if (menuToggle && mobileMenu) {
+    let closeTimer = null;
+
     const openMenu = () => {
+      window.clearTimeout(closeTimer);
+      mobileMenu.classList.remove("is-closing");
       mobileMenu.classList.add("is-open");
       menuToggle.setAttribute("aria-expanded", "true");
       menuToggle.setAttribute("aria-label", "Close navigation menu");
@@ -30,10 +41,21 @@
     };
 
     const closeMenu = () => {
+      window.clearTimeout(closeTimer);
       mobileMenu.classList.remove("is-open");
       menuToggle.setAttribute("aria-expanded", "false");
       menuToggle.setAttribute("aria-label", "Open navigation menu");
       document.body.style.overflow = "";
+
+      if (reducedMotion.matches) {
+        mobileMenu.classList.remove("is-closing");
+        return;
+      }
+
+      mobileMenu.classList.add("is-closing");
+      closeTimer = window.setTimeout(() => {
+        mobileMenu.classList.remove("is-closing");
+      }, 260);
     };
 
     menuToggle.addEventListener("click", () => {
@@ -79,6 +101,58 @@
   } else {
     animatedElements.forEach((el) => {
       el.style.animationPlayState = "running";
+    });
+  }
+
+  const revealElements = document.querySelectorAll("[data-reveal]");
+  const revealItems = Array.from(revealElements);
+
+  revealItems.forEach((el) => {
+    const parentGroup = el.closest("[data-reveal-group]");
+    if (!parentGroup) {
+      return;
+    }
+
+    const index = Array.from(parentGroup.querySelectorAll("[data-reveal]")).indexOf(el);
+    el.style.setProperty("--reveal-delay", `${Math.min(index * 80, 240)}ms`);
+  });
+
+  if (reducedMotion.matches || !("IntersectionObserver" in window)) {
+    revealItems.forEach((el) => el.classList.add("is-visible"));
+  } else {
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) {
+            return;
+          }
+
+          entry.target.classList.add("is-visible");
+          revealObserver.unobserve(entry.target);
+        });
+      },
+      { rootMargin: "0px 0px -12% 0px", threshold: 0.16 },
+    );
+
+    revealItems.forEach((el) => revealObserver.observe(el));
+  }
+
+  const depthItems = document.querySelectorAll("[data-motion-depth]");
+  if (!reducedMotion.matches && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+    depthItems.forEach((item) => {
+      item.addEventListener("pointermove", (event) => {
+        const rect = item.getBoundingClientRect();
+        const x = (event.clientX - rect.left) / rect.width - 0.5;
+        const y = (event.clientY - rect.top) / rect.height - 0.5;
+
+        item.style.setProperty("--motion-depth-x", `${x * 8}px`);
+        item.style.setProperty("--motion-depth-y", `${y * 8}px`);
+      });
+
+      item.addEventListener("pointerleave", () => {
+        item.style.setProperty("--motion-depth-x", "0px");
+        item.style.setProperty("--motion-depth-y", "0px");
+      });
     });
   }
 
