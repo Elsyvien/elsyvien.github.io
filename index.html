@@ -2,157 +2,90 @@
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Max Staneker | CS Student & Developer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Max Staneker | Software Systems & Developer Tools</title>
+    <meta name="description" content="Max Staneker is a Computer Science student and System Architect in Tübingen, building developer tools, real-time software, audio DSP, and graphics projects.">
+    <meta name="author" content="Max Staneker">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://elsyvien.github.io/">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Max Staneker">
+    <meta property="og:title" content="Max Staneker | Software Systems & Developer Tools">
+    <meta property="og:description" content="Developer tools, real-time software, audio DSP, graphics, and photography from Max Staneker.">
+    <meta property="og:url" content="https://elsyvien.github.io/">
+    <meta property="og:image" content="https://elsyvien.github.io/images/hero.jpg">
+    <meta property="og:image:alt" content="Portrait of Max Staneker">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Max Staneker | Software Systems & Developer Tools">
+    <meta name="twitter:description" content="Developer tools, real-time software, audio DSP, graphics, and photography from Max Staneker.">
+    <meta name="twitter:image" content="https://elsyvien.github.io/images/hero.jpg">
+
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f4ee">
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#161719">
+    <script>
+        try {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            }
+        } catch (_) {
+            // The system preference remains a safe fallback when storage is unavailable.
+        }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/site.css">
     <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
-    <script src="assets/js/site.js?v=20260602-slider-range" defer></script>
-    <style>
-        /* Font override */
-        html, body { font-family: 'Urbanist', sans-serif; }
-        .font-mono, code, kbd, pre, samp { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
-        .code-window { font-family: Consolas, Monaco, monospace; }
-
-        /* Skip navigation */
-        .skip-link {
-            position: absolute;
-            top: -80px;
-            left: 1.5rem;
-            z-index: 200;
-            padding: 0.5rem 1rem;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            background: #000;
-            color: #fff;
-            transition: top 0.15s ease;
-            text-decoration: none;
-            font-family: inherit;
+    <script src="assets/js/site.js?v=20260712" defer></script>
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "Max Staneker",
+            "url": "https://elsyvien.github.io/",
+            "image": "https://elsyvien.github.io/images/hero.jpg",
+            "jobTitle": "System Architect",
+            "worksFor": { "@type": "Organization", "name": "Bosch Sensortec" },
+            "affiliation": { "@type": "CollegeOrUniversity", "name": "University of Tübingen" },
+            "sameAs": [
+                "https://github.com/elsyvien",
+                "https://www.linkedin.com/in/max-staneker/",
+                "https://www.instagram.com/elsyvien/"
+            ]
         }
-        .skip-link:focus { top: 1rem; }
-        .dark .skip-link { background: #fff; color: #000; }
-
-        /* Visible focus indicators for keyboard users */
-        :focus-visible {
-            outline: 2px solid currentColor;
-            outline-offset: 3px;
-            border-radius: 2px;
-        }
-
-        /* Hamburger button — mobile only */
-        .mobile-menu-btn {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-            padding: 4px;
-            cursor: pointer;
-            background: none;
-            border: none;
-            color: inherit;
-        }
-        @media (min-width: 768px) {
-            .mobile-menu-btn { display: none; }
-        }
-        .ham-bar {
-            display: block;
-            width: 22px;
-            height: 2px;
-            background: currentColor;
-            border-radius: 1px;
-            transition: transform 0.25s ease, opacity 0.2s ease;
-        }
-        #mobile-menu-toggle[aria-expanded="true"] .bar-1 {
-            transform: translateY(7px) rotate(45deg);
-        }
-        #mobile-menu-toggle[aria-expanded="true"] .bar-2 {
-            opacity: 0;
-            transform: scaleX(0);
-        }
-        #mobile-menu-toggle[aria-expanded="true"] .bar-3 {
-            transform: translateY(-7px) rotate(-45deg);
-        }
-
-        /* Mobile navigation overlay */
-        #mobile-menu {
-            display: none;
-            opacity: 0;
-            transform: translateY(-0.5rem);
-        }
-        #mobile-menu.is-open,
-        #mobile-menu.is-closing {
-            display: flex;
-        }
-        #mobile-menu.is-open {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        #mobile-menu a {
-            transition: opacity 0.15s ease;
-            text-decoration: none;
-        }
-        #mobile-menu a:hover { opacity: 0.45; }
-
-        /* Photography slider hint */
-        .slider-hint {
-            position: absolute;
-            top: 1.5rem;
-            left: 1.5rem;
-            z-index: 10;
-            pointer-events: none;
-            font-size: 0.65rem;
-            font-family: ui-monospace, monospace;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            opacity: 0.4;
-        }
-
-        /* Footer back-to-top */
-        .footer-inner {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .back-to-top {
-            font-size: 0.75rem;
-            font-family: ui-monospace, monospace;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            opacity: 0.5;
-            transition: opacity 0.15s;
-        }
-        .back-to-top:hover { opacity: 1; text-decoration: underline; text-underline-offset: 4px; }
-    </style>
+    </script>
 </head>
-<body class="bg-white text-black dark:bg-black dark:text-white transition-colors duration-300 selection:bg-black selection:text-white dark:selection:bg-white dark:selection:text-black">
+<body class="site-body">
 
     <a href="#main-content" class="skip-link">Skip to content</a>
 
-    <!-- Minimal Nav -->
-    <nav class="fixed w-full z-50 bg-white/90 dark:bg-black/90 backdrop-blur-sm border-b border-black/10 dark:border-white/10 motion-nav">
+    <nav class="site-nav motion-nav" aria-label="Primary navigation">
         <div class="max-w-6xl mx-auto px-6">
             <div class="flex justify-between items-center h-20">
-                <a href="#" class="motion-link text-2xl font-black tracking-tighter uppercase">Max.</a>
+                <a href="#main-content" class="brand-mark motion-link" aria-label="Max Staneker, back to top">Max.</a>
 
-                <div class="hidden md:flex space-x-6 lg:space-x-12 text-sm font-medium uppercase tracking-widest text-center items-center">
-                    <a href="#work" class="motion-link hover:underline decoration-2 underline-offset-4">Projects</a>
-                    <a href="#about" class="motion-link hover:underline decoration-2 underline-offset-4">Resume</a>
-                    <a href="#currently-working-on" class="motion-link hover:underline decoration-2 underline-offset-4">Currently Working On</a>
-                    <a href="#contact" class="motion-link hover:underline decoration-2 underline-offset-4">Contact</a>
+                <div class="site-nav-links hidden md:flex">
+                    <a href="#work" class="motion-link">Projects</a>
+                    <a href="#about" class="motion-link">Profile</a>
+                    <a href="#photography" class="motion-link">Photography</a>
+                    <a href="#contact" class="motion-link">Contact</a>
                 </div>
 
-                <div class="flex items-center gap-4">
+                <div class="flex items-center gap-2">
                     <button id="mobile-menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu" class="mobile-menu-btn">
                         <span class="ham-bar bar-1"></span>
                         <span class="ham-bar bar-2"></span>
                         <span class="ham-bar bar-3"></span>
                     </button>
-                    <button id="theme-toggle" type="button" aria-label="Toggle color theme" class="motion-icon-button text-xl">
-                        <svg viewBox="0 0 24 24" aria-hidden="true" class="w-5 h-5 fill-current">
-                            <path d="M12 2a10 10 0 1 0 0 20V2z"></path>
+                    <button id="theme-toggle" type="button" aria-label="Switch to dark theme" class="theme-toggle motion-icon-button">
+                        <svg viewBox="0 0 24 24" aria-hidden="true" class="theme-icon theme-icon-moon">
+                            <path d="M20.4 15.1A8.5 8.5 0 0 1 8.9 3.6 8.5 8.5 0 1 0 20.4 15.1Z"></path>
+                        </svg>
+                        <svg viewBox="0 0 24 24" aria-hidden="true" class="theme-icon theme-icon-sun">
+                            <circle cx="12" cy="12" r="3.5"></circle>
+                            <path d="M12 2v2.2M12 19.8V22M4.9 4.9l1.6 1.6M17.5 17.5l1.6 1.6M2 12h2.2M19.8 12H22M4.9 19.1l1.6-1.6M17.5 6.5l1.6-1.6"></path>
                         </svg>
                     </button>
                 </div>
@@ -160,75 +93,74 @@
         </div>
     </nav>
 
-    <!-- Mobile Navigation Menu -->
-    <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Site navigation" class="fixed inset-0 z-40 bg-white dark:bg-black flex-col justify-center items-center gap-8 px-6">
-        <nav class="flex flex-col items-center gap-8 text-center">
-            <a href="#work" class="motion-link text-4xl font-black uppercase tracking-tighter" data-mobile-link>Projects</a>
-            <a href="#about" class="motion-link text-4xl font-black uppercase tracking-tighter" data-mobile-link>Resume</a>
-            <a href="#currently-working-on" class="motion-link text-3xl font-black uppercase tracking-tighter" data-mobile-link>Currently Working On</a>
-            <a href="#contact" class="motion-link text-4xl font-black uppercase tracking-tighter" data-mobile-link>Contact</a>
+    <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Site navigation" aria-hidden="true" inert>
+        <nav class="mobile-menu-links" aria-label="Mobile navigation">
+            <a href="#work" class="motion-link" data-mobile-link><span>01</span>Projects</a>
+            <a href="#about" class="motion-link" data-mobile-link><span>02</span>Profile</a>
+            <a href="#photography" class="motion-link" data-mobile-link><span>03</span>Photography</a>
+            <a href="#contact" class="motion-link" data-mobile-link><span>04</span>Contact</a>
         </nav>
     </div>
 
-    <!-- Hero -->
-    <section id="main-content" class="pt-40 pb-20 px-6 max-w-6xl mx-auto min-h-screen flex flex-col justify-center">
-        <div class="grid md:grid-cols-2 gap-12 items-center">
-            <div class="order-2 md:order-1">
-                <h1 class="text-6xl md:text-8xl font-black tracking-tighter leading-none mb-8 animate-fade-up">
-                    HELLO.<br>I AM MAX.
+    <main id="main-content">
+    <section class="hero-section" aria-labelledby="hero-title">
+        <div class="hero-rule animate-fade-up">
+            <span>Max Staneker</span>
+            <span aria-hidden="true">Tübingen / DE</span>
+        </div>
+        <div class="hero-grid">
+            <div class="hero-copy order-2 md:order-1">
+                <p class="hero-eyebrow animate-fade-up">Computer science · systems · tools</p>
+                <h1 id="hero-title" class="hero-title animate-fade-up delay-100">
+                    I build software<br><span>systems &amp; tools.</span>
                 </h1>
-                <p class="text-xl md:text-2xl font-light text-neutral-600 dark:text-neutral-400 mb-12 max-w-lg animate-fade-up delay-100">
-                    B.Sc. Computer Science student at the University of Tübingen building software projects in C++, Java, and audio/graphics tooling.
+                <p class="hero-deck animate-fade-up delay-200">
+                    I’m Max Staneker—a Computer Science student at the University of Tübingen and System Architect at Bosch Sensortec. My work spans developer tooling, real-time communication, audio DSP, and graphics.
                 </p>
-                <div class="grid w-full max-w-md grid-cols-2 gap-6 animate-fade-up delay-200">
-                    <a href="#work" class="motion-button flex min-h-14 items-center justify-center bg-black px-8 py-4 text-center font-bold uppercase tracking-wider text-white transition-opacity hover:opacity-80 dark:bg-white dark:text-black">
-                        View Projects
-                    </a>
-                    <a href="#contact" class="motion-button flex min-h-14 items-center justify-center border-2 border-black px-8 py-4 text-center font-bold uppercase tracking-wider transition-colors hover:bg-black hover:text-white dark:border-white dark:hover:bg-white dark:hover:text-black">
-                        Contact
-                    </a>
+                <div class="hero-actions animate-fade-up delay-300">
+                    <a href="#work" class="button-primary motion-button">View selected work</a>
+                    <a href="https://www.linkedin.com/in/max-staneker/" target="_blank" rel="noopener noreferrer" class="button-secondary motion-button">Connect on LinkedIn <span aria-hidden="true">↗</span></a>
                 </div>
-
+                <dl class="hero-facts animate-fade-up delay-400">
+                    <div>
+                        <dt>Current role</dt>
+                        <dd>System Architect<br>Bosch Sensortec</dd>
+                    </div>
+                    <div>
+                        <dt>Focus</dt>
+                        <dd>Developer tools · Realtime<br>Audio · Graphics</dd>
+                    </div>
+                </dl>
             </div>
-            <div class="order-1 md:order-2 flex justify-center md:justify-end items-center animate-fade-in delay-300">
-                <div class="relative w-56 md:w-72 h-80 md:h-[28rem] overflow-hidden rounded-lg bg-neutral-100/80 dark:bg-neutral-900/60 shadow-2xl transition-all duration-500">
-                    <img src="images/hero.jpg" alt="Portrait of Max Staneker" loading="eager" decoding="async" fetchpriority="high" class="absolute inset-0 w-full h-full object-cover object-center">
+            <figure class="hero-portrait order-1 md:order-2 animate-fade-in delay-200">
+                <div class="hero-image-frame">
+                    <img src="images/hero.jpg" alt="Portrait of Max Staneker" width="587" height="880" loading="eager" decoding="async" fetchpriority="high">
                 </div>
-            </div>
+                <figcaption><span aria-hidden="true">●</span> Portrait / 2026</figcaption>
+            </figure>
         </div>
     </section>
 
-    <!-- Work / Projects -->
-    <section id="work" class="py-20 px-6 max-w-6xl mx-auto border-t border-black/10 dark:border-white/10" data-reveal>
-        <div class="mb-14 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+    <section id="work" class="section-shell" data-reveal>
+        <div class="section-heading">
             <div>
-                <h2 class="text-4xl font-black uppercase tracking-tighter">Selected Projects</h2>
-                <p class="mt-4 max-w-2xl text-neutral-600 dark:text-neutral-400">
-                    A tighter selection from my GitHub: tools, realtime systems, audio DSP, and visual experiments.
-                </p>
+                <p class="section-index">01 / Selected work</p>
+                <h2>Software with a point of view.</h2>
+                <p class="section-intro">Developer tools, real-time systems, audio DSP, and graphics experiments.</p>
             </div>
-            <a href="https://github.com/Elsyvien?tab=repositories" target="_blank" rel="noopener noreferrer" class="motion-link text-sm font-bold uppercase tracking-widest underline decoration-2 underline-offset-4">
-                Browse GitHub
+            <a href="https://github.com/Elsyvien?tab=repositories" target="_blank" rel="noopener noreferrer" class="text-link motion-link">
+                Browse all repositories <span aria-hidden="true">↗</span>
             </a>
         </div>
 
-        <!-- Project category filtering -->
-        <div class="mb-10 flex flex-wrap gap-3 text-xs uppercase tracking-widest font-mono animate-fade-up delay-300">
-            <button class="project-filter-btn px-4 py-2 border border-black dark:border-white bg-black text-white dark:bg-white dark:text-black" data-filter="all">All</button>
-            <button class="project-filter-btn px-4 py-2 border border-black/10 dark:border-white/10 hover:border-black dark:hover:border-white" data-filter="cpp-systems">C++ & Systems</button>
-            <button class="project-filter-btn px-4 py-2 border border-black/10 dark:border-white/10 hover:border-black dark:hover:border-white" data-filter="java">Java</button>
-            <button class="project-filter-btn px-4 py-2 border border-black/10 dark:border-white/10 hover:border-black dark:hover:border-white" data-filter="ts">TypeScript / Web</button>
-            <button class="project-filter-btn px-4 py-2 border border-black/10 dark:border-white/10 hover:border-black dark:hover:border-white" data-filter="utility">Utilities / Tools</button>
-        </div>
-
         <div class="space-y-14">
-            <a href="https://github.com/Elsyvien/JetForge" target="_blank" rel="noopener noreferrer" class="project-card project-feature group grid gap-8 border-y border-black/10 py-8 dark:border-white/10 lg:grid-cols-[1.2fr_0.8fr] lg:items-center" data-reveal data-motion-depth data-project-category="ts utility" data-skills="typescript java tools">
+            <a href="https://elsyvien.github.io/JetForge/" target="_blank" rel="noopener noreferrer" class="project-card project-feature group grid gap-8 border-y border-black/10 py-8 dark:border-white/10 lg:grid-cols-[1.2fr_0.8fr] lg:items-center" data-reveal data-motion-depth data-project-category="ts utility" data-skills="typescript java tools">
                 <div class="project-image overflow-hidden rounded-lg bg-neutral-950">
                     <img src="assets/images/projects/jetforge-thumbnail.webp" alt="Abstract JetForge thumbnail with a forged J and template mapping lines" width="1680" height="864" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.035]">
                 </div>
                 <div>
                     <div class="mb-5 flex flex-wrap items-center gap-3">
-                        <span class="text-xs font-mono border border-black px-2 py-1 dark:border-white">2026</span>
+                        <span class="project-status"><span aria-hidden="true">●</span> Active</span>
                         <span class="text-xs font-mono uppercase tracking-widest text-neutral-500">TypeScript / VS Code</span>
                     </div>
                     <h3 class="text-4xl font-black tracking-tighter group-hover:underline decoration-4 underline-offset-4">JetForge</h3>
@@ -243,13 +175,13 @@
                 </div>
             </a>
 
-            <a href="https://github.com/Elsyvien/AetherCore" target="_blank" rel="noopener noreferrer" class="project-card project-feature group grid gap-8 border-b border-black/10 pb-8 dark:border-white/10 lg:grid-cols-[0.8fr_1.2fr] lg:items-center" data-reveal data-motion-depth data-project-category="ts systems" data-skills="typescript tools">
+            <a href="https://elsyvien.github.io/AetherCore/" target="_blank" rel="noopener noreferrer" class="project-card project-feature group grid gap-8 border-b border-black/10 pb-8 dark:border-white/10 lg:grid-cols-[0.8fr_1.2fr] lg:items-center" data-reveal data-motion-depth data-project-category="ts systems" data-skills="typescript tools">
                 <div class="lg:order-2 project-image overflow-hidden rounded-lg bg-neutral-950">
                     <img src="assets/images/projects/aethercore-thumbnail.webp" alt="Abstract AetherCore thumbnail showing an agent swarm around a control core" width="1680" height="864" loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.035]">
                 </div>
                 <div class="lg:order-1">
                     <div class="mb-5 flex flex-wrap items-center gap-3">
-                        <span class="text-xs font-mono border border-black px-2 py-1 dark:border-white">2026</span>
+                        <span class="project-status"><span aria-hidden="true">●</span> Active</span>
                         <span class="text-xs font-mono uppercase tracking-widest text-neutral-500">TypeScript / Agents</span>
                     </div>
                     <h3 class="text-4xl font-black tracking-tighter group-hover:underline decoration-4 underline-offset-4">AetherCore</h3>
@@ -266,7 +198,7 @@
         </div>
 
         <div class="mt-14 grid grid-cols-1 gap-x-10 gap-y-14 md:grid-cols-2" data-reveal-group>
-            <a href="https://github.com/Elsyvien/Harmony" target="_blank" rel="noopener noreferrer" class="project-card group block" data-reveal data-project-category="ts" data-skills="typescript react websocket">
+            <a href="https://elsyvien.github.io/Harmony/" target="_blank" rel="noopener noreferrer" class="project-card group block" data-reveal data-project-category="ts" data-skills="typescript react websocket">
                 <div class="aspect-video bg-gradient-to-bl from-slate-950 via-zinc-900 to-neutral-950 mb-6 border border-black/5 dark:border-white/5 overflow-hidden relative rounded-lg flex items-center justify-center">
                     <div class="absolute inset-0 opacity-20" style="background-image: linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px); background-size: 24px 24px;"></div>
                     <div class="code-window">
@@ -287,7 +219,7 @@
                     <span class="shrink-0 text-xs font-mono border border-black px-2 py-1 dark:border-white">2026</span>
                 </div>
                 <p class="text-neutral-600 dark:text-neutral-400 text-sm mb-4">
-                    Discord-inspired chat platform with realtime messaging, voice channels, presence, friends, and a documented full-stack architecture.
+                    An open-source chat platform with real-time messaging, voice channels, presence, friends, and a Fastify/React architecture.
                 </p>
                 <ul class="flex flex-wrap gap-2 text-xs font-mono font-bold uppercase tracking-wider text-neutral-500">
                     <li class="bg-neutral-100 px-2 py-1 rounded dark:bg-neutral-900">TypeScript</li>
@@ -317,7 +249,7 @@
                     <span class="shrink-0 text-xs font-mono border border-black px-2 py-1 dark:border-white">2025</span>
                 </div>
                 <p class="text-neutral-600 dark:text-neutral-400 text-sm mb-4">
-                    C++/JUCE multiband compressor work that shows audio programming, realtime constraints, and DSP experimentation.
+                    A C++/JUCE multiband compressor for exploring crossovers, compression, and real-time DSP.
                 </p>
                 <ul class="flex flex-wrap gap-2 text-xs font-mono font-bold uppercase tracking-wider text-neutral-500">
                     <li class="bg-neutral-100 px-2 py-1 rounded dark:bg-neutral-900">C++</li>
@@ -412,7 +344,7 @@
                     <span class="shrink-0 text-xs font-mono border border-black px-2 py-1 dark:border-white">2025</span>
                 </div>
                 <p class="text-neutral-600 dark:text-neutral-400 text-sm mb-4">
-                    macOS menubar utility for tracking average and current battery usage, small enough to show product thinking beyond web apps.
+                    A Swift menu bar utility for tracking current and average battery use.
                 </p>
                 <ul class="flex flex-wrap gap-2 text-xs font-mono font-bold uppercase tracking-wider text-neutral-500">
                     <li class="bg-neutral-100 px-2 py-1 rounded dark:bg-neutral-900">Swift</li>
@@ -423,296 +355,165 @@
         </div>
     </section>
 
-    <!-- Code Activity / GitHub Chart -->
-    <section class="py-12 px-6 max-w-6xl mx-auto border-t border-black/10 dark:border-white/10" data-reveal>
-        <h2 class="text-xl font-bold uppercase tracking-widest mb-8">Code Activity</h2>
-        <div class="w-full overflow-x-auto pb-4">
-            <div class="min-w-[800px] opacity-70 hover:opacity-100 transition-opacity duration-300 filter grayscale contrast-125 dark:invert">
-                <img src="https://ghchart.rshah.org/000000/elsyvien" alt="Max's GitHub contributions chart" loading="lazy" decoding="async" class="w-full" />
-            </div>
-            <div class="mt-4 flex justify-between items-center text-xs font-mono text-neutral-500">
-                <span>Data: github.com/elsyvien</span>
-                <span>Contributions (Last Year)</span>
+    <section id="about" class="section-shell" data-reveal>
+        <div class="section-heading">
+            <div>
+                <p class="section-index">02 / Profile</p>
+                <h2>Experience &amp; background.</h2>
             </div>
         </div>
-    </section>
 
-    <!-- About / Resume (Text heavy, clean) -->
-    <section id="about" class="py-20 px-6 max-w-6xl mx-auto border-t border-black/10 dark:border-white/10" data-reveal>
-        <div class="grid md:grid-cols-12 gap-12">
-            <div class="md:col-span-4">
-                <h2 class="text-4xl font-black uppercase tracking-tighter sticky top-32">Resume</h2>
+        <div class="profile-grid">
+            <div class="profile-lede">
+                <p>I study Computer Science at the University of Tübingen and work as a System Architect at Bosch Sensortec.</p>
+                <p>My projects focus on developer tools, real-time communication, audio programming, and graphics.</p>
             </div>
-            <div class="md:col-span-8 space-y-12">
-                <p class="text-lg leading-relaxed text-neutral-700 dark:text-neutral-300">
-                    I am a Computer Science (B.Sc.) student currently studying at the Eberhard Karls University of Tübingen.
-                    My current work focuses on learning strong fundamentals through projects in backend development,
-                    realtime communication, audio programming, and graphics/engine development.
-                </p>
 
-                <div class="grid sm:grid-cols-2 gap-8 pt-2">
-                    <div>
-                        <h3 class="font-bold uppercase tracking-widest mb-4 border-b border-black dark:border-white pb-2">Education</h3>
-                        <ul class="space-y-4">
-                            <li>
-                                <div class="font-bold">B.Sc. Informatik (Computer Science)</div>
-                                <div class="text-sm text-neutral-500">Eberhard Karls University of Tübingen, 2024-Present</div>
-                                <div class="text-sm text-neutral-500">Expected graduation: 2027</div>
-                            </li>
-                            <li>
-                                <div class="font-bold">Abitur</div>
-                                <div class="text-sm text-neutral-500">Kepler-Gymnasium Tübingen, 2016-2024</div>
-                                <div class="text-sm text-neutral-500">Advanced courses: German, Computer Science, Physics</div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h3 class="font-bold uppercase tracking-widest mb-4 border-b border-black dark:border-white pb-2">Experience</h3>
-                        <ul class="space-y-4">
-                            <li>
-                                <div class="font-bold">System Architect</div>
-                                <div class="text-sm text-neutral-500">Bosch Sensortec, May 2026-Present</div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h3 class="font-bold uppercase tracking-widest mb-4 border-b border-black dark:border-white pb-2">Internship</h3>
-                        <ul class="space-y-4">
-                            <li>
-                                <div class="font-bold">Student Internship</div>
-                                <div class="text-sm text-neutral-500">PARAVAN GmbH, 2022</div>
-                                <div class="text-sm text-neutral-500">Insights into technical workflows and vehicle sensor technology</div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h3 class="font-bold uppercase tracking-widest mb-4 border-b border-black dark:border-white pb-2">Volunteering</h3>
-                        <ul class="space-y-4">
-                            <li>
-                                <div class="font-bold">Swim Coach (Beginner & Youth Group)</div>
-                                <div class="text-sm text-neutral-500">Tübinger Schwimmverein, 2023-Present</div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+            <div class="profile-details">
+                <section class="profile-block" aria-labelledby="experience-title">
+                    <h3 id="experience-title">Experience</h3>
+                    <ol class="timeline-list">
+                        <li>
+                            <div><strong>System Architect</strong><span>Bosch Sensortec</span></div>
+                            <time datetime="2026-05">May 2026—Present</time>
+                        </li>
+                        <li>
+                            <div><strong>Student Internship</strong><span>PARAVAN GmbH · Vehicle sensor technology</span></div>
+                            <time datetime="2022">2022</time>
+                        </li>
+                    </ol>
+                </section>
 
-                <div class="grid sm:grid-cols-2 gap-8">
-                    <div>
-                        <h3 class="font-bold uppercase tracking-widest mb-4 border-b border-black dark:border-white pb-2">Skills</h3>
-                        <ul class="space-y-4 text-sm">
-                            <li>
-                                <div class="font-bold text-base mb-2">Programming Languages</div>
-                                <div class="flex flex-wrap gap-2">
-                                    <span class="skill-pill px-2.5 py-1 text-xs font-mono rounded bg-neutral-100 dark:bg-neutral-900 border border-black/5 dark:border-white/5 cursor-pointer hover:border-black dark:hover:border-white transition-all duration-200" data-skill="cpp">C/C++</span>
-                                    <span class="skill-pill px-2.5 py-1 text-xs font-mono rounded bg-neutral-100 dark:bg-neutral-900 border border-black/5 dark:border-white/5 cursor-pointer hover:border-black dark:hover:border-white transition-all duration-200" data-skill="java">Java</span>
-                                    <span class="skill-pill px-2.5 py-1 text-xs font-mono rounded bg-neutral-100 dark:bg-neutral-900 border border-black/5 dark:border-white/5 cursor-pointer hover:border-black dark:hover:border-white transition-all duration-200" data-skill="typescript">TypeScript</span>
-                                    <span class="skill-pill px-2.5 py-1 text-xs font-mono rounded bg-neutral-100 dark:bg-neutral-900 border border-black/5 dark:border-white/5 cursor-pointer hover:border-black dark:hover:border-white transition-all duration-200" data-skill="python">Python</span>
-                                    <span class="skill-pill px-2.5 py-1 text-xs font-mono rounded bg-neutral-100 dark:bg-neutral-900 border border-black/5 dark:border-white/5 cursor-pointer hover:border-black dark:hover:border-white transition-all duration-200" data-skill="swift">Swift</span>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="font-bold text-base mb-2">Tools & Technologies</div>
-                                <div class="flex flex-wrap gap-2">
-                                    <span class="skill-pill px-2.5 py-1 text-xs font-mono rounded bg-neutral-100 dark:bg-neutral-900 border border-black/5 dark:border-white/5 cursor-pointer hover:border-black dark:hover:border-white transition-all duration-200" data-skill="react">React</span>
-                                    <span class="skill-pill px-2.5 py-1 text-xs font-mono rounded bg-neutral-100 dark:bg-neutral-900 border border-black/5 dark:border-white/5 cursor-pointer hover:border-black dark:hover:border-white transition-all duration-200" data-skill="juce">JUCE / DSP</span>
-                                    <span class="skill-pill px-2.5 py-1 text-xs font-mono rounded bg-neutral-100 dark:bg-neutral-900 border border-black/5 dark:border-white/5 cursor-pointer hover:border-black dark:hover:border-white transition-all duration-200" data-skill="websocket">WebSocket</span>
-                                    <span class="skill-pill px-2.5 py-1 text-xs font-mono rounded bg-neutral-100 dark:bg-neutral-900 border border-black/5 dark:border-white/5 cursor-pointer hover:border-black dark:hover:border-white transition-all duration-200" data-skill="tools">Git / SQL / Linux</span>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="font-bold text-base mb-2">Concepts</div>
-                                <div class="text-neutral-500">OOP, data structures, algorithms, debugging</div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h3 class="font-bold uppercase tracking-widest mb-4 border-b border-black dark:border-white pb-2">Languages</h3>
-                        <ul class="space-y-3 text-sm">
-                            <li class="flex items-center justify-between gap-4">
-                                <span>German</span>
-                                <span class="text-neutral-500">C2</span>
-                            </li>
-                            <li class="flex items-center justify-between gap-4">
-                                <span>English</span>
-                                <span class="text-neutral-500">C1</span>
-                            </li>
-                            <li class="flex items-center justify-between gap-4">
-                                <span>French</span>
-                                <span class="text-neutral-500">B1</span>
-                            </li>
-                            <li class="flex items-center justify-between gap-4">
-                                <span>Spanish</span>
-                                <span class="text-neutral-500">B1</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                <section class="profile-block" aria-labelledby="education-title">
+                    <h3 id="education-title">Education</h3>
+                    <ol class="timeline-list">
+                        <li>
+                            <div><strong>B.Sc. Informatik (Computer Science)</strong><span>University of Tübingen · Expected graduation 2027</span></div>
+                            <time datetime="2024">2024—Present</time>
+                        </li>
+                        <li>
+                            <div><strong>Abitur</strong><span>Kepler-Gymnasium Tübingen · German, Computer Science, Physics</span></div>
+                            <time datetime="2016">2016—2024</time>
+                        </li>
+                    </ol>
+                </section>
 
-                <div>
-                    <h3 class="font-bold uppercase tracking-widest mb-4 border-b border-black dark:border-white pb-2">Highlights & Interests</h3>
-                    <div class="grid sm:grid-cols-2 gap-6 text-sm">
+                <section class="profile-block" aria-labelledby="skills-title">
+                    <h3 id="skills-title">Languages &amp; tools</h3>
+                    <div class="skill-groups">
                         <div>
-                            <div class="font-bold mb-2">Projects (from resume)</div>
-                            <ul class="space-y-2 text-neutral-500">
-                                <li>Harmony chat platform (TypeScript, React, Fastify, WebSocket)</li>
-                                <li>Java chat application (Java, WebSocket, SQL)</li>
-                                <li>Aetherion Engine (C++, Vulkan, QT6)</li>
-                            </ul>
+                            <h4>Programming</h4>
+                            <p>C/C++ · Java · TypeScript · Python · Swift</p>
                         </div>
                         <div>
-                            <div class="font-bold mb-2">Personal Interests</div>
-                            <ul class="space-y-2 text-neutral-500">
-                                <li>Swimming</li>
-                                <li>Piano</li>
-                                <li>Music production</li>
-                                <li>Photography</li>
-                                <li>Programming</li>
-                            </ul>
+                            <h4>Technology</h4>
+                            <p>React · JUCE / DSP · WebSocket · Git · SQL · Linux</p>
                         </div>
                     </div>
+                </section>
+
+                <section class="profile-block profile-block-split" aria-labelledby="beyond-title">
+                    <div>
+                        <h3 id="beyond-title">Beyond code</h3>
+                        <p>Swimming · Piano · Music production · Photography</p>
+                    </div>
+                    <div>
+                        <h3>Languages</h3>
+                        <p>German C2 · English C1 · French B1 · Spanish B1</p>
+                    </div>
+                </section>
+
+                <section class="profile-block" aria-labelledby="community-title">
+                    <h3 id="community-title">Community</h3>
+                    <ol class="timeline-list">
+                        <li>
+                            <div><strong>Swim Coach</strong><span>Beginner &amp; youth group · Tübinger Schwimmverein</span></div>
+                            <time datetime="2023">2023—Present</time>
+                        </li>
+                    </ol>
+                </section>
+            </div>
+        </div>
+
+        <a href="https://elsyvien.github.io/AetherAlpha/" target="_blank" rel="noopener noreferrer" class="now-card motion-list-link">
+            <span class="now-label"><span aria-hidden="true">●</span> Current experiment</span>
+            <span class="now-title">AetherAlpha</span>
+            <span class="now-copy">An automated trading system built around the Alpaca Markets API, with a focused interface for structured execution.</span>
+            <span class="now-arrow" aria-hidden="true">↗</span>
+        </a>
+    </section>
+
+    <section id="photography" class="photography-section" aria-labelledby="photography-title" data-reveal>
+        <div class="photo-heading">
+            <div>
+                <p class="section-index">03 / Photography</p>
+                <h2 id="photography-title">Portraits, places, and light.</h2>
+                <p id="photo-instructions">A personal series of portraits, architecture, travel, and everyday details. Scroll, swipe, or use the arrow controls.</p>
+            </div>
+            <div class="photo-actions">
+                <a href="https://www.instagram.com/elsyvien/" target="_blank" rel="noopener noreferrer" class="text-link motion-link">Instagram <span aria-hidden="true">↗</span></a>
+                <div class="photo-controls" aria-label="Photography controls">
+                    <button id="photo-prev" type="button" aria-label="Previous photograph" aria-controls="photo-scroller">←</button>
+                    <button id="photo-next" type="button" aria-label="Next photograph" aria-controls="photo-scroller">→</button>
                 </div>
             </div>
         </div>
+        <div id="photo-scroller" class="photo-scroller" tabindex="0" role="region" aria-labelledby="photography-title" aria-describedby="photo-instructions">
+        <div id="image-track" class="photo-track">
+            <img class="image-card" src="images/roaster/responsive/DSC_2695-600.webp" srcset="images/roaster/responsive/DSC_2695-600.webp 600w, images/roaster/responsive/DSC_2695-1000.webp 1000w" sizes="(max-width: 640px) 68vw, (max-width: 1200px) 28vw, 23rem" alt="Photograph from a personal series, frame 1 of 10" width="1400" height="2100" loading="lazy" decoding="async" draggable="false" />
+            <img class="image-card" src="images/roaster/responsive/DSC_2703-600.webp" srcset="images/roaster/responsive/DSC_2703-600.webp 600w, images/roaster/responsive/DSC_2703-1000.webp 1000w" sizes="(max-width: 640px) 68vw, (max-width: 1200px) 28vw, 23rem" alt="Photograph from a personal series, frame 2 of 10" width="1400" height="2100" loading="lazy" decoding="async" draggable="false" />
+            <img class="image-card" src="images/roaster/responsive/DSC_3757-600.webp" srcset="images/roaster/responsive/DSC_3757-600.webp 600w, images/roaster/responsive/DSC_3757-1000.webp 1000w" sizes="(max-width: 640px) 68vw, (max-width: 1200px) 28vw, 23rem" alt="Photograph from a personal series, frame 3 of 10" width="1400" height="2100" loading="lazy" decoding="async" draggable="false" />
+            <img class="image-card" src="images/roaster/responsive/DSC_3894-600.webp" srcset="images/roaster/responsive/DSC_3894-600.webp 600w, images/roaster/responsive/DSC_3894-1000.webp 1000w" sizes="(max-width: 640px) 68vw, (max-width: 1200px) 28vw, 23rem" alt="Photograph from a personal series, frame 4 of 10" width="1400" height="2100" loading="lazy" decoding="async" draggable="false" />
+            <img class="image-card" src="images/roaster/responsive/DSC_4157-600.webp" srcset="images/roaster/responsive/DSC_4157-600.webp 600w, images/roaster/responsive/DSC_4157-1000.webp 1000w" sizes="(max-width: 640px) 68vw, (max-width: 1200px) 28vw, 23rem" alt="Photograph from a personal series, frame 5 of 10" width="1400" height="2100" loading="lazy" decoding="async" draggable="false" />
+            <img class="image-card" src="images/roaster/responsive/DSC_4426-600.webp" srcset="images/roaster/responsive/DSC_4426-600.webp 600w, images/roaster/responsive/DSC_4426-1000.webp 1000w" sizes="(max-width: 640px) 68vw, (max-width: 1200px) 28vw, 23rem" alt="Photograph from a personal series, frame 6 of 10" width="1400" height="2100" loading="lazy" decoding="async" draggable="false" />
+            <img class="image-card" src="images/roaster/responsive/DSC_5174-600.webp" srcset="images/roaster/responsive/DSC_5174-600.webp 600w, images/roaster/responsive/DSC_5174-1000.webp 1000w" sizes="(max-width: 640px) 68vw, (max-width: 1200px) 28vw, 23rem" alt="Photograph from a personal series, frame 7 of 10" width="1400" height="2100" loading="lazy" decoding="async" draggable="false" />
+            <img class="image-card" src="images/roaster/responsive/DSC_5480-600.webp" srcset="images/roaster/responsive/DSC_5480-600.webp 600w, images/roaster/responsive/DSC_5480-1000.webp 1000w" sizes="(max-width: 640px) 68vw, (max-width: 1200px) 28vw, 23rem" alt="Photograph from a personal series, frame 8 of 10" width="1400" height="2100" loading="lazy" decoding="async" draggable="false" />
+            <img class="image-card" src="images/roaster/responsive/DSC_5620-600.webp" srcset="images/roaster/responsive/DSC_5620-600.webp 600w, images/roaster/responsive/DSC_5620-1000.webp 1000w" sizes="(max-width: 640px) 68vw, (max-width: 1200px) 28vw, 23rem" alt="Photograph from a personal series, frame 9 of 10" width="1400" height="2100" loading="lazy" decoding="async" draggable="false" />
+            <img class="image-card" src="images/roaster/responsive/DSC_5631-600.webp" srcset="images/roaster/responsive/DSC_5631-600.webp 600w, images/roaster/responsive/DSC_5631-1000.webp 1000w" sizes="(max-width: 640px) 68vw, (max-width: 1200px) 28vw, 23rem" alt="Photograph from a personal series, frame 10 of 10" width="1400" height="2100" loading="lazy" decoding="async" draggable="false" />
+            <img class="image-card" src="images/travel/responsive/gb-thames-sunset-600.webp" srcset="images/travel/responsive/gb-thames-sunset-600.webp 600w, images/travel/responsive/gb-thames-sunset-1000.webp 1000w" sizes="(max-width: 640px) 68vw, (max-width: 1200px) 28vw, 23rem" alt="Sunset over the Thames in London" width="2100" height="1400" loading="lazy" decoding="async" draggable="false" />
+            <img class="image-card" src="images/travel/responsive/gb-architecture-canyon-600.webp" srcset="images/travel/responsive/gb-architecture-canyon-600.webp 600w, images/travel/responsive/gb-architecture-canyon-1000.webp 1000w" sizes="(max-width: 640px) 68vw, (max-width: 1200px) 28vw, 23rem" alt="Reflective London architecture canyon" width="1400" height="2100" loading="lazy" decoding="async" draggable="false" />
+            <img class="image-card" src="images/travel/responsive/gb-coast-lighthouse-600.webp" srcset="images/travel/responsive/gb-coast-lighthouse-600.webp 600w, images/travel/responsive/gb-coast-lighthouse-1000.webp 1000w" sizes="(max-width: 640px) 68vw, (max-width: 1200px) 28vw, 23rem" alt="Coastal lighthouse seen from above" width="1400" height="2100" loading="lazy" decoding="async" draggable="false" />
+            <img class="image-card" src="images/travel/responsive/gb-gherkin-architecture-600.webp" srcset="images/travel/responsive/gb-gherkin-architecture-600.webp 600w, images/travel/responsive/gb-gherkin-architecture-1000.webp 1000w" sizes="(max-width: 640px) 68vw, (max-width: 1200px) 28vw, 23rem" alt="London Gherkin framed by nearby buildings" width="2100" height="1400" loading="lazy" decoding="async" draggable="false" />
+            <img class="image-card" src="images/travel/responsive/gb-london-street-600.webp" srcset="images/travel/responsive/gb-london-street-600.webp 600w, images/travel/responsive/gb-london-street-1000.webp 1000w" sizes="(max-width: 640px) 68vw, (max-width: 1200px) 28vw, 23rem" alt="Moody London street with warm window light" width="1400" height="2100" loading="lazy" decoding="async" draggable="false" />
+            <img class="image-card" src="images/travel/responsive/gb-london-skyline-600.webp" srcset="images/travel/responsive/gb-london-skyline-600.webp 600w, images/travel/responsive/gb-london-skyline-1000.webp 1000w" sizes="(max-width: 640px) 68vw, (max-width: 1200px) 28vw, 23rem" alt="Dramatic London skyline under storm clouds" width="2100" height="1400" loading="lazy" decoding="async" draggable="false" />
+            <img class="image-card" src="images/travel/responsive/gb-shard-minimal-600.webp" srcset="images/travel/responsive/gb-shard-minimal-600.webp 600w, images/travel/responsive/gb-shard-minimal-1000.webp 1000w" sizes="(max-width: 640px) 68vw, (max-width: 1200px) 28vw, 23rem" alt="The Shard in a minimal vertical composition" width="1400" height="2100" loading="lazy" decoding="async" draggable="false" />
+            <img class="image-card" src="images/travel/responsive/usa-car-detail-600.webp" srcset="images/travel/responsive/usa-car-detail-600.webp 600w, images/travel/responsive/usa-car-detail-1000.webp 1000w" sizes="(max-width: 640px) 68vw, (max-width: 1200px) 28vw, 23rem" alt="Classic car detail in warm sunlight" width="1400" height="2100" loading="lazy" decoding="async" draggable="false" />
+            <img class="image-card" src="images/travel/responsive/usa-palms-evening-600.webp" srcset="images/travel/responsive/usa-palms-evening-600.webp 600w, images/travel/responsive/usa-palms-evening-1000.webp 1000w" sizes="(max-width: 640px) 68vw, (max-width: 1200px) 28vw, 23rem" alt="Palm trees and evening sky in California" width="1400" height="2100" loading="lazy" decoding="async" draggable="false" />
+            <img class="image-card" src="images/travel/responsive/usa-palm-car-street-600.webp" srcset="images/travel/responsive/usa-palm-car-street-600.webp 600w, images/travel/responsive/usa-palm-car-street-1000.webp 1000w" sizes="(max-width: 640px) 68vw, (max-width: 1200px) 28vw, 23rem" alt="White car on a palm-lined street" width="1400" height="2100" loading="lazy" decoding="async" draggable="false" />
+            <img class="image-card" src="images/travel/responsive/usa-flag-road-600.webp" srcset="images/travel/responsive/usa-flag-road-600.webp 600w, images/travel/responsive/usa-flag-road-1000.webp 1000w" sizes="(max-width: 640px) 68vw, (max-width: 1200px) 28vw, 23rem" alt="American flag over a desert road" width="1400" height="2100" loading="lazy" decoding="async" draggable="false" />
+            <img class="image-card" src="images/travel/responsive/usa-canyon-rock-600.webp" srcset="images/travel/responsive/usa-canyon-rock-600.webp 600w, images/travel/responsive/usa-canyon-rock-1000.webp 1000w" sizes="(max-width: 640px) 68vw, (max-width: 1200px) 28vw, 23rem" alt="Warm rock walls inside a canyon" width="1400" height="2100" loading="lazy" decoding="async" draggable="false" />
+            <img class="image-card" src="images/travel/responsive/usa-drive-thru-sunset-600.webp" srcset="images/travel/responsive/usa-drive-thru-sunset-600.webp 600w, images/travel/responsive/usa-drive-thru-sunset-1000.webp 1000w" sizes="(max-width: 640px) 68vw, (max-width: 1200px) 28vw, 23rem" alt="Drive-through sign at sunset" width="2100" height="1400" loading="lazy" decoding="async" draggable="false" />
+            <img class="image-card" src="images/travel/responsive/usa-golden-gate-fog-600.webp" srcset="images/travel/responsive/usa-golden-gate-fog-600.webp 600w, images/travel/responsive/usa-golden-gate-fog-1000.webp 1000w" sizes="(max-width: 640px) 68vw, (max-width: 1200px) 28vw, 23rem" alt="Golden Gate Bridge in heavy fog" width="1400" height="2100" loading="lazy" decoding="async" draggable="false" />
+            <img class="image-card" src="images/travel/responsive/usa-golden-gate-person-600.webp" srcset="images/travel/responsive/usa-golden-gate-person-600.webp 600w, images/travel/responsive/usa-golden-gate-person-1000.webp 1000w" sizes="(max-width: 640px) 68vw, (max-width: 1200px) 28vw, 23rem" alt="Person looking toward the Golden Gate Bridge" width="1400" height="2100" loading="lazy" decoding="async" draggable="false" />
+        </div>
+        </div>
+        <div class="photo-progress-wrap">
+            <span>Selected frames</span>
+            <output id="photo-progress" aria-live="polite">01 / 25</output>
+        </div>
     </section>
 
-    <!-- Currently Working on -->
-    <section id="currently-working-on" class="py-20 px-6 max-w-6xl mx-auto border-t border-black/10 dark:border-white/10" data-reveal>
-        <div class="grid md:grid-cols-12 gap-12">
-            <div class="md:col-span-4">
-                <h2 class="text-4xl font-black uppercase tracking-tighter sticky top-32">Currently Working On</h2>
-            </div>
-            <div class="md:col-span-8 space-y-12">
-                <div class="grid sm:grid-cols-1 gap-8">
-                    <a href="https://elsyvien.github.io/JetForge/" target="_blank" rel="noopener noreferrer" class="project-card motion-list-link group block" data-skills="typescript java tools">
-                        <div class="flex justify-between items-center mb-2">
-                            <h3 class="text-2xl font-bold flex items-center gap-2">
-                                <span class="group-hover:underline decoration-2 underline-offset-4">JetForge</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-neutral-400 group-hover:text-black dark:group-hover:text-white group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                                </svg>
-                            </h3>
-                        </div>
-                        <p class="text-neutral-600 dark:text-neutral-400 text-sm mb-4">
-                            VSCode extension for .txtjet Java emitter templates. Adds TextMate highlighting, generated-output language modes, snippets, diagnostics, Quick Fixes and local-first template tooling.
-                        </p>
-                    </a>
-
-                    <a href="https://elsyvien.github.io/AetherCore/" target="_blank" rel="noopener noreferrer" class="project-card motion-list-link group block" data-skills="typescript tools">
-                        <div class="flex justify-between items-center mb-2">
-                            <h3 class="text-2xl font-bold flex items-center gap-2">
-                                <span class="group-hover:underline decoration-2 underline-offset-4">AetherCore</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-neutral-400 group-hover:text-black dark:group-hover:text-white group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                                </svg>
-                            </h3>
-                        </div>
-                        <p class="text-neutral-600 dark:text-neutral-400 text-sm mb-4">
-                            Desktop orchestration for repo-focused autonomous coding swarms. Local-first, deterministic, and review-gated.
-                        </p>
-                    </a>
-
-                    <a href="https://elsyvien.github.io/Harmony/" target="_blank" rel="noopener noreferrer" class="project-card motion-list-link group block" data-skills="typescript react websocket">
-                        <div class="flex justify-between items-center mb-2">
-                            <h3 class="text-2xl font-bold flex items-center gap-2">
-                                <span class="group-hover:underline decoration-2 underline-offset-4">Harmony</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-neutral-400 group-hover:text-black dark:group-hover:text-white group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                                </svg>
-                            </h3>
-                        </div>
-                        <p class="text-neutral-600 dark:text-neutral-400 text-sm mb-4">
-                            A Free and Open Source Chat platform with robust real-time behavior, Fastify API, React frontend and custom WebSockets.
-                        </p>
-                    </a>
-
-                    <a href="https://elsyvien.github.io/AetherAlpha/" target="_blank" rel="noopener noreferrer" class="project-card motion-list-link group block" data-skills="python tools">
-                        <div class="flex justify-between items-center mb-2">
-                            <h3 class="text-2xl font-bold flex items-center gap-2">
-                                <span class="group-hover:underline decoration-2 underline-offset-4">AetherAlpha</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-neutral-400 group-hover:text-black dark:group-hover:text-white group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                                </svg>
-                            </h3>
-                        </div>
-                        <p class="text-neutral-600 dark:text-neutral-400 text-sm mb-4">
-                            An automated trading bot featuring a calm, precise control UI. Uses the Alpaca Markets API for deterministic, structured real trading without supervision.
-                        </p>
-                    </a>
+    <section id="contact" class="contact-section" data-reveal>
+        <p class="section-index">04 / Contact</p>
+        <div class="contact-grid">
+            <h2>Let’s connect.</h2>
+            <div class="contact-copy">
+                <p>Interested in developer tooling, real-time systems, or technical collaboration? Connect with me on LinkedIn or explore the code on GitHub.</p>
+                <div class="contact-actions">
+                    <a href="https://www.linkedin.com/in/max-staneker/" target="_blank" rel="noopener noreferrer" class="button-primary motion-button">Connect on LinkedIn <span aria-hidden="true">↗</span></a>
+                    <a href="https://github.com/elsyvien" target="_blank" rel="noopener noreferrer" class="text-link motion-link">View GitHub <span aria-hidden="true">↗</span></a>
                 </div>
+                <p class="contact-note">Based in Tübingen, Germany.</p>
             </div>
         </div>
     </section>
+    </main>
 
-    <!-- Horizontal Image Slider -->
-    <section class="relative h-[80vh] w-full overflow-hidden bg-white dark:bg-black border-t border-black/10 dark:border-white/10" id="slider-section" tabindex="0" aria-label="Horizontal photo gallery" data-reveal>
-        <div class="slider-hint">Photography &mdash; drag to explore</div>
-        <div id="image-track">
-            <img class="image-card" src="images/roaster/optimized/DSC_2695.webp" alt="Roaster portrait 1" width="1400" height="2100" loading="lazy" decoding="async" draggable="false" />
-            <img class="image-card" src="images/roaster/optimized/DSC_2703.webp" alt="Roaster portrait 2" width="1400" height="2100" loading="lazy" decoding="async" draggable="false" />
-            <img class="image-card" src="images/roaster/optimized/DSC_3757.webp" alt="Roaster portrait 3" width="1400" height="2100" loading="lazy" decoding="async" draggable="false" />
-            <img class="image-card" src="images/roaster/optimized/DSC_3894.webp" alt="Roaster portrait 4" width="1400" height="2100" loading="lazy" decoding="async" draggable="false" />
-            <img class="image-card" src="images/roaster/optimized/DSC_4157.webp" alt="Roaster portrait 5" width="1400" height="2100" loading="lazy" decoding="async" draggable="false" />
-            <img class="image-card" src="images/roaster/optimized/DSC_4426.webp" alt="Roaster portrait 6" width="1400" height="2100" loading="lazy" decoding="async" draggable="false" />
-            <img class="image-card" src="images/roaster/optimized/DSC_5174.webp" alt="Roaster portrait 7" width="1400" height="2100" loading="lazy" decoding="async" draggable="false" />
-            <img class="image-card" src="images/roaster/optimized/DSC_5480.webp" alt="Roaster portrait 8" width="1400" height="2100" loading="lazy" decoding="async" draggable="false" />
-            <img class="image-card" src="images/roaster/optimized/DSC_5620.webp" alt="Roaster portrait 9" width="1400" height="2100" loading="lazy" decoding="async" draggable="false" />
-            <img class="image-card" src="images/roaster/optimized/DSC_5631.webp" alt="Roaster portrait 10" width="1400" height="2100" loading="lazy" decoding="async" draggable="false" />
-            <img class="image-card" src="images/travel/optimized/gb-thames-sunset.webp" alt="Sunset over the Thames in London" width="2100" height="1400" loading="lazy" decoding="async" draggable="false" />
-            <img class="image-card" src="images/travel/optimized/gb-architecture-canyon.webp" alt="Reflective London architecture canyon" width="1400" height="2100" loading="lazy" decoding="async" draggable="false" />
-            <img class="image-card" src="images/travel/optimized/gb-coast-lighthouse.webp" alt="Coastal lighthouse seen from above" width="1400" height="2100" loading="lazy" decoding="async" draggable="false" />
-            <img class="image-card" src="images/travel/optimized/gb-gherkin-architecture.webp" alt="London Gherkin framed by nearby buildings" width="2100" height="1400" loading="lazy" decoding="async" draggable="false" />
-            <img class="image-card" src="images/travel/optimized/gb-london-street.webp" alt="Moody London street with warm window light" width="1400" height="2100" loading="lazy" decoding="async" draggable="false" />
-            <img class="image-card" src="images/travel/optimized/gb-london-skyline.webp" alt="Dramatic London skyline under storm clouds" width="2100" height="1400" loading="lazy" decoding="async" draggable="false" />
-            <img class="image-card" src="images/travel/optimized/gb-shard-minimal.webp" alt="The Shard in a minimal vertical composition" width="1400" height="2100" loading="lazy" decoding="async" draggable="false" />
-            <img class="image-card" src="images/travel/optimized/usa-car-detail.webp" alt="Classic car detail in warm sunlight" width="1400" height="2100" loading="lazy" decoding="async" draggable="false" />
-            <img class="image-card" src="images/travel/optimized/usa-palms-evening.webp" alt="Palm trees and evening sky in California" width="1400" height="2100" loading="lazy" decoding="async" draggable="false" />
-            <img class="image-card" src="images/travel/optimized/usa-palm-car-street.webp" alt="White car on a palm-lined street" width="1400" height="2100" loading="lazy" decoding="async" draggable="false" />
-            <img class="image-card" src="images/travel/optimized/usa-flag-road.webp" alt="American flag over a desert road" width="1400" height="2100" loading="lazy" decoding="async" draggable="false" />
-            <img class="image-card" src="images/travel/optimized/usa-canyon-rock.webp" alt="Warm rock walls inside a canyon" width="1400" height="2100" loading="lazy" decoding="async" draggable="false" />
-            <img class="image-card" src="images/travel/optimized/usa-drive-thru-sunset.webp" alt="Drive-through sign at sunset" width="2100" height="1400" loading="lazy" decoding="async" draggable="false" />
-            <img class="image-card" src="images/travel/optimized/usa-golden-gate-fog.webp" alt="Golden Gate Bridge in heavy fog" width="1400" height="2100" loading="lazy" decoding="async" draggable="false" />
-            <img class="image-card" src="images/travel/optimized/usa-golden-gate-person.webp" alt="Person looking toward the Golden Gate Bridge" width="1400" height="2100" loading="lazy" decoding="async" draggable="false" />
-        </div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact" class="py-32 px-6 max-w-6xl mx-auto border-t border-black/10 dark:border-white/10 text-center" data-reveal>
-        <h2 class="text-6xl md:text-8xl font-black tracking-tighter mb-6 hover:tracking-normal transition-all duration-500 cursor-default">LET'S TALK.</h2>
-        <p class="max-w-2xl mx-auto mb-12 text-neutral-600 dark:text-neutral-400">
-            Based in Tübingen and currently studying computer science. Reach out for student projects, collaborations, or technical exchange.
-        </p>
-        <div class="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 text-xl">
-            <a href="https://www.instagram.com/elsyvien/" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-3 hover:underline decoration-2 underline-offset-8" aria-label="Instagram profile of @elsyvien">
-                <svg viewBox="0 0 24 24" class="w-5 h-5 fill-current" aria-hidden="true">
-                    <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5a4.25 4.25 0 0 0 4.25 4.25h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5a4.25 4.25 0 0 0-4.25-4.25h-8.5Zm8.75 2.25a1 1 0 1 1 0 2 1 1 0 0 1 0-2ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 1.5A3.5 3.5 0 1 0 12 15.5 3.5 3.5 0 0 0 12 8.5Z" />
-                </svg>
-                <span>@elsyvien</span>
-            </a>
-            <a href="https://github.com/elsyvien" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-3 hover:underline decoration-2 underline-offset-8" aria-label="GitHub profile of @elsyvien">
-                <svg viewBox="0 0 24 24" class="w-5 h-5 fill-current" aria-hidden="true">
-                    <path d="M12 .5a12 12 0 0 0-3.79 23.39c.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.41-4.04-1.41-.55-1.38-1.34-1.75-1.34-1.75-1.1-.74.08-.72.08-.72 1.21.09 1.85 1.23 1.85 1.23 1.08 1.82 2.82 1.3 3.5.99.11-.77.42-1.3.76-1.6-2.67-.3-5.47-1.31-5.47-5.86 0-1.3.47-2.37 1.24-3.2-.12-.3-.54-1.52.12-3.16 0 0 1.01-.32 3.3 1.22a11.6 11.6 0 0 1 6 0c2.28-1.54 3.29-1.22 3.29-1.22.66 1.64.24 2.86.12 3.16.77.83 1.24 1.9 1.24 3.2 0 4.56-2.8 5.55-5.48 5.85.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12 12 0 0 0 12 .5Z" />
-                </svg>
-                <span>GitHub</span>
-            </a>
-            <a href="https://www.linkedin.com/in/max-staneker/" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-3 hover:underline decoration-2 underline-offset-8" aria-label="LinkedIn profile of Max Staneker">
-                <svg viewBox="0 0 24 24" class="w-5 h-5 fill-current" aria-hidden="true">
-                    <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V8.98h3.42v1.57h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.29ZM5.32 7.41a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12Zm1.78 13.04H3.54V8.98H7.1v11.47ZM22.22 0H1.77A1.75 1.75 0 0 0 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45A1.76 1.76 0 0 0 24 22.27V1.73C24 .77 23.21 0 22.22 0Z" />
-                </svg>
-                <span>LinkedIn</span>
-            </a>
-            <a href="https://uni-tuebingen.de/" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-3 hover:underline decoration-2 underline-offset-8" aria-label="University of Tuebingen website">
-                <svg viewBox="0 0 24 24" class="w-5 h-5 fill-current" aria-hidden="true">
-                    <path d="M12 2 2 7v2h1.5v7H2V18h20v-2h-1.5V9H22V7L12 2Zm0 2.18 5.81 2.32L12 8.82 6.19 6.5 12 4.18ZM8 10h2v6H8v-6Zm3 0h2v6h-2v-6Zm3 0h2v6h-2v-6Z" />
-                </svg>
-                <span>Uni Tübingen</span>
-            </a>
-        </div>
-    </section>
-
-    <footer class="py-8 px-6 text-sm font-mono text-neutral-500 border-t border-black/10 dark:border-white/10">
-        <div class="max-w-6xl mx-auto footer-inner">
-            <span>&copy; 2026 MAX STANEKER</span>
-            <a href="#" class="back-to-top" aria-label="Back to top of page">Back to top &#8593;</a>
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <span>&copy; 2026 Max Staneker</span>
+            <span>Tübingen / Germany</span>
+            <a href="#main-content" class="back-to-top" aria-label="Back to top of page">Back to top ↑</a>
         </div>
     </footer>
 

@@ -1,150 +1,164 @@
 (() => {
   const html = document.documentElement;
-  const themeToggle = document.getElementById("theme-toggle");
+  const body = document.body;
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const systemTheme = window.matchMedia("(prefers-color-scheme: dark)");
 
-  html.classList.add("motion-ready");
+  const readStoredTheme = () => {
+    try {
+      return localStorage.getItem("theme");
+    } catch (_) {
+      return null;
+    }
+  };
 
-  if (
-    localStorage.theme === "dark" ||
-    (!("theme" in localStorage) &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches)
-  ) {
-    html.classList.add("dark");
-  }
+  const storeTheme = (theme) => {
+    try {
+      localStorage.setItem("theme", theme);
+    } catch (_) {
+      // A blocked storage API should never prevent theme switching.
+    }
+  };
 
-  if (themeToggle) {
-    themeToggle.addEventListener("click", () => {
-      themeToggle.classList.add("is-switching");
-      html.classList.toggle("dark");
-      localStorage.theme = html.classList.contains("dark") ? "dark" : "light";
-      window.setTimeout(() => {
-        themeToggle.classList.remove("is-switching");
-      }, 180);
-    });
-  }
+  const themeToggle = document.getElementById("theme-toggle");
 
-  // Mobile menu
+  const syncThemeControl = () => {
+    if (!themeToggle) return;
+    const isDark = html.classList.contains("dark");
+    themeToggle.setAttribute("aria-pressed", String(isDark));
+    themeToggle.setAttribute(
+      "aria-label",
+      isDark ? "Switch to light theme" : "Switch to dark theme",
+    );
+  };
+
+  const applyTheme = (isDark, persist = false) => {
+    html.classList.toggle("dark", isDark);
+    if (persist) storeTheme(isDark ? "dark" : "light");
+    syncThemeControl();
+  };
+
+  syncThemeControl();
+
+  themeToggle?.addEventListener("click", () => {
+    themeToggle.classList.add("is-switching");
+    applyTheme(!html.classList.contains("dark"), true);
+    window.setTimeout(() => themeToggle.classList.remove("is-switching"), 180);
+  });
+
+  systemTheme.addEventListener("change", (event) => {
+    if (!readStoredTheme()) applyTheme(event.matches);
+  });
+
   const menuToggle = document.getElementById("mobile-menu-toggle");
   const mobileMenu = document.getElementById("mobile-menu");
+  const main = document.getElementById("main-content");
+  const footer = document.querySelector(".site-footer");
+  const brandLink = document.querySelector(".brand-mark");
+  const skipLink = document.querySelector(".skip-link");
+  let menuCloseTimer = null;
+
+  const setPageInert = (inert) => {
+    if (main) main.inert = inert;
+    if (footer) footer.inert = inert;
+    if (themeToggle) themeToggle.inert = inert;
+    if (brandLink) brandLink.inert = inert;
+    if (skipLink) skipLink.inert = inert;
+  };
+
+  const openMenu = () => {
+    if (!menuToggle || !mobileMenu) return;
+    window.clearTimeout(menuCloseTimer);
+    mobileMenu.classList.remove("is-closing");
+    mobileMenu.removeAttribute("inert");
+    mobileMenu.setAttribute("aria-hidden", "false");
+    mobileMenu.classList.add("is-open");
+    menuToggle.setAttribute("aria-expanded", "true");
+    menuToggle.setAttribute("aria-label", "Close navigation menu");
+    body.classList.add("menu-open");
+    setPageInert(true);
+    window.requestAnimationFrame(() => {
+      mobileMenu.querySelector("[data-mobile-link]")?.focus();
+    });
+  };
+
+  const closeMenu = ({ restoreFocus = true } = {}) => {
+    if (!menuToggle || !mobileMenu) return;
+    window.clearTimeout(menuCloseTimer);
+    mobileMenu.classList.remove("is-open");
+    mobileMenu.setAttribute("aria-hidden", "true");
+    mobileMenu.setAttribute("inert", "");
+    menuToggle.setAttribute("aria-expanded", "false");
+    menuToggle.setAttribute("aria-label", "Open navigation menu");
+    body.classList.remove("menu-open");
+    setPageInert(false);
+
+    if (reducedMotion.matches) {
+      mobileMenu.classList.remove("is-closing");
+    } else {
+      mobileMenu.classList.add("is-closing");
+      menuCloseTimer = window.setTimeout(() => {
+        mobileMenu.classList.remove("is-closing");
+      }, 260);
+    }
+
+    if (restoreFocus) menuToggle.focus();
+  };
 
   if (menuToggle && mobileMenu) {
-    let closeTimer = null;
+    menuToggle.addEventListener("click", () => {
+      if (mobileMenu.classList.contains("is-open")) closeMenu();
+      else openMenu();
+    });
 
-    const openMenu = () => {
-      window.clearTimeout(closeTimer);
-      mobileMenu.classList.remove("is-closing");
-      mobileMenu.classList.add("is-open");
-      menuToggle.setAttribute("aria-expanded", "true");
-      menuToggle.setAttribute("aria-label", "Close navigation menu");
-      document.body.style.overflow = "hidden";
-    };
+    mobileMenu.querySelectorAll("[data-mobile-link]").forEach((link) => {
+      link.addEventListener("click", () => closeMenu({ restoreFocus: false }));
+    });
 
-    const closeMenu = () => {
-      window.clearTimeout(closeTimer);
-      mobileMenu.classList.remove("is-open");
-      menuToggle.setAttribute("aria-expanded", "false");
-      menuToggle.setAttribute("aria-label", "Open navigation menu");
-      document.body.style.overflow = "";
+    document.addEventListener("keydown", (event) => {
+      if (!mobileMenu.classList.contains("is-open")) return;
 
-      if (reducedMotion.matches) {
-        mobileMenu.classList.remove("is-closing");
+      if (event.key === "Escape") {
+        event.preventDefault();
+        closeMenu();
         return;
       }
 
-      mobileMenu.classList.add("is-closing");
-      closeTimer = window.setTimeout(() => {
-        mobileMenu.classList.remove("is-closing");
-      }, 260);
-    };
+      if (event.key !== "Tab") return;
+      const focusable = [
+        ...mobileMenu.querySelectorAll("[data-mobile-link]"),
+        menuToggle,
+      ];
+      const first = focusable[0];
+      const currentIndex = focusable.indexOf(document.activeElement);
+      if (currentIndex === -1) {
+        event.preventDefault();
+        first.focus();
+        return;
+      }
 
-    menuToggle.addEventListener("click", () => {
-      if (mobileMenu.classList.contains("is-open")) {
-        closeMenu();
-      } else {
-        openMenu();
+      event.preventDefault();
+      const direction = event.shiftKey ? -1 : 1;
+      const nextIndex = (currentIndex + direction + focusable.length) % focusable.length;
+      focusable[nextIndex].focus();
+    });
+
+    window.addEventListener("resize", () => {
+      if (window.innerWidth >= 768 && mobileMenu.classList.contains("is-open")) {
+        closeMenu({ restoreFocus: false });
       }
     });
-
-    // Close when a nav link is clicked
-    mobileMenu.querySelectorAll("[data-mobile-link]").forEach((link) => {
-      link.addEventListener("click", closeMenu);
-    });
-
-    // Close on Escape
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && mobileMenu.classList.contains("is-open")) {
-        closeMenu();
-        menuToggle.focus();
-      }
-    });
-  }
-
-  // Scroll-triggered animations
-  const animatedElements = document.querySelectorAll("[data-animate]");
-  if ("IntersectionObserver" in window) {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) {
-            return;
-          }
-
-          entry.target.style.animationPlayState = "running";
-          observer.unobserve(entry.target);
-        });
-      },
-      { threshold: 0.25 },
-    );
-
-    animatedElements.forEach((el) => observer.observe(el));
-  } else {
-    animatedElements.forEach((el) => {
-      el.style.animationPlayState = "running";
-    });
-  }
-
-  const revealElements = document.querySelectorAll("[data-reveal]");
-  const revealItems = Array.from(revealElements);
-
-  revealItems.forEach((el) => {
-    const parentGroup = el.closest("[data-reveal-group]");
-    if (!parentGroup) {
-      return;
-    }
-
-    const index = Array.from(parentGroup.querySelectorAll("[data-reveal]")).indexOf(el);
-    el.style.setProperty("--reveal-delay", `${Math.min(index * 80, 240)}ms`);
-  });
-
-  if (reducedMotion.matches || !("IntersectionObserver" in window)) {
-    revealItems.forEach((el) => el.classList.add("is-visible"));
-  } else {
-    const revealObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) {
-            return;
-          }
-
-          entry.target.classList.add("is-visible");
-          revealObserver.unobserve(entry.target);
-        });
-      },
-      { rootMargin: "0px 0px -12% 0px", threshold: 0.16 },
-    );
-
-    revealItems.forEach((el) => revealObserver.observe(el));
   }
 
   const depthItems = document.querySelectorAll("[data-motion-depth]");
-  if (!reducedMotion.matches && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+  const precisePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
+
+  if (!reducedMotion.matches && precisePointer.matches) {
     depthItems.forEach((item) => {
       item.addEventListener("pointermove", (event) => {
         const rect = item.getBoundingClientRect();
         const x = (event.clientX - rect.left) / rect.width - 0.5;
         const y = (event.clientY - rect.top) / rect.height - 0.5;
-
         item.style.setProperty("--motion-depth-x", `${x * 8}px`);
         item.style.setProperty("--motion-depth-y", `${y * 8}px`);
       });
@@ -156,298 +170,106 @@
     });
   }
 
-  // Photo slider
-  const track = document.getElementById("image-track");
-  const sliderSection = document.getElementById("slider-section");
+  const navLinks = [...document.querySelectorAll('.site-nav-links a[href^="#"]')];
+  const observedSections = navLinks
+    .map((link) => document.querySelector(link.getAttribute("href")))
+    .filter(Boolean);
 
-  if (!track || !sliderSection) {
-    return;
+  if ("IntersectionObserver" in window && observedSections.length) {
+    const sectionObserver = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (!visible) return;
+
+        navLinks.forEach((link) => {
+          const active = link.getAttribute("href") === `#${visible.target.id}`;
+          if (active) link.setAttribute("aria-current", "true");
+          else link.removeAttribute("aria-current");
+        });
+      },
+      { rootMargin: "-30% 0px -60% 0px", threshold: [0, 0.1, 0.5] },
+    );
+    observedSections.forEach((section) => sectionObserver.observe(section));
   }
 
-  // Wrap each gallery image in an overflow-hidden container for uniform parallax
-  Array.from(track.querySelectorAll(".image-card")).forEach((img) => {
-    const wrap = document.createElement("div");
-    wrap.className = "image-card-wrap";
-    img.parentNode.insertBefore(wrap, img);
-    wrap.appendChild(img);
-  });
+  const photoScroller = document.getElementById("photo-scroller");
+  const photoImages = photoScroller
+    ? [...photoScroller.querySelectorAll(".image-card")]
+    : [];
+  const photoPrev = document.getElementById("photo-prev");
+  const photoNext = document.getElementById("photo-next");
+  const photoProgress = document.getElementById("photo-progress");
+  let photoUpdateFrame = null;
 
-  let pointerDownAt = null;
-  let translate = 0;
-  let prevTranslate = 0;
-  let currentTranslate = 0;
-  let minTranslate = 0;
-  let rafId = null;
+  const getPhotoStep = () => {
+    if (!photoImages.length) return 0;
+    const track = document.getElementById("image-track");
+    const gap = track ? Number.parseFloat(getComputedStyle(track).columnGap) || 0 : 0;
+    return photoImages[0].getBoundingClientRect().width + gap;
+  };
 
-  const lerp = (start, end, factor) => start + (end - start) * factor;
-  const clamp = (value, min, max) => Math.max(Math.min(value, max), min);
+  const getActivePhotoIndex = () => {
+    if (!photoScroller || !photoImages.length) return 0;
+    const scrollerRect = photoScroller.getBoundingClientRect();
+    const start = scrollerRect.left + Number.parseFloat(getComputedStyle(photoScroller).paddingLeft);
+    let bestIndex = 0;
+    let bestDistance = Number.POSITIVE_INFINITY;
 
-  let imageOffsets = [];
-  const updateMinTranslate = () => {
-    const images = track.querySelectorAll(".image-card-wrap");
-    imageOffsets = [];
-    if (images.length > 0) {
-      images.forEach((wrap) => {
-        const img = wrap.querySelector(".image-card");
-        if (img) {
-          imageOffsets.push({
-            element: img,
-            offsetLeft: wrap.offsetLeft
-          });
-        }
-      });
-      const dist = images[images.length - 1].offsetLeft - images[0].offsetLeft;
-      if (dist > 0) {
-        minTranslate = -dist;
+    photoImages.forEach((image, index) => {
+      const distance = Math.abs(image.getBoundingClientRect().left - start);
+      if (distance < bestDistance) {
+        bestDistance = distance;
+        bestIndex = index;
       }
+    });
+
+    return bestIndex;
+  };
+
+  const updatePhotoControls = () => {
+    photoUpdateFrame = null;
+    if (!photoScroller || !photoImages.length) return;
+    const index = getActivePhotoIndex();
+    const displayIndex = String(index + 1).padStart(2, "0");
+    const total = String(photoImages.length).padStart(2, "0");
+    if (photoProgress) photoProgress.textContent = `${displayIndex} / ${total}`;
+    if (photoPrev) photoPrev.disabled = photoScroller.scrollLeft <= 2;
+    if (photoNext) {
+      const end = photoScroller.scrollWidth - photoScroller.clientWidth;
+      photoNext.disabled = photoScroller.scrollLeft >= end - 2;
     }
   };
 
-  // Calculate limits initially, on resize, and on load
-  updateMinTranslate();
-  window.addEventListener("resize", updateMinTranslate);
-  window.addEventListener("load", updateMinTranslate);
-
-  const clampTranslate = (value) => {
-    if (minTranslate === 0) {
-      updateMinTranslate();
-    }
-    return clamp(value, minTranslate, 0);
-  };
-
-  const updateFromPointer = (clientX) => {
-    if (pointerDownAt === null) {
-      return;
-    }
-
-    const pointerDelta = pointerDownAt - clientX;
-    translate = clampTranslate(prevTranslate - pointerDelta);
-  };
-
-  const handlePointerUp = () => {
-    if (pointerDownAt === null) {
-      return;
-    }
-
-    pointerDownAt = null;
-    prevTranslate = translate;
-    sliderSection.classList.remove("is-dragging");
-  };
-
-  const scheduleUpdate = () => {
-    if (!rafId) {
-      rafId = requestAnimationFrame(update);
+  const schedulePhotoUpdate = () => {
+    if (!photoUpdateFrame) {
+      photoUpdateFrame = window.requestAnimationFrame(updatePhotoControls);
     }
   };
 
-  sliderSection.addEventListener("mousedown", (event) => {
-    updateMinTranslate();
-    pointerDownAt = event.clientX;
-    prevTranslate = translate;
-    sliderSection.classList.add("is-dragging");
-    scheduleUpdate();
-  });
+  const movePhotos = (direction) => {
+    if (!photoScroller) return;
+    photoScroller.scrollBy({
+      left: direction * getPhotoStep(),
+      behavior: reducedMotion.matches ? "auto" : "smooth",
+    });
+  };
 
-  window.addEventListener("mousemove", (event) => {
-    if (pointerDownAt === null) return;
-    updateFromPointer(event.clientX);
-    scheduleUpdate();
-  });
-
-  window.addEventListener("mouseup", handlePointerUp);
-
-  sliderSection.addEventListener(
-    "touchstart",
-    (event) => {
-      updateMinTranslate();
-      pointerDownAt = event.touches[0].clientX;
-      prevTranslate = translate;
-      sliderSection.classList.add("is-dragging");
-      scheduleUpdate();
-    },
-    { passive: true },
-  );
-
-  sliderSection.addEventListener(
-    "touchmove",
-    (event) => {
-      updateFromPointer(event.touches[0].clientX);
-      scheduleUpdate();
-    },
-    { passive: true },
-  );
-
-  sliderSection.addEventListener("touchend", handlePointerUp, { passive: true });
-  sliderSection.addEventListener("touchcancel", handlePointerUp, {
-    passive: true,
-  });
-
-  sliderSection.addEventListener(
-    "wheel",
-    (event) => {
-      if (Math.abs(event.deltaX) < Math.abs(event.deltaY)) {
-        return;
+  if (photoScroller && photoImages.length) {
+    photoPrev?.addEventListener("click", () => movePhotos(-1));
+    photoNext?.addEventListener("click", () => movePhotos(1));
+    photoScroller.addEventListener("scroll", schedulePhotoUpdate, { passive: true });
+    photoScroller.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowRight") {
+        event.preventDefault();
+        movePhotos(1);
+      } else if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        movePhotos(-1);
       }
-
-      event.preventDefault();
-      updateMinTranslate();
-      const sensitivity = 0.85;
-      const delta = event.deltaX * sensitivity;
-      translate = clampTranslate(translate - delta);
-      prevTranslate = translate;
-      scheduleUpdate();
-    },
-    { passive: false },
-  );
-
-  sliderSection.addEventListener("keydown", (event) => {
-    updateMinTranslate();
-    const step = event.shiftKey
-      ? Math.round(window.innerWidth * 0.22)
-      : Math.round(window.innerWidth * 0.08);
-
-    if (event.key === "ArrowRight") {
-      event.preventDefault();
-      translate = clampTranslate(translate - step);
-      prevTranslate = translate;
-      scheduleUpdate();
-    }
-
-    if (event.key === "ArrowLeft") {
-      event.preventDefault();
-      translate = clampTranslate(translate + step);
-      prevTranslate = translate;
-      scheduleUpdate();
-    }
-  });
-
-  const IDLE_THRESHOLD = 0.08;
-
-  const update = () => {
-    rafId = null;
-    if (minTranslate === 0 || imageOffsets.length === 0) {
-      updateMinTranslate();
-    }
-    const diff = Math.abs(currentTranslate - translate);
-    currentTranslate = lerp(currentTranslate, translate, 0.08);
-
-    track.style.transform = `translate(${currentTranslate}px, -50%)`;
-
-    // Compute parallax individually for each image based on its viewport-relative position
-    const halfWidth = window.innerWidth / 2;
-    for (const item of imageOffsets) {
-      const dist = currentTranslate + item.offsetLeft;
-      const normalizedDist = dist / halfWidth;
-      const clamped = Math.max(Math.min(normalizedDist, 1.5), -1.5);
-      const parallaxX = clamped * 13; // max 13% shift
-      item.element.style.setProperty("--parallax-x", `${parallaxX}%`);
-    }
-
-    // Keep animating until we've settled
-    if (diff > IDLE_THRESHOLD || pointerDownAt !== null) {
-      rafId = requestAnimationFrame(update);
-    }
-  };
-
-  // Run one frame on load to set initial position
-  rafId = requestAnimationFrame(update);
-
-  // 1. Mouse Spotlight Aura Tracking
-  if (!reducedMotion.matches && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
-    const root = document.documentElement;
-    const aura = document.createElement("div");
-    aura.className = "cursor-aura pointer-events-none fixed inset-0 z-30 opacity-0 transition-opacity duration-500";
-    document.body.appendChild(aura);
-
-    window.addEventListener("pointermove", (e) => {
-      aura.style.opacity = "1";
-      root.style.setProperty("--mouse-x", `${e.clientX}px`);
-      root.style.setProperty("--mouse-y", `${e.clientY}px`);
     });
-
-    document.body.addEventListener("pointerleave", () => {
-      aura.style.opacity = "0";
-    });
-  }
-
-  // 2. Interactive Skill Tag Highlighting
-  const skillPills = document.querySelectorAll(".skill-pill");
-  const projectCards = document.querySelectorAll(".project-card");
-
-  skillPills.forEach((pill) => {
-    const skill = pill.getAttribute("data-skill");
-    if (!skill) return;
-
-    pill.addEventListener("pointerenter", () => {
-      projectCards.forEach((card) => {
-        const cardSkills = card.getAttribute("data-skills") || "";
-        if (cardSkills.split(" ").includes(skill)) {
-          card.classList.add("skill-highlight");
-        } else {
-          card.classList.add("skill-dimmed");
-        }
-      });
-    });
-
-    pill.addEventListener("pointerleave", () => {
-      projectCards.forEach((card) => {
-        card.classList.remove("skill-highlight");
-        card.classList.remove("skill-dimmed");
-      });
-    });
-  });
-
-  // Highlight skills when hovering project cards
-  projectCards.forEach((card) => {
-    const cardSkills = (card.getAttribute("data-skills") || "").split(" ");
-    if (cardSkills.length === 0 || cardSkills[0] === "") return;
-
-    card.addEventListener("pointerenter", () => {
-      skillPills.forEach((pill) => {
-        const skill = pill.getAttribute("data-skill");
-        if (cardSkills.includes(skill)) {
-          pill.classList.add("bg-black", "text-white", "dark:bg-white", "dark:text-black", "scale-105");
-        } else {
-          pill.classList.add("opacity-40");
-        }
-      });
-    });
-
-    card.addEventListener("pointerleave", () => {
-      skillPills.forEach((pill) => {
-        pill.classList.remove("bg-black", "text-white", "dark:bg-white", "dark:text-black", "scale-105", "opacity-40");
-      });
-    });
-  });
-
-  // 3. Project Filter Tags
-  const filterBtns = document.querySelectorAll(".project-filter-btn");
-  if (filterBtns.length > 0) {
-    filterBtns.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        filterBtns.forEach((b) => {
-          b.classList.remove("bg-black", "text-white", "dark:bg-white", "dark:text-black");
-          b.classList.add("border-black/10", "dark:border-white/10");
-        });
-        btn.classList.add("bg-black", "text-white", "dark:bg-white", "dark:text-black");
-        btn.classList.remove("border-black/10", "dark:border-white/10");
-
-        const filters = btn.getAttribute("data-filter").split("-");
-
-        projectCards.forEach((card) => {
-          const isSelectedProject = card.closest("#work") !== null;
-          if (!isSelectedProject) return;
-
-          const categories = (card.getAttribute("data-project-category") || "").split(" ");
-
-          const matches = filters.includes("all") || categories.some((cat) => filters.includes(cat));
-          if (matches) {
-            card.classList.remove("is-filtered-out");
-          } else {
-            card.classList.add("is-filtered-out");
-          }
-        });
-      });
-    });
+    window.addEventListener("resize", schedulePhotoUpdate);
+    updatePhotoControls();
   }
 })();
