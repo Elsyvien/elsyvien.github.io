@@ -194,183 +194,144 @@
     observedSections.forEach((section) => sectionObserver.observe(section));
   }
 
-  const photoScroller = document.getElementById("photo-scroller");
+  const photoScroller = document.getElementById("slider-section");
   const photoTrack = document.getElementById("image-track");
-  const photoImages = photoScroller
-    ? [...photoScroller.querySelectorAll(".image-card")]
-    : [];
-  const photoPrev = document.getElementById("photo-prev");
-  const photoNext = document.getElementById("photo-next");
-  const photoProgress = document.getElementById("photo-progress");
 
-  if (photoScroller && photoTrack && photoImages.length) {
+  if (photoScroller && photoTrack) {
+    const photoImages = [...photoTrack.querySelectorAll(".image-card")];
     const photoFrames = photoImages.map((image) => {
       const frame = document.createElement("div");
-      frame.className = "photo-frame";
+      frame.className = "image-card-wrap";
       image.before(frame);
       frame.append(image);
       return frame;
     });
 
-    photoScroller.classList.add("is-parallax");
-
-    let photoUpdateFrame = null;
-    let lastPhotoIndex = -1;
-    let dragPointerId = null;
-    let dragStartX = 0;
-    let dragStartScroll = 0;
-    let dragTarget = 0;
-    let dragCurrent = 0;
-    let dragFrame = null;
+    let pointerDownAt = null;
+    let pointerId = null;
+    let translate = 0;
+    let previousTranslate = 0;
+    let currentTranslate = 0;
+    let minTranslate = 0;
+    let imageOffsets = [];
+    let animationFrame = null;
 
     const clamp = (value, min, max) => Math.max(min, Math.min(value, max));
     const lerp = (start, end, factor) => start + (end - start) * factor;
 
-    const updateEdgePadding = () => {
-      const edge = Math.max(
-        20,
-        (photoScroller.clientWidth - photoFrames[0].offsetWidth) / 2,
+    const updateBounds = () => {
+      imageOffsets = photoFrames.map((frame, index) => ({
+        element: photoImages[index],
+        offsetLeft: frame.offsetLeft,
+      }));
+      const lastFrame = photoFrames.at(-1);
+      minTranslate = lastFrame
+        ? -(lastFrame.offsetLeft - photoFrames[0].offsetLeft)
+        : 0;
+      translate = clamp(translate, minTranslate, 0);
+      previousTranslate = translate;
+    };
+
+    const updateFromPointer = (clientX) => {
+      if (pointerDownAt === null) return;
+      translate = clamp(
+        previousTranslate - (pointerDownAt - clientX),
+        minTranslate,
+        0,
       );
-      photoScroller.style.setProperty("--photo-edge-padding", `${edge}px`);
     };
 
-    const getActivePhotoIndex = (frameRects = null) => {
-      const scrollerRect = photoScroller.getBoundingClientRect();
-      const center = scrollerRect.left + scrollerRect.width / 2;
-      const rects = frameRects || photoFrames.map((frame) => frame.getBoundingClientRect());
-      let bestIndex = 0;
-      let bestDistance = Number.POSITIVE_INFINITY;
-
-      rects.forEach((rect, index) => {
-        const distance = Math.abs(rect.left + rect.width / 2 - center);
-        if (distance < bestDistance) {
-          bestDistance = distance;
-          bestIndex = index;
-        }
-      });
-
-      return bestIndex;
-    };
-
-    const updatePhotoGallery = () => {
-      photoUpdateFrame = null;
-      const scrollerRect = photoScroller.getBoundingClientRect();
-      const frameRects = photoFrames.map((frame) => frame.getBoundingClientRect());
-      const index = getActivePhotoIndex(frameRects);
-
-      if (index !== lastPhotoIndex) {
-        lastPhotoIndex = index;
-        const displayIndex = String(index + 1).padStart(2, "0");
-        const total = String(photoImages.length).padStart(2, "0");
-        if (photoProgress) photoProgress.textContent = `${displayIndex} / ${total}`;
-      }
-
-      if (photoPrev) photoPrev.disabled = photoScroller.scrollLeft <= 2;
-      if (photoNext) {
-        const end = photoScroller.scrollWidth - photoScroller.clientWidth;
-        photoNext.disabled = photoScroller.scrollLeft >= end - 2;
-      }
-
-      const scrollerCenter = scrollerRect.left + scrollerRect.width / 2;
-      const strength = precisePointer.matches ? 10 : 6;
-      photoImages.forEach((image, imageIndex) => {
-        let offset = 0;
-        if (!reducedMotion.matches) {
-          const rect = frameRects[imageIndex];
-          const frameCenter = rect.left + rect.width / 2;
-          const travel = (scrollerRect.width + rect.width) / 2;
-          offset = clamp((frameCenter - scrollerCenter) / travel, -1, 1) * strength;
-        }
-        image.style.setProperty("--photo-parallax-x", `${offset}%`);
-      });
-    };
-
-    const schedulePhotoUpdate = () => {
-      if (!photoUpdateFrame) {
-        photoUpdateFrame = window.requestAnimationFrame(updatePhotoGallery);
-      }
-    };
-
-    const movePhotos = (direction) => {
-      const currentIndex = getActivePhotoIndex();
-      const nextIndex = clamp(currentIndex + direction, 0, photoFrames.length - 1);
-      const frame = photoFrames[nextIndex];
-      const left = frame.offsetLeft + frame.offsetWidth / 2 - photoScroller.clientWidth / 2;
-      photoScroller.scrollTo({
-        left,
-        behavior: reducedMotion.matches ? "auto" : "smooth",
-      });
-    };
-
-    const updateDrag = () => {
-      dragFrame = null;
-      const difference = dragTarget - dragCurrent;
-      dragCurrent = reducedMotion.matches
-        ? dragTarget
-        : lerp(dragCurrent, dragTarget, 0.18);
-      photoScroller.scrollLeft = dragCurrent;
-
-      if (Math.abs(difference) > 0.15) {
-        dragFrame = window.requestAnimationFrame(updateDrag);
-      }
-    };
-
-    const scheduleDrag = () => {
-      if (!dragFrame) dragFrame = window.requestAnimationFrame(updateDrag);
+    const scheduleUpdate = () => {
+      if (!animationFrame) animationFrame = window.requestAnimationFrame(update);
     };
 
     const finishDrag = (event) => {
-      if (event.pointerId !== dragPointerId) return;
-      dragPointerId = null;
+      if (pointerId !== null && event?.pointerId !== pointerId) return;
+      pointerDownAt = null;
+      pointerId = null;
+      previousTranslate = translate;
       photoScroller.classList.remove("is-dragging");
-      scheduleDrag();
+      scheduleUpdate();
     };
 
-    photoPrev?.addEventListener("click", () => movePhotos(-1));
-    photoNext?.addEventListener("click", () => movePhotos(1));
-    photoScroller.addEventListener("scroll", schedulePhotoUpdate, { passive: true });
-    photoScroller.addEventListener("keydown", (event) => {
-      if (event.key === "ArrowRight") {
-        event.preventDefault();
-        movePhotos(1);
-      } else if (event.key === "ArrowLeft") {
-        event.preventDefault();
-        movePhotos(-1);
-      }
-    });
-
     photoScroller.addEventListener("pointerdown", (event) => {
-      if (event.pointerType !== "mouse" || event.button !== 0) return;
-      dragPointerId = event.pointerId;
-      dragStartX = event.clientX;
-      dragStartScroll = photoScroller.scrollLeft;
-      dragTarget = dragStartScroll;
-      dragCurrent = dragStartScroll;
+      if (event.pointerType === "mouse" && event.button !== 0) return;
+      updateBounds();
+      pointerDownAt = event.clientX;
+      pointerId = event.pointerId;
+      previousTranslate = translate;
       photoScroller.classList.add("is-dragging");
       photoScroller.setPointerCapture(event.pointerId);
+      scheduleUpdate();
     });
 
     photoScroller.addEventListener("pointermove", (event) => {
-      if (event.pointerId !== dragPointerId) return;
-      event.preventDefault();
-      const end = photoScroller.scrollWidth - photoScroller.clientWidth;
-      dragTarget = clamp(dragStartScroll + dragStartX - event.clientX, 0, end);
-      scheduleDrag();
+      if (event.pointerId !== pointerId) return;
+      updateFromPointer(event.clientX);
+      scheduleUpdate();
     });
 
     photoScroller.addEventListener("pointerup", finishDrag);
     photoScroller.addEventListener("pointercancel", finishDrag);
-    photoScroller.addEventListener("lostpointercapture", (event) => {
-      if (event.pointerId === dragPointerId) finishDrag(event);
+    photoScroller.addEventListener("lostpointercapture", finishDrag);
+
+    photoScroller.addEventListener(
+      "wheel",
+      (event) => {
+        if (Math.abs(event.deltaX) < Math.abs(event.deltaY)) return;
+        event.preventDefault();
+        updateBounds();
+        translate = clamp(translate - event.deltaX * 0.85, minTranslate, 0);
+        previousTranslate = translate;
+        scheduleUpdate();
+      },
+      { passive: false },
+    );
+
+    photoScroller.addEventListener("keydown", (event) => {
+      if (event.key !== "ArrowRight" && event.key !== "ArrowLeft") return;
+      event.preventDefault();
+      updateBounds();
+      const step = Math.round(
+        window.innerWidth * (event.shiftKey ? 0.22 : 0.08),
+      );
+      const direction = event.key === "ArrowRight" ? -1 : 1;
+      translate = clamp(translate + step * direction, minTranslate, 0);
+      previousTranslate = translate;
+      scheduleUpdate();
     });
 
     window.addEventListener("resize", () => {
-      updateEdgePadding();
-      schedulePhotoUpdate();
+      updateBounds();
+      scheduleUpdate();
+    });
+    window.addEventListener("load", () => {
+      updateBounds();
+      scheduleUpdate();
     });
 
-    reducedMotion.addEventListener("change", schedulePhotoUpdate);
-    updateEdgePadding();
-    updatePhotoGallery();
+    const update = () => {
+      animationFrame = null;
+      const difference = Math.abs(currentTranslate - translate);
+      currentTranslate = reducedMotion.matches
+        ? translate
+        : lerp(currentTranslate, translate, 0.08);
+
+      photoTrack.style.transform = `translate3d(${currentTranslate}px, -50%, 0)`;
+
+      const halfWidth = window.innerWidth / 2;
+      imageOffsets.forEach(({ element, offsetLeft }) => {
+        const distance = currentTranslate + offsetLeft;
+        const normalized = clamp(distance / halfWidth, -1.5, 1.5);
+        const parallax = reducedMotion.matches ? 0 : normalized * 13;
+        element.style.setProperty("--parallax-x", `${parallax}%`);
+      });
+
+      if (difference > 0.08 || pointerDownAt !== null) scheduleUpdate();
+    };
+
+    reducedMotion.addEventListener("change", scheduleUpdate);
+    updateBounds();
+    scheduleUpdate();
   }
 })();
