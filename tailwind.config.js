@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Urbanist", "ui-sans-serif", "sans-serif"],
+        sans: ["Schibsted Grotesk", "ui-sans-serif", "sans-serif"],
       },
     },
   },
